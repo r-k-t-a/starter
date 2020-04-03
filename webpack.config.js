@@ -13,7 +13,8 @@ module.exports = {
     ],
   },
   output: {
-    filename: 'bundle.js',
+    filename: 'b-[hash].js',
+    hashDigestLength: 4,
     path: path.resolve(__dirname, 'public'),
   },
   resolve: {
