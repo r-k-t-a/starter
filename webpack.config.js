@@ -3,7 +3,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './src/react/app.tsx',
+  entry: {
+    main: ['./src/react/app.tsx'],
+  },
   mode: process.env.NODE_ENV,
   module: {
     rules: [
@@ -18,6 +20,7 @@ module.exports = {
     filename: 'b-[hash].js',
     hashDigestLength: 4,
     path: path.resolve(__dirname, 'public'),
+    publicPath: '/',
   },
   plugins: [new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['b-*.js'] })],
   resolve: {
