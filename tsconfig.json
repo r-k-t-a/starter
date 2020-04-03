@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "allowJs": true,
     "esModuleInterop": true,
     "jsx": "react",
@@ -7,7 +8,10 @@
     "noImplicitAny": true,
     "outDir": "./build/",
     "sourceMap": false,
-    "target": "es2017"
+    "target": "es2017",
+    "paths": {
+      "*": ["src/*"]
+    }
   },
   "include": ["src/**/*"]
 }
