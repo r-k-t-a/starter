@@ -1,3 +1,4 @@
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -17,6 +18,7 @@ module.exports = {
     hashDigestLength: 4,
     path: path.resolve(__dirname, 'public'),
   },
+  plugins: [new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['b-*.js'] })],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
