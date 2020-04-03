@@ -1,11 +1,8 @@
-import dotenv from 'dotenv';
 import Koa, { Middleware } from 'koa';
 import Router from 'koa-router';
 
 import { middleware } from './middleware';
 import { renderrer } from './renderrer';
-
-dotenv.config();
 
 const { PORT } = process.env;
 const app = new Koa();
