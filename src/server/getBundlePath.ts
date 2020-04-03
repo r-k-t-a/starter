@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { Context } from 'koa';
-import { isDevelopment } from './isDevelopment';
+import { isDevelopment } from './dotenv';
 
 const statsFilePath = path.join(__dirname, '../../build/stats.json');
 
@@ -11,5 +11,5 @@ export function getBundlePath(ctx: Context): string {
     return typeof main === 'string' ? main : main[0];
   }
   const statsContent = fs.readFileSync(statsFilePath).toString();
-  return JSON.parse(statsContent).stats.assetsByChunkName.main;
+  return JSON.parse(statsContent).assetsByChunkName.main;
 }

@@ -2,6 +2,8 @@
 import { Context } from 'koa';
 import { getBundlePath } from './getBundlePath';
 
+const { CLIENT__APP_CONTAINER } = process.env;
+
 export const renderrer = async (ctx: Context, next: () => Promise<any>): Promise<void> => {
   const bundlePath = getBundlePath(ctx);
 
@@ -13,7 +15,7 @@ export const renderrer = async (ctx: Context, next: () => Promise<any>): Promise
         <title>koa ejs</title>
       </head>
       <body>
-        <div id="app">App</div>
+        <div id="${CLIENT__APP_CONTAINER}">App</div>
         <script src="/${bundlePath}"></script>
       </body>
     </html>

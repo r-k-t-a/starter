@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-declare const module: any;
-
 const Application = (): JSX.Element => <div>Application</div>;
 
-ReactDOM.render(<Application />, document.getElementById('app'));
+ReactDOM.render(<Application />, document.getElementById(process.env.CLIENT__APP_CONTAINER));
 
 if (module.hot) module.hot.accept();

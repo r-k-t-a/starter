@@ -6,7 +6,7 @@ import bodyParser from 'koa-bodyparser';
 import staticServer from 'koa-static';
 import Router from 'koa-router';
 
-import { isDevelopment } from './isDevelopment';
+import { isDevelopment } from './dotenv';
 
 async function development(): Promise<Middleware[]> {
   if (!isDevelopment) return [];
