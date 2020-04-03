@@ -17,21 +17,16 @@ export const start = async (initApp?: koaAppInitializator): Promise<void> => {
   const app = new Koa();
   const router = new Router();
 
-  app
-    .use(logger())
-    .use(bodyParser())
-    .use(staticServer('public'))
+  app.use(logger()).use(bodyParser()).use(staticServer('public'));
 
   if (initApp) await initApp(app, router);
 
   router.get('*', renderrer);
 
-  app
-    .use(router.allowedMethods())
-    .use(router.routes())
-    
-  app.listen(PORT, () => console.log(`Koa is at http://localhost:${PORT}`));
-}
+  app.use(router.allowedMethods()).use(router.routes());
 
+  // eslint-disable-next-line no-console
+  app.listen(PORT, () => console.log(`Koa is at http://localhost:${PORT}`));
+};
 
 if (require.main === module) start();

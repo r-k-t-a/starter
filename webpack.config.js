@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    main: ['./src/react/index.tsx']
+    main: ['./src/react/app.tsx'],
   },
   mode: process.env.NODE_ENV,
   module: {
@@ -20,7 +20,7 @@ module.exports = {
     filename: 'b-[hash].js',
     hashDigestLength: 4,
     path: path.resolve(__dirname, 'public/bundle'),
-    publicPath: '/bundle'
+    publicPath: '/bundle',
   },
   plugins: [new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['b-*.js'] })],
   resolve: {
