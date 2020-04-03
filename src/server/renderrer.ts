@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Context } from 'koa';
 
-export const renderrer = async (ctx: Context, next: () => Promise<any>) => {
+export const renderrer = async (ctx: Context, next: () => Promise<any>): Promise<any> => {
   ctx.body = `<!DOCTYPE html>
 
   <html lang="en">

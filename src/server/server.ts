@@ -22,4 +22,5 @@ app
 
 router.get('*', renderrer);
 
+// eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`Koa is at http://localhost:${PORT}`));
