@@ -1,32 +1,41 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import dotenv from 'dotenv';
-import Koa from 'koa';
+import Koa, { Middleware } from 'koa';
 import Router from 'koa-router';
 import logger from 'koa-logger';
 import bodyParser from 'koa-bodyparser';
 import staticServer from 'koa-static';
-import { renderrer } from './renderrer';
+import koaWebpack from 'koa-webpack';
 
-// todo: https://github.com/dougmoscrop/serverless-http
+import { renderrer, isDevelopment } from './renderrer';
 
 dotenv.config();
 const { PORT } = process.env;
 
-type koaAppInitializator = (koaApp: Koa, router: Router) => Promise<void>;
+const app = new Koa();
+const router = new Router();
+router.get('*', renderrer);
 
-export const start = async (initApp?: koaAppInitializator): Promise<void> => {
-  const app = new Koa();
-  const router = new Router();
+const middlewares: Middleware[] = [];
 
-  app.use(logger()).use(bodyParser()).use(staticServer('public'));
+async function useDevMiddleware(): Promise<void> {
+  if (!isDevelopment) return;
+  const devServer = await koaWebpack({
+    devMiddleware: {
+      publicPath: '/',
+      serverSideRender: true,
+    },
+    hotClient: {
+      port: 32768,
+    },
+  });
+  middlewares.push(logger(), devServer);
+}
 
-  if (initApp) await initApp(app, router);
+middlewares.push(bodyParser(), staticServer('public'), router.allowedMethods(), router.routes());
 
-  router.get('*', renderrer);
-
-  app.use(router.allowedMethods()).use(router.routes());
-
-  // eslint-disable-next-line no-console
+const applyMiddleware = (): void => middlewares.forEach((item) => app.use(item));
+const startServer = (): void => {
   app.listen(PORT, () => console.log(`Koa is at http://localhost:${PORT}`));
 };
-
-if (require.main === module) start();
+useDevMiddleware().then(applyMiddleware).then(startServer);
