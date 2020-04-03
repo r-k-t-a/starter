@@ -2,8 +2,8 @@
   "name": "rkta-starter",
   "version": "1.0.0",
   "scripts": {
-    "build:client": "webpack",
-    "build:server": "tsc",
+    "build:client": "NODE_ENV=production webpack",
+    "build:server": "NODE_ENV=production tsc",
     "build": "npm run build:client && npm run build:server",
     "dev:server": "cross-env NODE_ENV=development nodemon --watch src/**/* -e ts,tsx --exec ts-node src/server/server.ts",
     "dev": "npm run dev:server",
@@ -14,17 +14,20 @@
   "dependencies": {
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.3.0",
-    "koa-ejs": "^4.3.0",
     "koa-json": "^2.0.2",
     "koa-logger": "^3.2.1",
-    "koa-router": "^8.0.8"
+    "koa-router": "^8.0.8",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
     "@types/koa": "^2.11.3",
     "@types/koa-bodyparser": "^4.3.0",
-    "@types/koa-ejs": "^4.2.2",
     "@types/koa-logger": "^3.1.1",
     "@types/koa-router": "^7.4.0",
+    "@types/react": "^16.9.32",
+    "@types/react-dom": "^16.9.6",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "nodemon": "^2.0.2",

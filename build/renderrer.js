@@ -1,7 +1,7 @@
-import { Context } from 'koa';
-
-export const renderrer = async (ctx: Context, next: () => Promise<any>) => {
-  ctx.body = `<!DOCTYPE html>
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.renderrer = async (ctx, next) => {
+    ctx.body = `<!DOCTYPE html>
 
   <html lang="en">
     <html>
@@ -14,5 +14,6 @@ export const renderrer = async (ctx: Context, next: () => Promise<any>) => {
       </body>
     </html>
   </html>`;
-  await next();
+    await next();
 };
+//# sourceMappingURL=renderrer.js.map
