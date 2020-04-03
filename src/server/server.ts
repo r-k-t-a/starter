@@ -16,7 +16,7 @@ const router = new Router();
 app
   .use(logger())
   .use(bodyParser())
-  .use(staticServer('../public'))
+  .use(staticServer('public'))
   .use(router.routes())
   .use(router.allowedMethods());
 
