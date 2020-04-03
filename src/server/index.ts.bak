@@ -1,0 +1,18 @@
+import dotenv from 'dotenv';
+import Koa from 'koa';
+import Router from 'koa-router';
+
+import { middleware } from './middleware';
+import { renderrer } from './renderrer';
+
+dotenv.config();
+
+const { PORT } = process.env;
+const app = new Koa();
+const router = new Router();
+router.get('*', renderrer);
+
+const apply = app.use.bind(app);
+await middleware(router).forEach(apply);
+
+app.listen(PORT, () => console.log(`Koa is at http://localhost:${PORT}`));

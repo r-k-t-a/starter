@@ -2,8 +2,6 @@
 import { Context } from 'koa';
 import { getBundlePath } from './getBundlePath';
 
-export const isDevelopment = process.env.NODE_ENV === 'development';
-
 export const renderrer = async (ctx: Context, next: () => Promise<any>): Promise<void> => {
   const bundlePath = getBundlePath(ctx);
 

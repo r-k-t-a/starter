@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { Context } from 'koa';
-import { isDevelopment } from './renderrer';
+import { isDevelopment } from './isDevelopment';
 
 const statsFilePath = path.join(__dirname, '../../build/stats.json');
 
