@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build:client": "webpack",
-    "build:server": "tsc",
+    "build:server": "tsc -p src/server/ --outDir build/server",
     "build": "npm run build:client && npm run build:server",
     "dev:server": "cross-env NODE_ENV=development nodemon --watch src/**/* -e ts,tsx --exec ts-node src/server/server.ts",
     "dev": "npm run dev:server",
