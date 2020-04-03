@@ -10,17 +10,28 @@ import { renderrer } from './renderrer';
 
 dotenv.config();
 const { PORT } = process.env;
-const app = new Koa();
-const router = new Router();
 
-app
-  .use(logger())
-  .use(bodyParser())
-  .use(staticServer('public'))
-  .use(router.routes())
-  .use(router.allowedMethods());
+type koaAppInitializator = (koaApp: Koa, router: Router) => Promise<void>;
 
-router.get('*', renderrer);
+export const start = async (initApp?: koaAppInitializator): Promise<void> => {
+  const app = new Koa();
+  const router = new Router();
 
-// eslint-disable-next-line no-console
-app.listen(PORT, () => console.log(`Koa is at http://localhost:${PORT}`));
+  app
+    .use(logger())
+    .use(bodyParser())
+    .use(staticServer('public'))
+
+  if (initApp) await initApp(app, router);
+
+  router.get('*', renderrer);
+
+  app
+    .use(router.allowedMethods())
+    .use(router.routes())
+    
+  app.listen(PORT, () => console.log(`Koa is at http://localhost:${PORT}`));
+}
+
+
+if (require.main === module) start();
