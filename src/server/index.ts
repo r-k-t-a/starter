@@ -2,12 +2,12 @@ import Koa, { Middleware } from 'koa';
 import Router from 'koa-router';
 
 import { middleware } from './middleware';
-import { renderrer } from './renderrer';
+import { defaultRoute } from './routes/defaultRoute';
 
 const { PORT } = process.env;
 const app = new Koa();
 const router = new Router();
-router.get('*', renderrer);
+router.get('*', defaultRoute);
 
 const apply = (items: Middleware[]): void => items.forEach(app.use.bind(app));
 

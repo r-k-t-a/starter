@@ -2,17 +2,14 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 const { EnvironmentPlugin } = require('webpack');
+
 require('dotenv').config();
 
-function pick(acc, [key, value]) {
-  if (key.startsWith('CLIENT__')) return { ...acc, [key]: value };
-  return acc;
-}
-const publicSettings = Object.entries(process.env).reduce(pick, {});
+const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
 
 module.exports = {
   entry: {
-    main: ['./src/react/app.tsx'],
+    main: ['./src/App'],
   },
   mode: process.env.NODE_ENV,
   module: {
@@ -31,7 +28,7 @@ module.exports = {
     publicPath: '/',
   },
   plugins: [
-    new EnvironmentPlugin(publicSettings),
+    new EnvironmentPlugin(publicEnvKeys),
     new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['b-*.js'] }),
   ],
   resolve: {

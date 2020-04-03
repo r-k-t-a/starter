@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { Context } from 'koa';
-import { isDevelopment } from './dotenv';
+import { isDevelopment } from '../../dotenv';
 
 const statsFilePath = path.join(__dirname, '../../build/stats.json');
 
