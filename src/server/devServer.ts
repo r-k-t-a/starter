@@ -5,7 +5,7 @@ import { start } from './server';
 start(async (koaApp) => {
   const middleware = await koaWebpack({
     devMiddleware: {
-      publicPath: '/bundle',
+      publicPath: '/',
       serverSideRender: true,
     },
     hotClient: {

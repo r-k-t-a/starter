@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { Context } from 'koa';
 
-const statsFilePath = path.join(__dirname, '../../build/bundle-stats.json');
+const statsFilePath = path.join(__dirname, '../../build/stats.json');
 
 let stats: any = null;
 if (fs.existsSync(statsFilePath)) stats = JSON.parse(fs.readFileSync(statsFilePath).toString());
@@ -27,7 +27,7 @@ export const renderrer = async (ctx: Context, next: () => Promise<any>): Promise
       </head>
       <body>
         <div id="app">App</div>
-        <script src="/bundle/${bundleFilename}"></script>
+        <script src="/${bundleFilename}"></script>
       </body>
     </html>
   </html>`;

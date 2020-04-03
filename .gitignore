@@ -14,7 +14,7 @@ yarn.lock
 
 # production
 /build
-/public/bundle
+/public/b-*.js
 
 # misc
 .DS_Store   

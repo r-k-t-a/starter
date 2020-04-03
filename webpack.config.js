@@ -19,8 +19,8 @@ module.exports = {
   output: {
     filename: 'b-[hash].js',
     hashDigestLength: 4,
-    path: path.resolve(__dirname, 'public/bundle'),
-    publicPath: '/bundle',
+    path: path.resolve(__dirname, 'public'),
+    publicPath: '/',
   },
   plugins: [new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['b-*.js'] })],
   resolve: {
