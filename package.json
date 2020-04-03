@@ -2,7 +2,9 @@
   "name": "rkta-starter",
   "version": "1.0.0",
   "scripts": {
-    "build:client": "NODE_ENV=production webpack --profile --json > build/bundle-stats.json",
+    "preanalize": "npm run build:client",
+    "analize": "webpack-bundle-analyzer build/stats.json",
+    "build:client": "NODE_ENV=production webpack --profile --json > build/stats.json",
     "build:server": "NODE_ENV=production tsc -p src/server/ --outDir build/server",
     "build": "npm run build:client && npm run build:server",
     "dev:server": "cross-env NODE_ENV=development nodemon --watch src/**/* -e ts,tsx --exec ts-node src/server/server.ts",
@@ -38,6 +40,7 @@
     "ts-node": "^8.8.1",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
+    "webpack-bundle-analyzer": "^3.6.1",
     "webpack-cli": "^3.3.11"
   },
   "repository": {
