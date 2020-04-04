@@ -12,7 +12,7 @@ const RktaApp = (): JSX.Element => (
 
 document.onreadystatechange = (): void => {
   if (document.readyState === 'complete')
-    ReactDOM.render(<RktaApp />, document.getElementById(process.env.CLIENT__APP_CONTAINER));
+    ReactDOM.render(<RktaApp />, document.getElementById(process.env.CLIENT__APP_CONTAINER!));
 };
 
 if (module.hot) module.hot.accept();

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "preanalize": "npm run build:client",
-    "analize": "webpack-bundle-analyzer build/stats.json",
+    "analyze": "webpack-bundle-analyzer build/stats.json",
     "build:client": "NODE_ENV=production webpack --profile --json > build/stats.json",
     "build:server": "NODE_ENV=production tsc -p src/server/ --outDir build/server",
     "prebuild": "npm run lint",
@@ -67,6 +67,7 @@
     "koa-webpack": "^5.3.0",
     "nodemon": "^2.0.2",
     "prettier": "^2.0.2",
+    "ts-jest": "^25.3.1",
     "ts-loader": "^6.2.2",
     "ts-node": "^8.8.1",
     "typescript": "^3.8.3",

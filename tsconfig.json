@@ -1,17 +1,25 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "allowJs": true,
+    "baseUrl": ".",
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "module": "commonjs",
     "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
     "outDir": "./build/",
     "sourceMap": false,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
     "target": "es2017",
     "paths": {
       "*": ["src/*"]
     }
   },
-  "include": ["src/**/*"]
+  "exclude": ["node_modules", "build", "scripts"],
+  "include": ["src/**/*"],
+  "types": ["typePatches"]
 }

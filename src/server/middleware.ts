@@ -9,7 +9,7 @@ import Router from 'koa-router';
 import { isDevelopment } from './dotenv';
 
 async function development(): Promise<Middleware[]> {
-  if (!isDevelopment) return [];
+  if (!isDevelopment) return [] as Middleware[];
   const devServer = await koaWebpack({
     devMiddleware: {
       publicPath: '/',
@@ -24,10 +24,11 @@ async function development(): Promise<Middleware[]> {
 
 export async function middleware(router: Router): Promise<Middleware[]> {
   const developmentMiddleware = await development();
-  return developmentMiddleware.concat(
+  const generalMiddleware = [
     bodyParser(),
     staticServer('public'),
     router.allowedMethods(),
     router.routes(),
-  );
+  ] as Middleware[];
+  return [...developmentMiddleware, ...generalMiddleware];
 }
