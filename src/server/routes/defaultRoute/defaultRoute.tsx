@@ -1,35 +1,41 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Context } from 'koa';
-import { renderToStaticMarkup } from 'react-dom/server';
+import { renderToNodeStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import { getDataFromTree } from '@apollo/react-ssr';
 
 import { getBundlePath } from './getBundlePath';
 import { serverApp } from './serverApp';
+import { template, HelmetData } from './template';
+import { init } from '../../../apollo';
 
-const { CLIENT__APP_CONTAINER } = process.env;
-
-export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Promise<void> => {
+export const defaultRoute = async (ctx: Context): Promise<void> => {
   const routerContext: StaticRouter['context'] = {
     status: 200,
   };
   const bundlePath = getBundlePath(ctx);
-  const app = serverApp(routerContext, ctx.url);
-  const html = renderToStaticMarkup(app);
+  const apolloClient = init({});
+  const helmetContext = { helmet: {} };
+  const tree = serverApp({ apolloClient, helmetContext, location: ctx.url, routerContext });
+  await getDataFromTree(tree);
+  const apolloCache = apolloClient.cache.extract();
+
+  const [header, footer] = template({
+    helmet: helmetContext.helmet as HelmetData,
+    apolloCache,
+    bundlePath,
+  });
 
   ctx.status = routerContext.status;
-  ctx.body = `<!DOCTYPE html>
+  ctx.res.write(header);
 
-  <html lang="en">
-    <html>
-      <head>
-        <title>koa ejs</title>
-        <script src="/${bundlePath}" async></script>
-      </head>
-      <body>
-        <div id="${CLIENT__APP_CONTAINER}">${html}</div>
-      </body>
-    </html>
-  </html>`;
-
-  await next();
+  return new Promise((resolve) => {
+    renderToNodeStream(tree)
+      .on('end', () => {
+        ctx.res.write(footer);
+        ctx.res.end();
+        resolve();
+      })
+      .pipe(ctx.res, { end: false });
+  });
 };
