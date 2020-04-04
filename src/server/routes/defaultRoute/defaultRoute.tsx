@@ -20,19 +20,19 @@ export const defaultRoute = async (ctx: Context): Promise<void> => {
   await getDataFromTree(tree);
   const apolloCache = apolloClient.cache.extract();
 
-  const [header, footer] = template({
+  const [head, tail] = template({
     helmet: helmetContext.helmet as HelmetData,
     apolloCache,
     bundlePath,
   });
 
   ctx.status = routerContext.status;
-  ctx.res.write(header);
+  ctx.res.write(head);
 
   return new Promise((resolve) => {
     renderToNodeStream(tree)
       .on('end', () => {
-        ctx.res.write(footer);
+        ctx.res.write(tail);
         ctx.res.end();
         resolve();
       })
