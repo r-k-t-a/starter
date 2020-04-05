@@ -10,7 +10,7 @@ import { serverApp } from './serverApp';
 import { template } from './template';
 import { init } from '../../../apollo';
 
-export const defaultRoute = async (ctx: Context): Promise<void> => {
+export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Promise<void> => {
   const routerContext: StaticRouter['context'] = {
     status: 200,
   };
@@ -30,13 +30,19 @@ export const defaultRoute = async (ctx: Context): Promise<void> => {
   ctx.status = routerContext.status;
   ctx.res.write(head);
 
-  return new Promise((resolve) => {
+  await new Promise((resolve, reject) => {
     renderToNodeStream(tree)
+      .on('data', (chunk) => {
+        console.log('chunk', chunk.toString('utf8'));
+      })
       .on('end', () => {
         ctx.res.write(tail);
         ctx.res.end();
         resolve();
       })
+      .on('error', reject)
       .pipe(ctx.res);
   });
+
+  await next();
 };
