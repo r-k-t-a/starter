@@ -3,10 +3,11 @@ import { Context } from 'koa';
 import { renderToNodeStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { getDataFromTree } from '@apollo/react-ssr';
+import { FilledContext } from 'react-helmet-async';
 
 import { getBundlePath } from './getBundlePath';
 import { serverApp } from './serverApp';
-import { template, HelmetData } from './template';
+import { template } from './template';
 import { init } from '../../../apollo';
 
 export const defaultRoute = async (ctx: Context): Promise<void> => {
@@ -21,7 +22,7 @@ export const defaultRoute = async (ctx: Context): Promise<void> => {
   const apolloCache = apolloClient.cache.extract();
 
   const [head, tail] = template({
-    helmet: helmetContext.helmet as HelmetData,
+    helmet: helmetContext.helmet as FilledContext['helmet'],
     apolloCache,
     bundlePath,
   });
@@ -36,6 +37,6 @@ export const defaultRoute = async (ctx: Context): Promise<void> => {
         ctx.res.end();
         resolve();
       })
-      .pipe(ctx.res, { end: false });
+      .pipe(ctx.res);
   });
 };

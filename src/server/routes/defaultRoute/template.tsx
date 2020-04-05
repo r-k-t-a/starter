@@ -2,36 +2,16 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory';
+import { FilledContext } from 'react-helmet-async';
 
 const { CLIENT__APP_CONTAINER, CLIENT__CACHE_CONTAINER } = process.env;
 
-interface HelmetElement {
-  toComponent(): JSX.Element;
-  toString(): string;
-}
-interface HelmetAttribute {
-  toComponent(): {};
-  toString(): string;
-}
-
 const delimeter = '__RKTA__BODY__';
-
-export interface HelmetData {
-  base: HelmetElement;
-  bodyAttributes: HelmetAttribute;
-  htmlAttributes: HelmetAttribute;
-  link: HelmetElement;
-  meta: HelmetElement;
-  noscript: HelmetElement;
-  script: HelmetElement;
-  style: HelmetElement;
-  title: HelmetElement;
-}
 
 interface Args {
   apolloCache: NormalizedCacheObject;
   bundlePath: string;
-  helmet: HelmetData;
+  helmet: FilledContext['helmet'];
 }
 
 export const template = ({
