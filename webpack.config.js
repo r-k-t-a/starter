@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const path = require('path');
-const { EnvironmentPlugin } = require('webpack');
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import path from 'path';
+import { EnvironmentPlugin } from 'webpack';
+import dotenv from 'dotenv';
 
-require('dotenv').config();
+dotenv.config();
 
 const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
 
-module.exports = {
+export default {
   entry: {
     main: ['./src/App'],
   },

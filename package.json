@@ -1,20 +1,22 @@
 {
   "name": "rkta-starter",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "preanalize": "npm run build:client",
     "analyze": "webpack-bundle-analyzer build/stats.json",
     "build:client": "NODE_ENV=production webpack --profile --json > build/stats.json",
-    "build:server": "NODE_ENV=production tsc -p src/server/ --outDir build/server",
+    "build:server": "NODE_ENV=production tsc -p src/server/ --outDir build/node",
     "prebuild": "npm run lint",
     "build": "npm run build:client && npm run build:server",
-    "dev:server": "cross-env NODE_ENV=development nodemon --watch src/server/**/* -e ts,tsx --exec 'ts-node -r esm src/server'",
+    "dev:server": "ts-node src/server",
     "dev": "npm run dev:server",
     "lint": "eslint 'src' --ext .ts,.tsx",
-    "start": "node build/server",
+    "start": "node build/node/server",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "typecheck:watch": "npm run typecheck -- --watch"
   },
   "description": "",
   "dependencies": {

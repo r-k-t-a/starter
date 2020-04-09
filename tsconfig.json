@@ -1,17 +1,21 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "allowJs": false,
     "baseUrl": ".",
+    "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "module": "commonjs",
+    "module": "ES6",
+    "moduleResolution": "node",
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noImplicitReturns": true,
+    "noLib": false,
     "noUnusedLocals": true,
     "outDir": "./build/",
-    "sourceMap": false,
+    "resolveJsonModule": true,
+    "sourceMap": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "target": "es2017",
@@ -20,6 +24,5 @@
     }
   },
   "exclude": ["node_modules", "build", "scripts"],
-  "include": ["src/**/*"],
-  "types": ["typePatches"]
+  "include": ["src/**/*"]
 }
