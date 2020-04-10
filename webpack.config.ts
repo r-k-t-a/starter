@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable import/no-extraneous-dependencies */
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import path from 'path';
 import { EnvironmentPlugin } from 'webpack';
