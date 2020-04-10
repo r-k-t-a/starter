@@ -31,17 +31,19 @@ const plugins = [
   }),
   typescript(),
 ];
-const clentPlugins = [nodeResolve({ preferBuiltins: false }), ...plugins];
+const clentPlugins = [nodeResolve({ preferBuiltins: true }), ...plugins];
 
 export default [
   {
     input: 'src/App/index.tsx',
-    output: [{
-      // dir: 'public',
-      // entryFileNames: 'b-[hash].js',
-      file: 'public/b-[hash].js',
-      format: 'iife'
-    }],
+    output: [
+      {
+        // dir: 'public',
+        // entryFileNames: 'b-[hash].js',
+        file: 'public/b-[hash].js',
+        format: 'iife',
+      },
+    ],
     plugins: clentPlugins,
   },
   {
