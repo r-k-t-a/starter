@@ -39,5 +39,29 @@ const clientConfig: webpack.Configuration = {
     extensions: ['.tsx', '.ts', '.js'],
   },
 };
+const serverConfig: webpack.Configuration = {
+  entry: './src/server',
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  output: {
+    filename: 'server.js',
+    path: path.resolve(__dirname, 'build'),
+  },
+  plugins: [
+    new webpack.EnvironmentPlugin(publicEnvKeys),
+    // new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['server.js'] }),
+  ],
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+};
 
-export default [clientConfig];
+export default [clientConfig, serverConfig];
