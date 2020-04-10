@@ -1,18 +1,16 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import path from 'path';
-import { EnvironmentPlugin } from 'webpack';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import webpack from 'webpack';
+import { isDevelopment } from './src/server/dotenv';
 
 const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
 
-export default {
+const clientConfig: webpack.Configuration = {
   entry: {
     main: ['./src/App'],
   },
-  mode: process.env.NODE_ENV,
+  mode: isDevelopment ? 'development' : 'production',
   module: {
     rules: [
       {
@@ -34,10 +32,12 @@ export default {
     publicPath: '/',
   },
   plugins: [
-    new EnvironmentPlugin(publicEnvKeys),
+    new webpack.EnvironmentPlugin(publicEnvKeys),
     new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['b-*.js'] }),
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
 };
+
+export default [clientConfig];
