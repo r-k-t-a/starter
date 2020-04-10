@@ -1,30 +1,28 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Middleware } from 'koa';
 import logger from 'koa-logger';
-// import koaWebpack from 'koa-webpack';
+import koaWebpack from 'koa-webpack';
 import bodyParser from 'koa-bodyparser';
 import staticServer from 'koa-static';
 import Router from 'koa-router';
-// import webpackConfig from '../../webpack.config';
+import { client } from '../../webpack.config';
 
 import { isDevelopment } from './dotenv';
 
-// const [config] = webpackConfig;
-
 async function development(): Promise<Middleware[]> {
   if (!isDevelopment) return [] as Middleware[];
-  // const devServer = await koaWebpack({
-  //   config,
-  //   devMiddleware: {
-  //     publicPath: '/',
-  //     serverSideRender: true,
-  //   },
-  //   hotClient: {
-  //     port: 32768,
-  //   },
-  // });
-  // return [logger(), devServer];
-  return [logger()];
+  const devServer = await koaWebpack({
+    config: client,
+    devMiddleware: {
+      publicPath: '/',
+      serverSideRender: true,
+    },
+    hotClient: {
+      port: 32768,
+    },
+  });
+  return [logger(), devServer];
+  // return [logger()];
 }
 
 export async function middleware(router: Router): Promise<Middleware[]> {
