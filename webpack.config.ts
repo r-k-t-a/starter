@@ -6,7 +6,7 @@ import { isDevelopment } from './src/server/dotenv';
 
 const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
 
-const clientConfig: webpack.Configuration = {
+const client: webpack.Configuration = {
   entry: {
     main: ['./src/App'],
   },
@@ -39,7 +39,8 @@ const clientConfig: webpack.Configuration = {
     extensions: ['.tsx', '.ts', '.js'],
   },
 };
-const serverConfig: webpack.Configuration = {
+
+const server: webpack.Configuration = {
   entry: './src/server',
   mode: 'production',
   module: {
@@ -64,4 +65,4 @@ const serverConfig: webpack.Configuration = {
   },
 };
 
-export default [clientConfig, serverConfig];
+export default [client, server];
