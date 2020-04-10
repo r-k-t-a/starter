@@ -11,7 +11,7 @@
     "clean": "rimraf build",
     "prebuild": "npm run clean && npm run lint",
     "build": "npm run build:client && npm run build:server",
-    "dev:server": "ts-node src/server",
+    "dev:server": "ts-node -r esm src/server",
     "dev": "npm run dev:server",
     "lint": "eslint 'src' --ext .ts,.tsx",
     "start": "node -r esm build/server",
