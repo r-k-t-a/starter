@@ -14,7 +14,7 @@ export function getBundleName(ctx: Context): string {
   }
   const statsContent = fs.readFileSync(statsFilePath).toString();
   const bundleName = JSON.parse(statsContent).assetsByChunkName.main;
-  return `/${bundleName}`;
+  return `${bundleName}`;
 }
 
 const prefix = (bundleName: string): string => `${process.env.HTTP_BASE!}${bundleName}`;
