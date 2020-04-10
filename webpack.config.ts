@@ -6,9 +6,12 @@ import { isDevelopment } from './src/server/dotenv';
 
 const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
 
-const config: webpack.Configuration = {
+const config = {
   entry: {
     main: ['./src/App'],
+  },
+  experiments: {
+    outputModule: true,
   },
   mode: isDevelopment ? 'development' : 'production',
   module: {
@@ -26,8 +29,11 @@ const config: webpack.Configuration = {
     ],
   },
   output: {
-    filename: 'b-[hash].js',
+    // filename: 'b-[contenthash].js',
+    filename: 'b.js',
     hashDigestLength: 4,
+    // iife: true,
+    // module: true,
     path: path.resolve(__dirname, 'public'),
     publicPath: '/',
   },
