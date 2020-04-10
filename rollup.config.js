@@ -38,9 +38,8 @@ export default [
     input: 'src/App/index.tsx',
     output: [
       {
-        // dir: 'public',
-        // entryFileNames: 'b-[hash].js',
-        file: 'public/b-[hash].js',
+        dir: 'public',
+        entryFileNames: 'b-[hash].js',
         format: 'iife',
       },
     ],
