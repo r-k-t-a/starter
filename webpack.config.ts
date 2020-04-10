@@ -2,6 +2,7 @@
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import path from 'path';
 import webpack from 'webpack';
+import nodeExternals from 'webpack-node-externals';
 import { isDevelopment } from './src/server/dotenv';
 
 const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
@@ -54,7 +55,9 @@ const server: webpack.Configuration = {
   },
   output: {
     filename: 'server.js',
-    path: path.resolve(__dirname, 'build'),
+    // library: 'exports',
+    libraryTarget: 'commonjs',
+    path: path.resolve(__dirname, 'build/node'),
   },
   plugins: [
     new webpack.EnvironmentPlugin(publicEnvKeys),
@@ -63,6 +66,8 @@ const server: webpack.Configuration = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
+  target: 'node',
+  externals: [nodeExternals()],
 };
 
 export default [client, server];
