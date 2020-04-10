@@ -5,12 +5,16 @@ import koaWebpack from 'koa-webpack';
 import bodyParser from 'koa-bodyparser';
 import staticServer from 'koa-static';
 import Router from 'koa-router';
+import webpackConfig from '../../webpack.config';
 
 import { isDevelopment } from './dotenv';
+
+const [config] = webpackConfig;
 
 async function development(): Promise<Middleware[]> {
   if (!isDevelopment) return [] as Middleware[];
   const devServer = await koaWebpack({
+    config,
     devMiddleware: {
       publicPath: '/',
       serverSideRender: true,
