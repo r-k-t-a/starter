@@ -57,10 +57,13 @@ const server = {
       },
     ],
   },
+  optimization: {
+    minimize: false, // TODO remove when bug is fixed
+  },
   output: {
     ecmaVersion: 2017,
     filename: 'server.js',
-    libraryTarget: 'commonjs',
+    libraryTarget: 'module',
     module: true,
     path: path.resolve(__dirname, 'build'),
   },
