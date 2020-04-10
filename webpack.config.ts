@@ -57,7 +57,7 @@ const server: webpack.Configuration = {
     filename: 'server.js',
     // library: 'exports',
     libraryTarget: 'commonjs',
-    path: path.resolve(__dirname, 'build/node'),
+    path: path.resolve(__dirname, 'build'),
   },
   plugins: [
     new webpack.EnvironmentPlugin(publicEnvKeys),
