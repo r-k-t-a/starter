@@ -1,7 +1,6 @@
 {
   "name": "rkta-starter",
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
     "preanalize": "npm run build:client",
     "analyze": "webpack-bundle-analyzer build/stats.json",
