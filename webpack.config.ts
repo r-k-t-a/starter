@@ -9,7 +9,7 @@ const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('C
 
 export const client: webpack.Configuration = {
   entry: {
-    main: ['./src/App'],
+    main: './src/App',
   },
   mode: isDevelopment ? 'development' : 'production',
   module: {

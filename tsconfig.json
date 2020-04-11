@@ -19,10 +19,11 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "target": "es2017",
+    "typeRoots": ["src/@types"],
     "paths": {
       "*": ["src/*"]
     }
   },
-  "exclude": ["node_modules", "build", "scripts"],
+  "exclude": ["node_modules", "build", "scripts", "src/@types", "src/jest"],
   "include": ["src/**/*"]
 }
