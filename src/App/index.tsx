@@ -29,4 +29,5 @@ document.onreadystatechange = (): void => {
   );
 };
 
-if (module.hot) module.hot.accept();
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+if ((module as any).hot) (module as any).hot.accept();
