@@ -13,6 +13,7 @@ yarn.lock
 
 # production
 /build
+/build-dev
 /public/b-*.js
 /public/b-*.txt
 

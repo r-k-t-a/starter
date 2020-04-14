@@ -53,14 +53,14 @@ const server = {
     ],
   },
   optimization: {
-    minimize: false, // TODO remove when bug is fixed
+    minimize: false,
   },
   output: {
     ecmaVersion: 2017,
     filename: 'server.js',
     libraryTarget: 'module',
     module: true,
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'build-dev'),
   },
   plugins: [new webpack.EnvironmentPlugin(publicEnvKeys)],
   resolve: {
