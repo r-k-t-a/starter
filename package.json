@@ -4,10 +4,8 @@
   "scripts": {
     "preanalize": "npm run build:client",
     "analyze": "webpack-bundle-analyzer build/stats.json",
-    "build:client": "TS_NODE_PROJECT=tsconfig-webpack.json webpack",
-    "build:server": "rollup -c ./rollup.config.js",
     "prebuild": "npm run clean && npm run lint",
-    "build": "NODE_ENV=production npm run build:client",
+    "build": "NODE_ENV=production webpack",
     "clean": "rimraf build",
     "dev": "NODE_ENV=development node scripts/start-dev-server",
     "lint": "eslint 'src' --ext .ts,.tsx",
@@ -40,8 +38,6 @@
     "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^11.0.2",
-    "@rollup/plugin-node-resolve": "^7.1.1",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/express-to-koa": "^1.0.0",
@@ -85,9 +81,6 @@
     "prettier": "^2.0.2",
     "react-helmet": "^5.2.1",
     "rimraf": "^3.0.2",
-    "rollup": "^2.4.0",
-    "rollup-plugin-terser": "^5.3.0",
-    "rollup-plugin-typescript2": "^0.27.0",
     "terser": "^4.6.11",
     "ts-jest": "^25.3.1",
     "ts-loader": "^6.2.2",
