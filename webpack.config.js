@@ -63,7 +63,6 @@ const server = {
   output: {
     ecmaVersion: 2017,
     filename: 'server.js',
-    libraryTarget: 'module',
     module: true,
     path: path.resolve(__dirname, isDevelopment ? 'build-dev' : 'build'),
   },
