@@ -1,7 +1,6 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { FilledContext } from 'react-helmet-async';
 
 const { CLIENT__APP_CONTAINER, CLIENT__CACHE_CONTAINER } = process.env;
@@ -9,15 +8,15 @@ const { CLIENT__APP_CONTAINER, CLIENT__CACHE_CONTAINER } = process.env;
 const delimeter = '__RKTA__BODY__';
 
 interface Args {
-  apolloCache: NormalizedCacheObject;
   bundlePath: string;
   helmet: FilledContext['helmet'];
+  reduxStore: {};
 }
 
 export const template = ({
-  apolloCache,
   bundlePath,
   helmet: { base, bodyAttributes, htmlAttributes, link, meta, noscript, script, style, title },
+  reduxStore,
 }: Args): [string, string] => {
   const [head, tail] = renderToStaticMarkup(
     <>
@@ -36,7 +35,7 @@ export const template = ({
           <script
             id={CLIENT__CACHE_CONTAINER}
             type="application/json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(apolloCache) }}
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(reduxStore) }}
           />
           {noscript.toString()}
         </body>

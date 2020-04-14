@@ -3,7 +3,6 @@ module.exports = {
   coveragePathIgnorePatterns: ['build/', 'node_modules/', 'public/'],
   setupFilesAfterEnv: ['./src/jest/enzymeSetup.ts'],
   transform: {
-    '\\.(gql|graphql)$': 'jest-transform-graphql',
     '.*': 'ts-jest',
   },
 };

@@ -1,11 +1,9 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { ApolloProvider } from '@apollo/react-hooks';
 import { HelmetProvider } from 'react-helmet-async';
 
 import { App } from './App';
-import { init } from '../apollo';
 
 const RktaApp = (): JSX.Element => (
   <BrowserRouter>
@@ -16,15 +14,11 @@ const RktaApp = (): JSX.Element => (
 document.onreadystatechange = (): void => {
   if (document.readyState !== 'complete') return;
   const appNode = document.getElementById(process.env.CLIENT__APP_CONTAINER!);
-  const cacheNode = document.getElementById(process.env.CLIENT__CACHE_CONTAINER!);
-  const apolloCache = JSON.parse(cacheNode!.innerHTML);
-  const apolloClient = init(apolloCache);
+  // const reduxState = document.getElementById(process.env.CLIENT__CACHE_CONTAINER!);
   hydrate(
-    <ApolloProvider client={apolloClient}>
-      <HelmetProvider>
-        <RktaApp />
-      </HelmetProvider>
-    </ApolloProvider>,
+    <HelmetProvider>
+      <RktaApp />
+    </HelmetProvider>,
     appNode,
   );
 };
