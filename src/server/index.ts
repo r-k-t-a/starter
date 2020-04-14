@@ -1,1 +1,3 @@
-export * from './koa';
+import { koa } from './koa';
+
+koa();

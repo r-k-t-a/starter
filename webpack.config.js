@@ -43,7 +43,7 @@ const client = {
 };
 
 const server = {
-  entry: './src/server/koa',
+  entry: './src/server',
   experiments: {
     outputModule: true,
   },
