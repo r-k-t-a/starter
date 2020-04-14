@@ -29,7 +29,7 @@ const client = {
   output: {
     filename: isProduction ? 'b-[contenthash].js' : 'bundle.js',
     hashDigestLength: 4,
-    iife: true,
+    // iife: true,
     path: path.resolve(__dirname, 'public'),
     publicPath: '/',
   },
@@ -44,9 +44,9 @@ const client = {
 
 const server = {
   entry: './src/server',
-  experiments: {
-    outputModule: true,
-  },
+  // experiments: {
+  //   outputModule: true,
+  // },
   mode: 'production',
   module: {
     rules: [
@@ -61,9 +61,9 @@ const server = {
     minimize: false,
   },
   output: {
-    ecmaVersion: 2017,
+    // ecmaVersion: 2017,
     filename: 'server.js',
-    module: true,
+    // module: true,
     path: path.resolve(__dirname, isProduction ? 'build' : '.dev'),
   },
   plugins: [new webpack.EnvironmentPlugin(publicEnvKeys)],
