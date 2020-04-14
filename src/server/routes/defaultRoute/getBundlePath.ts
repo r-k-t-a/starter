@@ -9,7 +9,10 @@ const buildDir = isDevelopment ? '.dev' : 'build';
 const statsFilePath = path.join(__dirname, `../${buildDir}/stats.json`);
 
 export function getBundleName(ctx: Context): string {
-  if (isDevelopment) return ctx.state.webpackStats.toJson().assetsByChunkName.main;
+  if (isDevelopment) {
+    const { main } = ctx.state.webpackStats.toJson().assetsByChunkName;
+    return typeof main === 'string' ? main : main.shift();
+  }
   const statsContent = fs.readFileSync(statsFilePath).toString();
   return JSON.parse(statsContent).children.shift().assetsByChunkName.main.shift();
 }
