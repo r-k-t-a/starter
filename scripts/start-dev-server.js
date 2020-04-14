@@ -12,9 +12,14 @@ let koaApp = null;
 const compiler = webpack(config);
 
 function changes(error, stats) {
-  console.log('CHANGES', error);
+  console.log('HANDLE CHANGES');
   if (error) {
     console.error(error);
+    return;
+  }
+
+  if (stats.hasErrors()) {
+    console.log(stats.toString());
     return;
   }
 

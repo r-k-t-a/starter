@@ -12,7 +12,7 @@ export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Prom
   const routerContext: StaticRouter['context'] = {
     status: 200,
   };
-  const bundlePath = getBundlePath(ctx);
+  const bundlePath = getBundlePath();
   const helmetContext = { helmet: {} };
   const tree = serverApp({ helmetContext, location: ctx.url, routerContext });
 
