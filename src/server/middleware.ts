@@ -13,7 +13,10 @@ import { isDevelopment } from './dotenv';
 async function development(): Promise<Middleware[]> {
   const [client] = require('../../webpack.config') as [Configuration];
   const compiler = webpack(client);
-  const mdl = await koaWebpack({ compiler });
+  const mdl = await koaWebpack({
+    compiler,
+    devMiddleware: { publicPath: '/', serverSideRender: true },
+  });
   return [logger(), mdl];
 }
 

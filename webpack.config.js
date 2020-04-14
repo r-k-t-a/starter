@@ -25,7 +25,7 @@ const client = {
     ],
   },
   output: {
-    filename: isProduction ? 'b-[contenthash].js' : 'bundle.js',
+    filename: 'b-[hash].js',
     hashDigestLength: 4,
     // iife: true,
     path: path.resolve(__dirname, 'public'),
