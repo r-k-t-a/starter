@@ -8,7 +8,6 @@ const config = require('../webpack.config');
 mkdirp.sync('build-dev');
 
 let koaApp = null;
-
 const compiler = webpack(config);
 
 function changes(error, stats) {
