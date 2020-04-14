@@ -27,8 +27,8 @@ function changes(error, stats) {
   fs.writeFileSync(stateFile, statsContent);
 
   if (!koaApp) {
-    require('../build-dev/server');
     koaApp = true;
+    require('../build-dev/server');
   }
 }
 
