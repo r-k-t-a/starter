@@ -8,7 +8,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const { NODE_ENV = null } = process.env;
-const isDevelopment = NODE_ENV === 'development';
+const isProduction = NODE_ENV === 'production';
 
 const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
 
@@ -16,7 +16,7 @@ const client = {
   entry: {
     main: './src/App',
   },
-  mode: isDevelopment ? 'development' : 'production',
+  mode: isProduction ? 'production' : 'development',
   module: {
     rules: [
       {
@@ -27,7 +27,7 @@ const client = {
     ],
   },
   output: {
-    filename: 'b-[contenthash].js',
+    filename: isProduction ? 'b-[contenthash].js' : 'bundle.js',
     hashDigestLength: 4,
     iife: true,
     path: path.resolve(__dirname, 'public'),
@@ -64,7 +64,7 @@ const server = {
     ecmaVersion: 2017,
     filename: 'server.js',
     module: true,
-    path: path.resolve(__dirname, isDevelopment ? 'build-dev' : 'build'),
+    path: path.resolve(__dirname, isProduction ? 'build' : '.dev'),
   },
   plugins: [new webpack.EnvironmentPlugin(publicEnvKeys)],
   resolve: {

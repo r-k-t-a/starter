@@ -5,10 +5,19 @@ import bodyParser from 'koa-bodyparser';
 import staticServer from 'koa-static';
 import Router from 'koa-router';
 
+import config from '../../webpack.config';
+
 import { isDevelopment } from './dotenv';
 
 function development(): Middleware[] {
-  if (!isDevelopment) return [] as Middleware[];
+  if (!isDevelopment) {
+    const [compiller] = config;
+    // TODO:
+    // devMiddleware
+    // hotMiddleware
+    return [] as Middleware[];
+  }
+
   return [logger()];
 }
 

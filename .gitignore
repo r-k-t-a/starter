@@ -12,8 +12,8 @@ yarn.lock
 /coverage
 
 # production
+.dev
 /build
-/build-dev
 /public/b-*.js
 /public/b-*.txt
 

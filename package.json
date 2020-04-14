@@ -47,7 +47,6 @@
     "@types/koa-logger": "^3.1.1",
     "@types/koa-router": "^7.4.0",
     "@types/koa-static": "^4.0.1",
-    "@types/koa-webpack": "^5.0.1",
     "@types/lodash": "^4.14.149",
     "@types/react": "^16.9.32",
     "@types/react-dom": "^16.9.6",
@@ -88,7 +87,6 @@
     "webpack": "^5.0.0-beta.14",
     "webpack-bundle-analyzer": "^3.6.1",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-middleware": "^4.0.0-rc.1",
     "webpack-node-externals": "^1.7.2"
   },
   "repository": {
