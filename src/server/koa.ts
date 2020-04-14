@@ -3,18 +3,20 @@ import { Server } from 'http';
 import Koa from 'koa';
 import Router from 'koa-router';
 
-import { middleware } from './middleware';
+import { addMiddleware } from './middleware';
 import { defaultRoute } from './routes/defaultRoute';
 
 const { PORT } = process.env;
 const onConnect = (): void => console.log(`Koa is at http://localhost:${PORT}`);
 
-export const koa = (): Server => {
+export const koa = async (): Promise<Server> => {
   const app = new Koa();
   const router = new Router();
 
   router.get('*', defaultRoute);
-  middleware(router).forEach(app.use.bind(app));
+
+  const middleware = await addMiddleware(router);
+  middleware.forEach(app.use.bind(app));
 
   return app.listen(PORT, onConnect);
 };

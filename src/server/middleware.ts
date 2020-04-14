@@ -1,32 +1,30 @@
+/* eslint-disable global-require */
 /* eslint-disable import/no-extraneous-dependencies */
 import { Middleware } from 'koa';
 import logger from 'koa-logger';
 import bodyParser from 'koa-bodyparser';
 import staticServer from 'koa-static';
 import Router from 'koa-router';
-
-import config from '../../webpack.config';
+import webpack, { Configuration } from 'webpack';
+import koaWebpack from 'koa-webpack';
 
 import { isDevelopment } from './dotenv';
 
-function development(): Middleware[] {
-  if (!isDevelopment) {
-    const [compiller] = config;
-    // TODO:
-    // devMiddleware
-    // hotMiddleware
-    return [] as Middleware[];
-  }
-
-  return [logger()];
+async function development(): Promise<Middleware[]> {
+  const [client] = require('../../webpack.config') as [Configuration];
+  const compiler = webpack(client);
+  const mdl = await koaWebpack({ compiler, hotClient: false });
+  return [logger(), mdl];
 }
 
-export function middleware(router: Router): Middleware[] {
+export async function addMiddleware(router: Router): Promise<Middleware[]> {
   const generalMiddleware = [
     bodyParser(),
     staticServer('public'),
     router.allowedMethods(),
     router.routes(),
   ] as Middleware[];
-  return [...development(), ...generalMiddleware];
+  if (!isDevelopment) return generalMiddleware;
+  const devMiddleware = await development();
+  return [...devMiddleware, ...generalMiddleware];
 }
