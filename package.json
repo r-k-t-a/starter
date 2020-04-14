@@ -9,7 +9,7 @@
     "clean": "rimraf build",
     "dev": "NODE_ENV=development node scripts/start-dev-server",
     "lint": "eslint 'src' --ext .ts,.tsx",
-    "start": "node -r esm build/server",
+    "start": "node scripts/start-production-server",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "typecheck": "tsc --noEmit",
