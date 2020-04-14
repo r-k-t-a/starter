@@ -13,9 +13,7 @@ const isProduction = NODE_ENV === 'production';
 const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
 
 const client = {
-  entry: {
-    main: './src/App',
-  },
+  entry: ['./src/App'],
   mode: isProduction ? 'production' : 'development',
   module: {
     rules: [

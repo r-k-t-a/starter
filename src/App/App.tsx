@@ -20,7 +20,7 @@ export const App = (): JSX.Element => (
           }
         `}
       />
-      Application 1
+      Application 14
     </UiProvider>
   </>
 );
