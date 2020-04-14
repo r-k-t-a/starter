@@ -28,7 +28,7 @@ function changes(error, stats) {
 
   if (!koaApp) {
     koaApp = true;
-    require('../build-dev/server');
+    require('../build-dev/server/koa');
   }
 }
 

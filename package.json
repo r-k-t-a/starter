@@ -4,7 +4,7 @@
   "scripts": {
     "preanalize": "npm run build:client",
     "analyze": "webpack-bundle-analyzer build/stats.json",
-    "prebuild": "npm run clean && npm run lint",
+    "prebuild": "npm run clean",
     "build": "NODE_ENV=production webpack",
     "clean": "rimraf build",
     "dev": "NODE_ENV=development node scripts/start-dev-server",
