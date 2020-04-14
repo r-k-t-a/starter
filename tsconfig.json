@@ -25,5 +25,5 @@
     }
   },
   "exclude": ["node_modules", "build", "scripts", "src/@types", "src/jest"],
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "scripts"]
 }

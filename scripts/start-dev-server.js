@@ -10,14 +10,13 @@ let koaApp = null;
 
 const compiler = webpack(config);
 
-const watching = compiler.watch(
-  {
-    ignored: /node_modules/,
-  },
-  (error, stats) => {
-    if (error) {
-      console.error(error);
-    }
-    if (!koaApp) koaApp = koa();
-  },
-);
+function changes(error, stats) {
+  if (error) console.error(error);
+  if (!koaApp) koaApp = koa();
+}
+
+const options = {
+  ignored: /node_modules/,
+};
+
+compiler.watch(options, changes);
