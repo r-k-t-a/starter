@@ -1,19 +1,22 @@
 import fs from 'fs';
 import path from 'path';
-import { Context } from 'koa';
 import flow from 'lodash/flow';
-import get from 'lodash/get';
 
 import { isDevelopment } from '../../dotenv';
 
-const statsFilePath = path.join(__dirname, '../build/stats.json');
+const buildDir = isDevelopment ? 'build-dev' : 'build';
+const statsFilePath = path.join(__dirname, `../${buildDir}/stats.json`);
 
-export function getBundleName(ctx: Context): string {
+export function getBundleName(): string {
   if (isDevelopment) {
-    const stats = get(ctx, 'res.locals.webpack.devMiddleware.stats', {});
+    const statsContent = fs.readFileSync(statsFilePath).toString();
     const {
-      assetsByChunkName: { main },
-    } = stats.toJson();
+      children: [
+        {
+          assetsByChunkName: { main },
+        },
+      ],
+    } = JSON.parse(statsContent);
     return typeof main === 'string' ? main : main[0];
   }
   const statsContent = fs.readFileSync(statsFilePath).toString();

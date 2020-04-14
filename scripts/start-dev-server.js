@@ -1,8 +1,9 @@
-/* eslint-disable @typescript-eslint/no-var-requires, import/no-extraneous-dependencies */
+/* eslint-disable global-require, @typescript-eslint/no-var-requires, import/no-extraneous-dependencies */
+const fs = require('fs');
+const path = require('path');
 const webpack = require('webpack');
 const mkdirp = require('mkdirp');
-const config = require('../webpack.config').default;
-const { koa } = require('../src/server/koa');
+const config = require('../webpack.config');
 
 mkdirp.sync('build-dev');
 
@@ -11,8 +12,20 @@ let koaApp = null;
 const compiler = webpack(config);
 
 function changes(error, stats) {
-  if (error) console.error(error);
-  if (!koaApp) koaApp = koa();
+  console.log('CHANGES', error);
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  const stateFile = path.join(__dirname, '../build-dev/stats.json');
+  const statsContent = JSON.stringify(stats.toJson());
+  fs.writeFileSync(stateFile, statsContent);
+
+  if (!koaApp) {
+    require('../build-dev/server');
+    koaApp = true;
+  }
 }
 
 const options = {
