@@ -1,6 +1,4 @@
-/* eslint-disable global-require */
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable import/no-unresolved, global-require, @typescript-eslint/no-var-requires, @typescript-eslint/no-explicit-any */
 import { Context } from 'koa';
 import { renderToNodeStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
@@ -9,8 +7,8 @@ import { FilledContext } from 'react-helmet-async';
 import { getBundlePath } from './getBundlePath';
 
 export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Promise<void> => {
-  const { serverApp } = require('./serverApp');
-  const { template } = require('./template');
+  const { serverApp } = __non_webpack_require__('./serverApp');
+  const { template } = __non_webpack_require__('./template');
 
   const routerContext: StaticRouter['context'] = {
     status: 200,

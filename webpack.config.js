@@ -45,8 +45,14 @@ const client = {
   },
 };
 
+const buildDir = path.resolve(__dirname, isProduction ? 'build' : '.dev');
+
 const server = {
-  entry: './src/server',
+  entry: {
+    server: './src/server',
+    serverApp: './src/server/routes/defaultRoute/serverApp',
+    template: './src/server/routes/defaultRoute/template',
+  },
   // experiments: {
   //   outputModule: true,
   // },
@@ -70,9 +76,10 @@ const server = {
   },
   output: {
     // ecmaVersion: 2017,
-    filename: 'server.js',
+    filename: '[name].js',
     // module: true,
-    path: path.resolve(__dirname, isProduction ? 'build' : '.dev'),
+    libraryTarget: 'commonjs2',
+    path: buildDir,
   },
   plugins: [new webpack.EnvironmentPlugin(publicEnvKeys)],
   resolve: {
