@@ -16,6 +16,7 @@
     "noUnusedLocals": true,
     "outDir": "./build/",
     "resolveJsonModule": true,
+    "skipLibCheck": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "target": "es2017",
@@ -24,6 +25,6 @@
       "*": ["src/*"]
     }
   },
-  "exclude": ["node_modules", "build", "scripts", "src/@types", "src/jest"],
+  "exclude": ["node_modules", "build", "scripts", "src/@types", "src/test"],
   "include": ["src/**/*"]
 }
