@@ -24,4 +24,7 @@ document.addEventListener('readystatechange', (): void => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const module: any;
-if (module.hot) module.hot.accept('./App.tsx', () => render(<RktaApp />, appNode()));
+if (module.hot) {
+  if (document.readyState === 'complete') render(<RktaApp />, appNode());
+  module.hot.accept();
+}
