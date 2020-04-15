@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies, @typescript-eslint/no-var-requires */
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
+const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
@@ -39,6 +40,9 @@ const client = {
   plugins: [
     new webpack.EnvironmentPlugin(publicEnvKeys),
     new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['b-*.js', 'b-*.txt'] }),
+    new StatsWriterPlugin({
+      filename: '../build/stats.json',
+    }),
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -86,6 +90,10 @@ const server = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   target: 'node',
+  node: {
+    __dirname: false,
+    __filename: false,
+  },
   externals: [
     nodeExternals({
       whitelist: [/^@rkta\/.*/i],
