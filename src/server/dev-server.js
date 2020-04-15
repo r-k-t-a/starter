@@ -5,7 +5,7 @@
 const webpack = require('webpack');
 const { realpathSync } = require('fs');
 
-const [, server] = require('../webpack.config');
+const [, server] = require('../../webpack.config');
 
 let koaApp = null;
 
@@ -17,7 +17,7 @@ function deleteBundleCache(bundleName) {
   } catch (error) {
     if (error.code !== 'ENOENT') throw error;
   } finally {
-    delete require.cache[`../.dev/${bundleName}.js`];
+    delete require.cache[`../../../../.dev/${bundleName}.js`];
   }
 }
 
@@ -36,7 +36,7 @@ function changes(error, stats) {
 
   if (!koaApp) {
     koaApp = true;
-    require('../.dev/server');
+    require('../../.dev/server');
   }
 
   deleteBundleCache('serverApp');
