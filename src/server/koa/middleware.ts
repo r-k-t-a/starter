@@ -8,10 +8,10 @@ import Router from 'koa-router';
 import webpack, { Configuration } from 'webpack';
 import koaWebpack from 'koa-webpack';
 
-import { isDevelopment } from './dotenv';
+import { isDevelopment } from '../dotenv';
 
 async function development(): Promise<Middleware[]> {
-  const [client] = require('../../webpack.config') as [Configuration];
+  const [client] = require('../../../webpack.config') as [Configuration];
   const compiler = webpack(client);
   const mdl = await koaWebpack({
     compiler,

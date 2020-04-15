@@ -53,9 +53,9 @@ const buildDir = path.resolve(__dirname, isProduction ? 'build' : '.dev');
 
 const server = {
   entry: {
-    server: './src/server',
-    serverApp: './src/server/routes/defaultRoute/serverApp',
-    template: './src/server/routes/defaultRoute/template',
+    server: './src/server/prod-server.ts',
+    serverApp: './src/server/koa/routes/defaultRoute/serverApp',
+    template: './src/server/koa/routes/defaultRoute/template',
   },
   // experiments: {
   //   outputModule: true,

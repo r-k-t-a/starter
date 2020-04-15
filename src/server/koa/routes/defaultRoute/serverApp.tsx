@@ -2,7 +2,7 @@ import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
-import { App } from '../../../view/App';
+import { App } from '../../../../view/App';
 
 interface Props {
   helmetContext: {};
