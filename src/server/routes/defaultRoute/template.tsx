@@ -1,6 +1,5 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
 import { FilledContext } from 'react-helmet-async';
 
 const { CLIENT__APP_CONTAINER, CLIENT__CACHE_CONTAINER } = process.env;
@@ -17,8 +16,7 @@ export const template = ({
   bundlePath,
   helmet: { base, bodyAttributes, htmlAttributes, link, meta, noscript, script, style, title },
   reduxStore,
-}: Args): [string, string] => {
-  const [head, tail] = renderToStaticMarkup(
+}: Args): [string, string] => (
     <>
       <html lang="en" {...htmlAttributes.toComponent()}>
         <head>
@@ -41,6 +39,4 @@ export const template = ({
         </body>
       </html>
     </>,
-  ).split(delimeter);
-  return [`<!DOCTYPE html>${head}`, tail as string];
-};
+  );

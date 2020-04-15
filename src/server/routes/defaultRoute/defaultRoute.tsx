@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable import/no-unresolved, global-require, @typescript-eslint/no-var-requires, @typescript-eslint/no-explicit-any */
 import { Context } from 'koa';
-import { renderToNodeStream } from 'react-dom/server';
+import { renderToNodeStream, renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { FilledContext } from 'react-helmet-async';
 
@@ -22,22 +22,19 @@ export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Prom
   const helmetContext = { helmet: {} };
   const tree = serverApp({ helmetContext, location: ctx.url, routerContext });
 
-  const [head, tail] = template({
+  const templateTree = template({
+    html: renderToString(tree),
     bundlePath,
     helmet: helmetContext.helmet as FilledContext['helmet'],
     reduxStore: {},
   });
 
   ctx.status = routerContext.status;
-  ctx.res.write(head);
+  ctx.res.write('<!DOCTYPE html>');
 
   await new Promise((resolve, reject) => {
-    renderToNodeStream(tree)
-      // .on('data', (chunk) => {
-      //   console.log('chunk', chunk.toString('utf8'));
-      // })
+    renderToNodeStream(templateTree)
       .on('end', () => {
-        ctx.res.write(tail);
         ctx.res.end();
         resolve();
       })
