@@ -21,9 +21,10 @@ export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Prom
   const bundlePath = getBundlePath(ctx);
   const helmetContext = { helmet: {} };
   const tree = serverApp({ helmetContext, location: ctx.url, routerContext });
+  const html = renderToString(tree);
 
   const templateTree = template({
-    html: renderToString(tree),
+    html,
     bundlePath,
     helmet: helmetContext.helmet as FilledContext['helmet'],
     reduxStore: {},
