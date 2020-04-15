@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable import/no-unresolved, global-require, @typescript-eslint/no-var-requires, @typescript-eslint/no-explicit-any */
 import { Context } from 'koa';
 import { renderToNodeStream } from 'react-dom/server';
@@ -6,9 +8,12 @@ import { FilledContext } from 'react-helmet-async';
 
 import { getBundlePath } from './getBundlePath';
 
+declare const __non_webpack_require__: any;
+const directRequire = __non_webpack_require__;
+
 export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Promise<void> => {
-  const { serverApp } = __non_webpack_require__('./serverApp');
-  const { template } = __non_webpack_require__('./template');
+  const { serverApp } = directRequire('./serverApp');
+  const { template } = directRequire('./template');
 
   const routerContext: StaticRouter['context'] = {
     status: 200,
