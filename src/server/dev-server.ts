@@ -1,14 +1,16 @@
 /* eslint-disable
   global-require, @typescript-eslint/no-var-requires, import/no-extraneous-dependencies,
-  import/no-unresolved, import/no-dynamic-require, @typescript-eslint/explicit-function-return-type
+  import/no-unresolved, import/no-dynamic-require, @typescript-eslint/explicit-function-return-type,
+  no-console
 */
-const webpack = require('webpack');
-const { realpathSync } = require('fs');
-const [, server] = require('../../webpack.config');
+import webpack, { Configuration } from 'webpack';
+import { realpathSync } from 'fs';
+import config from '../../webpack.config';
 
-let koaApp = null;
+let koaApp = false;
+const [, server] = config;
 
-const deleteBundleCache = (...names) =>
+const deleteBundleCache = (...names: string[]): void =>
   names.forEach((name) => {
     const relativelePath = `.dev/${name}.js`;
     try {
@@ -21,7 +23,7 @@ const deleteBundleCache = (...names) =>
     }
   });
 
-webpack(server).watch({ ignored: /node_modules/ }, (error, stats) => {
+webpack(server as Configuration).watch({ ignored: /node_modules/ }, (error, stats): void => {
   if (error) return console.error(error);
   if (stats.hasErrors()) return console.log(stats.toString());
   if (!koaApp) {
@@ -30,4 +32,5 @@ webpack(server).watch({ ignored: /node_modules/ }, (error, stats) => {
   }
 
   deleteBundleCache('serverApp', 'template');
+  return undefined;
 });
