@@ -31,9 +31,7 @@
     "build",
     "node_modules",
     "public",
-    "scripts",
-    "src/@types",
-    "webpack.config.js"
+    "scripts"
   ],
   "include": ["src/**/*"]
 }
