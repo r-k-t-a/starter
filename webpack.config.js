@@ -17,14 +17,9 @@ const client = {
   module: {
     rules: [
       {
-        exclude: /node_modules/,
-        test: /\.tsx?$/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
-          },
-        },
+        exclude: /node_modules\/(?!@rkta)/,
+        test: /\.(tsx?)$/,
+        use: 'babel-loader',
       },
     ],
   },
