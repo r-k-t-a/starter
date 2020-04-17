@@ -45,7 +45,7 @@ const client = {
   },
 };
 
-const buildDir = isProduction ? path.resolve(__dirname, 'build') : __dirname;
+const buildDir = path.resolve(__dirname, isProduction ? 'build' : '.dev');
 
 const server = {
   entry: {
