@@ -1,25 +1,30 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "allowJs": false,
     "baseUrl": ".",
+    "declaration": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "inlineSourceMap": true,
     "jsx": "react",
-    "module": "commonjs",
+    "module": "ES6",
+    "moduleResolution": "node",
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noImplicitReturns": true,
+    "noLib": false,
     "noUnusedLocals": true,
     "outDir": "./build/",
-    "sourceMap": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "es2017",
+    "target": "es3",
+    "typeRoots": ["src/@types", "node_modules/@types"],
     "paths": {
       "*": ["src/*"]
     }
   },
-  "exclude": ["node_modules", "build", "scripts"],
-  "include": ["src/**/*"],
-  "types": ["typePatches"]
+  "exclude": [".dev", ".now", "build", "node_modules", "public", "scripts", "webpack.config.js"],
+  "include": ["src/**/*"]
 }

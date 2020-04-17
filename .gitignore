@@ -12,8 +12,10 @@ yarn.lock
 /coverage
 
 # production
+.dev
 /build
 /public/b-*.js
+/public/b-*.txt
 
 # misc
 .DS_Store   
