@@ -31,7 +31,9 @@
     "build",
     "node_modules",
     "public",
-    "scripts"
+    "scripts",
+    "webpack.config.js",
+    "webpack.config.dev.js"
   ],
   "include": ["src/**/*"]
 }

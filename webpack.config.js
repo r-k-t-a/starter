@@ -1,10 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies, @typescript-eslint/no-var-requires */
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import nodeExternals from 'webpack-node-externals';
-import { StatsWriterPlugin } from 'webpack-stats-plugin';
-import path from 'path';
-import webpack, { Configuration } from 'webpack';
-import dotenv from 'dotenv';
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
+const path = require('path');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
@@ -40,16 +39,13 @@ const client = {
   plugins: [
     new webpack.EnvironmentPlugin(publicEnvKeys),
     new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['b-*.js', 'b-*.txt'] }),
-    new StatsWriterPlugin({
-      filename: '../build/stats.json',
-    }),
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
 };
 
-const buildDir = path.resolve(__dirname, isProduction ? 'build' : '.dev');
+const buildDir = isProduction ? path.resolve(__dirname, 'build') : __dirname;
 
 const server = {
   entry: {
@@ -101,4 +97,4 @@ const server = {
   ],
 };
 
-export default [client, server] as Configuration[];
+module.exports = [client, server];

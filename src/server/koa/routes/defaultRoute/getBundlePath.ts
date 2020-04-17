@@ -8,13 +8,19 @@ import { isDevelopment } from '../../../dotenv';
 const buildDir = isDevelopment ? '.dev' : 'build';
 const statsFilePath = path.join(__dirname, `../${buildDir}/stats.json`);
 
-export function getBundleName(ctx: Context): string {
-  if (isDevelopment) {
-    const { main } = ctx.state.webpackStats.toJson().assetsByChunkName;
-    return typeof main === 'string' ? main : main.shift();
-  }
+let productionMain = 'unknown.js';
+if (!isDevelopment) {
   const statsContent = fs.readFileSync(statsFilePath).toString();
-  return JSON.parse(statsContent).assetsByChunkName.main;
+  const clientStats = JSON.parse(
+    statsContent,
+  ).children.find(({ outputPath }: { outputPath: string }) => /public\/?$/.test(outputPath));
+  productionMain = clientStats.assetsByChunkName.main;
+}
+
+export function getBundleName(ctx: Context): string {
+  if (!isDevelopment) return productionMain;
+  const { main } = ctx.state.webpackStats.toJson().assetsByChunkName;
+  return typeof main === 'string' ? main : main.shift();
 }
 
 const prefix = (bundleName: string): string => `${process.env.HTTP_BASE!}${bundleName}`;

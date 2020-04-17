@@ -10,7 +10,7 @@ import koaWebpack from 'koa-webpack';
 import { isDevelopment } from '../dotenv';
 
 async function development(): Promise<Middleware[]> {
-  const [client] = require('../../../webpack.config').default;
+  const [client] = require('../../../webpack.config');
   const compiler = webpack(client);
   const mdl = await koaWebpack({
     compiler,
