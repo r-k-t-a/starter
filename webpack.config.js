@@ -22,9 +22,6 @@ const client = {
         use: {
           loader: 'ts-loader',
           options: {
-            compilerOptions: {
-              target: 'es5',
-            },
             transpileOnly: true,
           },
         },
@@ -62,6 +59,9 @@ const server = {
         use: {
           loader: 'ts-loader',
           options: {
+            compilerOptions: {
+              target: 'es2017',
+            },
             transpileOnly: true,
           },
         },
