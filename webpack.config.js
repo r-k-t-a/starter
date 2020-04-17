@@ -45,8 +45,6 @@ const client = {
   },
 };
 
-const buildDir = path.resolve(__dirname, isProduction ? 'build' : '.dev');
-
 const server = {
   entry: {
     server: './src/server/prod-server.ts',
@@ -79,9 +77,9 @@ const server = {
     filename: '[name].js',
     // module: true,
     libraryTarget: 'commonjs2',
-    path: buildDir,
+    path: path.resolve(__dirname, isProduction ? 'build' : '.dev'),
   },
-  plugins: [new webpack.EnvironmentPlugin(publicEnvKeys)],
+  plugins: [new webpack.EnvironmentPlugin(publicEnvKeys), new CleanWebpackPlugin()],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
