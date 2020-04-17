@@ -25,15 +25,6 @@
       "*": ["src/*"]
     }
   },
-  "exclude": [
-    ".dev",
-    ".now",
-    "build",
-    "node_modules",
-    "public",
-    "scripts",
-    "webpack.config.js",
-    "webpack.config.dev.js"
-  ],
+  "exclude": [".dev", ".now", "build", "node_modules", "public", "scripts", "webpack.config.js"],
   "include": ["src/**/*"]
 }

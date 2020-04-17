@@ -1,5 +1,4 @@
 /* eslint-disable import/no-extraneous-dependencies, @typescript-eslint/no-var-requires */
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 const path = require('path');
 const webpack = require('webpack');
@@ -23,6 +22,9 @@ const client = {
         use: {
           loader: 'ts-loader',
           options: {
+            compilerOptions: {
+              target: 'es5',
+            },
             transpileOnly: true,
           },
         },
@@ -36,10 +38,7 @@ const client = {
     path: path.resolve(__dirname, 'public'),
     publicPath: '/',
   },
-  plugins: [
-    new webpack.EnvironmentPlugin(publicEnvKeys),
-    new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['b-*.js', 'b-*.txt'] }),
-  ],
+  plugins: [new webpack.EnvironmentPlugin(publicEnvKeys)],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
@@ -79,7 +78,7 @@ const server = {
     libraryTarget: 'commonjs2',
     path: path.resolve(__dirname, isProduction ? 'build' : '.dev'),
   },
-  plugins: [new webpack.EnvironmentPlugin(publicEnvKeys), new CleanWebpackPlugin()],
+  plugins: [new webpack.EnvironmentPlugin(publicEnvKeys)],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
