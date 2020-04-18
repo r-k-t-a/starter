@@ -8,14 +8,14 @@ interface Args {
   bundlePath: string;
   html: string;
   helmet: FilledContext['helmet'];
-  reduxStore: {};
+  reduxState: {};
 }
 
 export const template = ({
   bundlePath,
   html,
   helmet: { base, bodyAttributes, htmlAttributes, link, meta, noscript, script, style, title },
-  reduxStore,
+  reduxState,
 }: Args): JSX.Element => (
   <>
     <html lang="en" {...htmlAttributes.toComponent()}>
@@ -33,7 +33,7 @@ export const template = ({
         <script
           id={CLIENT__CACHE_CONTAINER}
           type="application/json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(reduxStore) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(reduxState) }}
         />
         {noscript.toString()}
       </body>

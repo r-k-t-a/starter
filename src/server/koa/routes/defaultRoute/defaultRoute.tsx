@@ -5,6 +5,9 @@ import { Context } from 'koa';
 import { renderToNodeStream, renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { FilledContext } from 'react-helmet-async';
+import { createStore } from 'redux';
+import { rootReducer } from '../../../../reducer';
+import { resolvePage } from '../../../../resolve';
 
 import { getBundlePath } from './getBundlePath';
 
@@ -15,19 +18,23 @@ export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Prom
   const { serverApp } = directRequire('./serverApp');
   const { template } = directRequire('./template');
 
+  const store = createStore(rootReducer);
+  const pageAction = await resolvePage(ctx.url);
+  store.dispatch(pageAction);
+
   const routerContext: StaticRouter['context'] = {
     status: 200,
   };
   const bundlePath = getBundlePath(ctx);
   const helmetContext = { helmet: {} };
-  const tree = serverApp({ helmetContext, location: ctx.url, routerContext });
+  const tree = serverApp({ helmetContext, location: ctx.url, routerContext, store });
   const html = renderToString(tree);
 
   const templateTree = template({
     html,
     bundlePath,
     helmet: helmetContext.helmet as FilledContext['helmet'],
-    reduxStore: {},
+    reduxState: store.getState(),
   });
 
   ctx.status = routerContext.status;

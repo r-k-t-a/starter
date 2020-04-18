@@ -1,8 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies, @typescript-eslint/no-var-requires */
+const dotenv = require('dotenv');
 const nodeExternals = require('webpack-node-externals');
 const path = require('path');
 const webpack = require('webpack');
-const dotenv = require('dotenv');
 
 dotenv.config();
 
@@ -43,7 +43,7 @@ const client = {
 
 const server = {
   entry: {
-    server: './src/server/prod-server.ts',
+    server: './src/server/server.ts',
     serverApp: './src/server/koa/routes/defaultRoute/serverApp',
     template: './src/server/koa/routes/defaultRoute/template',
   },
