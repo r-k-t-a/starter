@@ -4,16 +4,16 @@ Create universal react apollo apps
 
 ## Features
 
-- Typescript
-- Koa
 - React
-- Apollo
+- Logux
+- React router
+- Koa
+- Typescript
 - Jest
 - Eslint
 - Prettier
 - Dotenv
 - Render to node stream
-- React router
 - Deploy to zeit now
 
 ## Setup .env
