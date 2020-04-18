@@ -6,15 +6,19 @@ const { CLIENT__APP_CONTAINER, CLIENT__CACHE_CONTAINER } = process.env;
 
 interface Args {
   bundlePath: string;
+  css: string;
   html: string;
   helmet: FilledContext['helmet'];
+  ids: string[];
   reduxState: {};
 }
 
 export const template = ({
   bundlePath,
-  html,
+  css,
   helmet: { base, bodyAttributes, htmlAttributes, link, meta, noscript, script, style, title },
+  html,
+  ids,
   reduxState,
 }: Args): JSX.Element => (
   <>
@@ -27,6 +31,11 @@ export const template = ({
         {meta.toComponent()}
         {script.toComponent()}
         {style.toComponent()}
+        <style
+          dangerouslySetInnerHTML={{ __html: css }}
+          data-emotion-css={ids.join(' ')}
+          type="text/css"
+        />
       </head>
       <body {...bodyAttributes.toString()}>
         <div id={CLIENT__APP_CONTAINER} dangerouslySetInnerHTML={{ __html: html }} />

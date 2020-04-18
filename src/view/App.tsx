@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Provider as UiProvider } from '@rkta/ui';
+import { Provider as UiProvider, Heading } from '@rkta/ui';
 import { css, Global } from '@emotion/core';
 import { usePage } from '../hook';
 
@@ -24,7 +24,7 @@ export const App = (): JSX.Element => {
           }
         `}
         />
-        <h1>{page?.h1}</h1>
+        <Heading level={1}>{page?.h1}</Heading>
       </UiProvider>
     </>
   );
