@@ -6,16 +6,20 @@ const { CLIENT__APP_CONTAINER, CLIENT__CACHE_CONTAINER } = process.env;
 
 interface Args {
   bundlePath: string;
+  css: string;
   html: string;
   helmet: FilledContext['helmet'];
-  reduxStore: {};
+  ids: string[];
+  reduxState: {};
 }
 
 export const template = ({
   bundlePath,
-  html,
+  css,
   helmet: { base, bodyAttributes, htmlAttributes, link, meta, noscript, script, style, title },
-  reduxStore,
+  html,
+  ids,
+  reduxState,
 }: Args): JSX.Element => (
   <>
     <html lang="en" {...htmlAttributes.toComponent()}>
@@ -27,13 +31,18 @@ export const template = ({
         {meta.toComponent()}
         {script.toComponent()}
         {style.toComponent()}
+        <style
+          dangerouslySetInnerHTML={{ __html: css }}
+          data-emotion-css={ids.join(' ')}
+          type="text/css"
+        />
       </head>
       <body {...bodyAttributes.toString()}>
         <div id={CLIENT__APP_CONTAINER} dangerouslySetInnerHTML={{ __html: html }} />
         <script
           id={CLIENT__CACHE_CONTAINER}
           type="application/json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(reduxStore) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(reduxState) }}
         />
         {noscript.toString()}
       </body>

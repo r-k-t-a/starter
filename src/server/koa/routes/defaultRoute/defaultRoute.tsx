@@ -5,7 +5,12 @@ import { Context } from 'koa';
 import { renderToNodeStream, renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { FilledContext } from 'react-helmet-async';
+import { createStore } from 'redux';
+import createEmotionServer from 'create-emotion-server';
+import createCache from '@emotion/cache';
 
+import { rootReducer } from '../../../../reducer';
+import { resolvePage } from '../../../../resolve';
 import { getBundlePath } from './getBundlePath';
 
 declare const __non_webpack_require__: any;
@@ -15,19 +20,35 @@ export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Prom
   const { serverApp } = directRequire('./serverApp');
   const { template } = directRequire('./template');
 
+  const cache = createCache();
+  const { extractCritical } = createEmotionServer(cache);
+
+  const reduxStore = createStore(rootReducer);
+  const pageAction = await resolvePage(ctx.url);
+  reduxStore.dispatch(pageAction);
+
   const routerContext: StaticRouter['context'] = {
     status: 200,
   };
   const bundlePath = getBundlePath(ctx);
   const helmetContext = { helmet: {} };
-  const tree = serverApp({ helmetContext, location: ctx.url, routerContext });
-  const html = renderToString(tree);
+  const tree = serverApp({
+    emotionCache: cache,
+    helmetContext,
+    location: ctx.url,
+    routerContext,
+    reduxStore,
+  });
+  const emotionHtml = renderToString(tree);
+  const { html, css, ids } = extractCritical(emotionHtml);
 
   const templateTree = template({
-    html,
     bundlePath,
+    css,
     helmet: helmetContext.helmet as FilledContext['helmet'],
-    reduxStore: {},
+    html,
+    ids,
+    reduxState: reduxStore.getState(),
   });
 
   ctx.status = routerContext.status;
