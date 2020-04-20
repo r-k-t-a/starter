@@ -4,9 +4,9 @@
   "scripts": {
     "preanalize": "npm run build:client",
     "analyze": "webpack-bundle-analyzer build/stats.json",
-    "prebuild": "npm run typecheck && npm run lint && npm run clean && npm run test",
+    "prebuild": "npm run clean && npm run typecheck && npm run lint && npm run test",
     "build": "NODE_ENV=production webpack --json > build/stats.json",
-    "clean": "rimraf build/, public/b*.js && mkdirp build && mkdirp public",
+    "clean": "rimraf {.dev,build,public/b*.js} && mkdirp build && mkdirp public",
     "dev": "cross-env NODE_ENV=development nodemon -e ts,tsx -w ./src/server -w webpack.config.js -x 'node scripts/start-dev-server'",
     "lint": "eslint 'src' --ext .ts,.tsx",
     "start": "NODE_ENV=production node scripts/start-prod-server",
@@ -44,6 +44,10 @@
     "redux-devtools-extension": "^2.13.8"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^25.1.5",
@@ -62,6 +66,8 @@
     "@types/webpack-node-externals": "^1.7.1",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-emotion": "^10.0.33",
     "cross-env": "^7.0.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",

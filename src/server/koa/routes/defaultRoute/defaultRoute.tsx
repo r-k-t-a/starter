@@ -12,14 +12,10 @@ import createCache from '@emotion/cache';
 import { rootReducer } from '../../../../reducer';
 import { resolvePage } from '../../../../resolve';
 import { getBundlePath } from './getBundlePath';
-
-declare const __non_webpack_require__: any;
-const directRequire = __non_webpack_require__;
+import { template } from './template';
+import { serverApp } from './serverApp';
 
 export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Promise<void> => {
-  const { serverApp } = directRequire('./serverApp');
-  const { template } = directRequire('./template');
-
   const cache = createCache();
   const { extractCritical } = createEmotionServer(cache);
 

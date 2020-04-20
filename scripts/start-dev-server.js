@@ -31,6 +31,6 @@ webpack(server).watch({ ignored: /node_modules/ }, (error, stats) => {
     require('../.dev/server');
   }
 
-  deleteBundleCache('serverApp', 'template');
+  deleteBundleCache('app');
   return undefined;
 });
