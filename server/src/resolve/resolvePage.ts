@@ -1,4 +1,4 @@
-import { PageLoadAction, PAGE_LOAD } from '../reducer';
+import { PageLoadAction, PAGE_LOAD } from '../../../app/src/reducer';
 
 // TODO: router
 export const resolvePage = async (url: string): Promise<PageLoadAction> => ({
