@@ -39,8 +39,7 @@ const client = {
 const server = {
   entry: {
     server: './src/server/server.ts',
-    serverApp: './src/server/koa/routes/defaultRoute/serverApp',
-    template: './src/server/koa/routes/defaultRoute/template',
+    app: './src/view/App',
   },
   // experiments: {
   //   outputModule: true,
