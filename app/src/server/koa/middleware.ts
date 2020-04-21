@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires, import/no-extraneous-dependencies, global-require */
+import path from 'path';
 import { Middleware } from 'koa';
 import logger from 'koa-logger';
 import bodyParser from 'koa-bodyparser';
@@ -22,7 +23,7 @@ async function development(): Promise<Middleware[]> {
 export async function addMiddleware(router: Router): Promise<Middleware[]> {
   const generalMiddleware = [
     bodyParser(),
-    staticServer('public'),
+    staticServer(path.join(__dirname, '../../public')),
     router.allowedMethods(),
     router.routes(),
   ] as Middleware[];

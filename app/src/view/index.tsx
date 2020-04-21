@@ -24,8 +24,7 @@ const RktaApp: FC<Props> = ({ store }): JSX.Element => (
 const appNode = (): HTMLElement =>
   document.getElementById(process.env.CLIENT__APP_CONTAINER!) as HTMLElement;
 
-document.addEventListener('readystatechange', (): void => {
-  if (document.readyState !== 'complete') return;
+const getStore = (): Props['store'] => {
   const bundleNode = document.getElementById(process.env.CLIENT__CACHE_CONTAINER!)!;
   const reduxState = JSON.parse(bundleNode.innerHTML);
   const store = createStore(
@@ -37,11 +36,16 @@ document.addEventListener('readystatechange', (): void => {
   );
   store.client.start();
   store.client.log.on('add', (action, meta) => console.log('add', action, meta));
-  hydrate(<RktaApp store={store} />, appNode());
+  return store;
+};
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  if (module.hot) {
-    if (document.readyState === 'complete') render(<RktaApp store={store} />, appNode());
-    module.hot.accept();
-  }
+document.addEventListener('readystatechange', (): void => {
+  if (document.readyState !== 'complete') return;
+  hydrate(<RktaApp store={getStore()} />, appNode());
 });
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+if (module.hot) {
+  if (document.readyState === 'complete') render(<RktaApp store={getStore()} />, appNode());
+  module.hot.accept();
+}

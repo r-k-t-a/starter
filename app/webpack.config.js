@@ -17,7 +17,7 @@ const client = {
   module: {
     rules: [
       {
-        exclude: /node_modules\/(?!@rkta)/,
+        exclude: /node_modules/,
         test: /\.(tsx?)$/,
         use: 'babel-loader',
       },
@@ -27,7 +27,7 @@ const client = {
     filename: 'b-[hash].js',
     hashDigestLength: 4,
     // iife: true,
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, '../public'),
     publicPath: '/',
   },
   plugins: [new webpack.EnvironmentPlugin(publicEnvKeys)],
@@ -83,7 +83,11 @@ const server = {
   },
   externals: [
     nodeExternals({
-      whitelist: [/^@rkta\/.*/i],
+      whitelist: [/^@rkta(-starter)?\/.*/i],
+    }),
+    nodeExternals({
+      modulesDir: '../node_modules',
+      whitelist: [/^@rkta(-starter)?\/.*/i],
     }),
   ],
 };

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "build",
+    "paths": {
+      "*": ["src/*"]
+    }
+  },
+  "include": ["src", "package.json"],
+  "exclude": ["build", "node_modules"],
+  "extends": "../tsconfig.json",
+  "references": [ {
+    "path": "../server"
+  }
+  ]
+}

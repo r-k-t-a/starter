@@ -4,7 +4,11 @@
   "description": "Create universal react apollo apps",
   "main": "jest.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "lerna run build --scope @rkta-starter/client",
+    "dev": "lerna run dev --scope @rkta-starter/client",
+    "start": "lerna run start --scope @rkta-starter/client",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "lerna run typecheck --scope @rkta-starter/client"
   },
   "engines": {
     "yarn": "^1.13.0"
@@ -20,8 +24,8 @@
   },
   "homepage": "https://github.com/r-k-t-a/starter#readme",
   "workspaces": [
-    "app/*",
-    "server/*"
+    "app",
+    "server"
   ],
   "devDependencies": {
     "lerna": "^3.20.2"

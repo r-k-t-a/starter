@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowJs": false,
     "baseUrl": ".",
-    "declaration": false,
+    "composite": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "inlineSourceMap": true,
@@ -14,17 +14,21 @@
     "noImplicitReturns": true,
     "noLib": false,
     "noUnusedLocals": true,
-    "outDir": "./build/",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "target": "es3",
-    "typeRoots": ["src/@types", "node_modules/@types"],
+    "typeRoots": ["app/src/@types", "server/src/@types", "node_modules/@types"],
     "paths": {
-      "*": ["src/*"]
+      "@rkta-starter/client": ["app"],
+      "@rkta-starter/server": ["server"]
     }
   },
   "exclude": [".dev", ".now", "build", "node_modules", "public", "scripts", "webpack.config.js"],
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "app" },
+    { "path": "server" }
+  ]
 }
