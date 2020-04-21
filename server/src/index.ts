@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-var-requires */
 const { Server } = require('@logux/server');
+const dotenv = require('dotenv');
 const { allow } = require('./acess');
+
+dotenv.config();
 
 // import { resolvePage } from './resolve';
 // import { PageSubscribeAction } from '../../hook';
@@ -28,11 +32,11 @@ server.auth(allow);
 
 server.type('click', {
   access: allow,
-  async process(ctx, action, meta) {
+  async process() {
     // console.log('ctx', ctx);
     // console.log('click', action);
   },
-  resend(ctx, action, meta) {
+  resend() {
     return { channel: 'page' };
   },
 });

@@ -10,7 +10,7 @@ import createEmotionServer from 'create-emotion-server';
 import createCache from '@emotion/cache';
 
 import { resolvePage } from '@rkta-starter/server/src/resolve';
-import { rootReducer } from '../../../reducer';
+import { rootReducer } from '@rkta-starter/server/src/reducer';
 import { getBundlePath } from './getBundlePath';
 import { template } from './template';
 import { serverApp } from './serverApp';

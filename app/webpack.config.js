@@ -19,7 +19,13 @@ const client = {
       {
         exclude: /node_modules/,
         test: /\.(tsx?)$/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-typescript', '@babel/preset-react'],
+            plugins: [['emotion', { inline: true }]],
+          },
+        },
       },
     ],
   },
