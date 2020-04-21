@@ -1,14 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "outDir": "build",
-    "rootDir": "src"
-  },
-  "include": ["src"],
-  "exclude": ["build", "node_modules"],
-  "extends": "../tsconfig.json",
-  "references": [
-    {
-      "path": "../app"
+    "paths": {
+      "*": ["src/*"]
     }
-  ]
+  },
+  "include": ["src", "package.json"],
+  "exclude": ["build", "node_modules"],
+  "extends": "../tsconfig.json"
 }

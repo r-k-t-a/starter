@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "clean": "rimraf build && mkdirp build && mkdirp ../public",
     "dev:ts": "ts-node ./src/index.ts",
     "dev": "babel-node --extensions '.ts' src"
   },

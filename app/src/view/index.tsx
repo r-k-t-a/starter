@@ -8,7 +8,7 @@ import { createStore } from '../reducer';
 import { App } from './App';
 
 interface Props {
-  store: any;
+  store: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 const RktaApp: FC<Props> = ({ store }): JSX.Element => (
