@@ -1,4 +1,4 @@
-import { allow } from '../acess';
+import { allow } from '../access';
 import { PageSubscribeAction } from '../../hook';
 
 export const route = 'page';

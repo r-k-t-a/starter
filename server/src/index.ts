@@ -2,7 +2,7 @@ import Koa from 'koa';
 import dotenv from 'dotenv';
 import { Server } from '@logux/server';
 
-import { allow } from './acess';
+import { allow } from './access';
 import * as channels from './channels';
 
 dotenv.config();
