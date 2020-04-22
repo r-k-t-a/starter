@@ -1,18 +1,29 @@
 import Koa from 'koa';
+import Router from 'koa-router';
 import dotenv from 'dotenv';
 import { Server } from '@logux/server';
 
-import { allow } from './access';
-import * as channels from './channels';
-import * as types from './types';
+import { resolvePage } from 'resolve';
+import { allow } from 'access';
+import * as channels from 'channels';
+import * as types from 'types';
 
 dotenv.config();
 
+const httpPort = parseInt(process.env.HTTP_PORT!, 10);
+const wsPort = parseInt(process.env.WS_PORT!, 10);
+
 const app = new Koa();
-const port = parseInt(process.env.LOGUX_PORT!, 10) || 3000;
-const server = app.listen(port, console.log);
+const router = new Router();
+router.get('page', async (ctx) => {
+  const data = await resolvePage(ctx.url);
+  ctx.body = data;
+});
+
+const server = app.listen(httpPort, console.log);
 
 const defaultOptions = {
+  port: wsPort,
   server,
   subprotocol: '1.0.0',
   supports: '1.x',
