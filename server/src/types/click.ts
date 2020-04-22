@@ -1,5 +1,5 @@
 import { Server } from '@logux/server';
-import { allow } from '../access';
+import { allow } from 'access';
 
 export const click = (logux: Server): void =>
   logux.type('click', {

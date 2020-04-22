@@ -24,6 +24,9 @@
     "koa": "^2.11.0",
     "koa-router": "^8.0.8",
     "mkdirp": "^1.0.4",
+    "module-alias": "^2.2.2",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {
