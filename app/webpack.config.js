@@ -44,7 +44,7 @@ const client = {
 
 const server = {
   entry: {
-    server: './src/server/server.ts',
+    server: './src/server',
     app: './src/view/App',
   },
   // experiments: {

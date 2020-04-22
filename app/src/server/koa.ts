@@ -9,9 +9,7 @@ const onConnect = (): void => console.log(`Koa is at http://localhost:${KOA_PORT
 
 export const koa = async (): Promise<Server> => {
   const app = new Koa();
-
   const middleware = await addMiddleware();
   middleware.forEach(app.use.bind(app));
-
   return app.listen(KOA_PORT, onConnect);
 };

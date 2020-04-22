@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable import/no-extraneous-dependencies */
 import Koa from 'koa';
 import Router from 'koa-router';
 import dotenv from 'dotenv';
@@ -15,16 +17,18 @@ const wsPort = parseInt(process.env.WS_PORT!, 10);
 
 const app = new Koa();
 const router = new Router();
-router.get('page', async (ctx) => {
+router.get('/page', async (ctx) => {
   const data = await resolvePage(ctx.url);
+  ctx.status = 200;
   ctx.body = data;
 });
 
-const server = app.listen(httpPort, console.log);
+app.use(router.allowedMethods()).use(router.routes());
+app.listen(httpPort, () => console.log(`Koa is listening http://localhost:${httpPort}`));
 
 const defaultOptions = {
+  controlMask: '/0',
   port: wsPort,
-  server,
   subprotocol: '1.0.0',
   supports: '1.x',
   root: __dirname,
@@ -36,9 +40,5 @@ logux.auth(allow);
 
 Object.values(channels).forEach((addChannel) => addChannel(logux));
 Object.values(types).forEach((addType) => addType(logux));
-
-logux.on('disconnected', () => {
-  console.log('disconnect');
-});
 
 logux.listen();
