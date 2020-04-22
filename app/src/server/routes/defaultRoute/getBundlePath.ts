@@ -3,7 +3,7 @@ import path from 'path';
 import flow from 'lodash/flow';
 import { Context } from 'koa';
 
-import { isDevelopment } from '../../../dotenv';
+import { isDevelopment } from '../../dotenv';
 
 const buildDir = isDevelopment ? '.dev' : 'build';
 const statsFilePath = path.join(__dirname, `../${buildDir}/stats.json`);

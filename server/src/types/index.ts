@@ -1,0 +1,1 @@
+export { click } from './click';

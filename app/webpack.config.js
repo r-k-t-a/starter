@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies, @typescript-eslint/no-var-requires */
+const fs = require('fs');
 const dotenv = require('dotenv');
 const nodeExternals = require('webpack-node-externals');
 const path = require('path');
@@ -11,15 +12,25 @@ const isProduction = NODE_ENV === 'production';
 
 const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
 
+const srcDir = path.join(__dirname, process.env.BUNDLE ? '../src' : './src');
+const dirs = fs.readdirSync(srcDir);
+const alias = dirs.reduce((acc, key) => ({ ...acc, [key]: path.join(srcDir, key) }), {});
+
 const client = {
   entry: ['./src/view'],
   mode: isProduction ? 'production' : 'development',
   module: {
     rules: [
       {
-        exclude: /node_modules\/(?!@rkta)/,
+        exclude: /node_modules/,
         test: /\.(tsx?)$/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-typescript', '@babel/preset-react'],
+            plugins: [['emotion', { inline: true }]],
+          },
+        },
       },
     ],
   },
@@ -27,18 +38,19 @@ const client = {
     filename: 'b-[hash].js',
     hashDigestLength: 4,
     // iife: true,
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, '../public'),
     publicPath: '/',
   },
   plugins: [new webpack.EnvironmentPlugin(publicEnvKeys)],
   resolve: {
+    alias,
     extensions: ['.tsx', '.ts', '.js'],
   },
 };
 
 const server = {
   entry: {
-    server: './src/server/server.ts',
+    server: './src/server/index.ts',
     app: './src/view/App',
   },
   // experiments: {
@@ -72,8 +84,14 @@ const server = {
     libraryTarget: 'commonjs2',
     path: path.resolve(__dirname, isProduction ? 'build' : '.dev'),
   },
-  plugins: [new webpack.EnvironmentPlugin(publicEnvKeys)],
+  plugins: [
+    new webpack.EnvironmentPlugin(publicEnvKeys),
+    new webpack.DefinePlugin({
+      'process.env.BUNDLE': true,
+    }),
+  ],
   resolve: {
+    alias,
     extensions: ['.tsx', '.ts', '.js'],
   },
   target: 'node',
@@ -83,7 +101,11 @@ const server = {
   },
   externals: [
     nodeExternals({
-      whitelist: [/^@rkta\/.*/i],
+      whitelist: [/^@rkta(-starter)?\/.*/i],
+    }),
+    nodeExternals({
+      modulesDir: '../node_modules',
+      whitelist: [/^@rkta(-starter)?\/.*/i],
     }),
   ],
 };

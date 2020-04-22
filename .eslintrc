@@ -7,6 +7,7 @@
     node: true
   extends:
     - airbnb
+    - plugin:@typescript-eslint/eslint-recommended
     - plugin:@typescript-eslint/recommended
     - plugin:prettier/recommended
     - prettier/@typescript-eslint
@@ -16,9 +17,11 @@
   parser: '@typescript-eslint/parser'
   parserOptions:
     ecmaVersion: 6
+    project:
+      - ./tsconfig.json
     sourceType: module
   plugins:
-    - '@typescript-eslint'
+    - "@typescript-eslint"
     - prettier
     - jest
     - react
@@ -49,8 +52,8 @@
       - 2
       - error:
         aspects:
-         - invalidHref
-         - preferButton
+          - invalidHref
+          - preferButton
         components:
           - Link
         specialLink:
