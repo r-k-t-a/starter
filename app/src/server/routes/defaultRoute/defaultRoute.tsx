@@ -9,7 +9,7 @@ import { createStore } from 'redux';
 import createEmotionServer from 'create-emotion-server';
 import createCache from '@emotion/cache';
 
-import { resolvePage } from '../../../resolve';
+// import { resolvePage } from '../../../resolve';
 import { rootReducer } from '../../../reducer';
 import { getBundlePath } from './getBundlePath';
 import { template } from './template';
@@ -20,8 +20,8 @@ export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Prom
   const { extractCritical } = createEmotionServer(cache);
 
   const reduxStore = createStore(rootReducer);
-  const pageAction = await resolvePage(ctx.url);
-  reduxStore.dispatch(pageAction);
+  // const pageAction = await resolvePage(ctx.url);
+  // reduxStore.dispatch(pageAction);
 
   const routerContext: StaticRouter['context'] = {
     status: 200,
