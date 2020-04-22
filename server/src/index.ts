@@ -9,10 +9,10 @@ import * as types from './types';
 dotenv.config();
 
 const app = new Koa();
-const server = app.listen(3030, console.log);
+const port = parseInt(process.env.LOGUX_PORT!, 10) || 3000;
+const server = app.listen(port, console.log);
 
 const defaultOptions = {
-  port: parseInt(process.env.LOGUX_PORT!, 10),
   server,
   subprotocol: '1.0.0',
   supports: '1.x',
