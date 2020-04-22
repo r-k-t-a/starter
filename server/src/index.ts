@@ -4,14 +4,12 @@ import { Server } from '@logux/server';
 
 import { allow } from './access';
 import * as channels from './channels';
+import * as types from './types';
 
 dotenv.config();
 
 const app = new Koa();
 const server = app.listen(3030, console.log);
-
-// import { resolvePage } from './resolve';
-// import { PageSubscribeAction } from '../../hook';
 
 const defaultOptions = {
   port: parseInt(process.env.LOGUX_PORT!, 10),
@@ -26,17 +24,7 @@ const logux = new Server(options);
 logux.auth(allow);
 
 channels.forEach(({ route, ...rest }) => logux.channel('page', rest));
-
-logux.type('click', {
-  access: allow,
-  async process() {
-    // console.log('ctx', ctx);
-    // console.log('click', action);
-  },
-  resend() {
-    return { channel: 'page' };
-  },
-});
+types.forEach(({ route, ...rest }) => logux.type('page', rest));
 
 logux.on('disconnected', () => {
   console.log('disconnect');
