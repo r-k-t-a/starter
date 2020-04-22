@@ -14,7 +14,11 @@ const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('C
 
 const srcDir = path.join(__dirname, process.env.BUNDLE ? '../src' : './src');
 const dirs = fs.readdirSync(srcDir);
-const alias = dirs.reduce((acc, key) => ({ ...acc, [key]: path.join(srcDir, key) }), {});
+const alias = dirs.reduce((acc, key) => ({ ...acc, [key]: path.join(srcDir, key) }), {
+  react: 'preact/compat',
+  'react-dom/test-utils': 'preact/test-utils',
+  'react-dom': 'preact/compat',
+});
 
 const client = {
   entry: ['./src/view'],

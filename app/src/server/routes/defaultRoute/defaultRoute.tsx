@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable import/no-unresolved, global-require, @typescript-eslint/no-var-requires, @typescript-eslint/no-explicit-any */
 import { Context } from 'koa';
-import { renderToNodeStream, renderToString } from 'react-dom/server';
+import render from 'preact-render-to-string';
 import { StaticRouter } from 'react-router-dom';
 import { FilledContext } from 'react-helmet-async';
 import { createStore } from 'redux';
@@ -36,7 +36,7 @@ export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Prom
     routerContext,
     reduxStore,
   });
-  const emotionHtml = renderToString(tree);
+  const emotionHtml = render(tree);
   const { html, css, ids } = extractCritical(emotionHtml);
 
   const templateTree = template({
@@ -48,18 +48,20 @@ export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Prom
     reduxState: reduxStore.getState(),
   });
 
-  ctx.status = routerContext.status;
-  ctx.res.write('<!DOCTYPE html>');
+  const output = render(templateTree);
 
-  await new Promise((resolve, reject) => {
-    renderToNodeStream(templateTree)
-      .on('end', () => {
-        ctx.res.end();
-        resolve();
-      })
-      .on('error', reject)
-      .pipe(ctx.res);
-  });
+  ctx.status = routerContext.status;
+  ctx.res.write(`<!DOCTYPE html>${output}`);
+
+  // await new Promise((resolve, reject) => {
+  //   renderToNodeStream(templateTree)
+  //     .on('end', () => {
+  //       ctx.res.end();
+  //       resolve();
+  //     })
+  //     .on('error', reject)
+  //     .pipe(ctx.res);
+  // });
 
   await next();
 };
