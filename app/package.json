@@ -23,7 +23,6 @@
     "@emotion/styled": "^10.0.27",
     "@logux/redux": "^0.6.2",
     "@logux/server": "^0.8.4",
-    "@rkta-starter/server": "^1.0.0",
     "@rkta/entypo": "^0.0.117",
     "@rkta/ui": "^0.0.117",
     "@types/react-router-dom": "^5.1.3",

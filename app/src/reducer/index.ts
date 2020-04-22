@@ -6,6 +6,7 @@ import { version } from '../../package.json';
 import { page } from './page';
 
 export * from './page';
+export * from './types';
 
 export const rootReducer = combineReducers({
   page,

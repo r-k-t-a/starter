@@ -21,7 +21,13 @@
     "target": "ES2017",
     "typeRoots": ["src/@types", "node_modules/@types", "../node_modules/@types"],
     "outDir": "build",
+    "paths": {
+      "@rkta-starter/server": ["../app"]
+    }
   },
   "exclude": ["build", "node_modules"],
-  "include": ["src", "package.json"]
+  "include": ["src", "package.json"],
+  "references": [
+    { "path": "../app" }
+  ]
 }

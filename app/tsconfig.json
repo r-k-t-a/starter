@@ -21,14 +21,8 @@
     "suppressImplicitAnyIndexErrors": true,
     "target": "es3",
     "typeRoots": ["src/@types", "node_modules/@types", "../node_modules/@types"],
-    "outDir": "build",
-    "paths": {
-      "@rkta-starter/server": ["../server"]
-    }
+    "outDir": "build"
   },
   "exclude": ["build", "node_modules"],
-  "include": ["src", "package.json"],
-  "references": [
-    { "path": "../server" }
-  ]
+  "include": ["src", "package.json"]
 }

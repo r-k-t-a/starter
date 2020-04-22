@@ -1,4 +1,5 @@
-import { PageLoadAction, PAGE_LOAD } from '../reducer';
+/* eslint-disable import/no-extraneous-dependencies */
+import { PageLoadAction, PAGE_LOAD } from '@rkta-starter/client/src/reducer/types';
 
 // TODO: router
 export const resolvePage = async (url: string): Promise<PageLoadAction> => ({
