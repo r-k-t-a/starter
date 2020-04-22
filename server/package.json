@@ -28,7 +28,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "@babel/node": "^7.8.7",
     "@babel/plugin-proposal-export-default-from": "^7.8.3",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-typescript": "^7.9.0",
