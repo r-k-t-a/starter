@@ -6,8 +6,8 @@
   "scripts": {
     "prebuild": "npm run clean && npm run typecheck && npm run lint && npm run test",
     "build": "tsc -p .",
-    "clean": "rimraf ./build && mkdirp ./build && mkdirp ../public",
-    "dev": "ts-node src",
+    "clean": "rimraf ./build && mkdirp ./build",
+    "dev": "nodemon -w src/index.ts -x ts-node scripts/start-dev-server",
     "lint": "eslint 'src' --ext .ts",
     "test": "jest",
     "test:coverage": "jest --coverage",
@@ -20,6 +20,7 @@
   "dependencies": {
     "@logux/redux": "^0.6.2",
     "@logux/server": "^0.8.5",
+    "chokidar": "^3.3.1",
     "dotenv": "^8.2.0",
     "koa": "^2.11.0",
     "mkdirp": "^1.0.4",
@@ -28,13 +29,10 @@
     "rimraf": "^3.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-export-default-from": "^7.8.3",
-    "@babel/preset-env": "^7.9.5",
-    "@babel/preset-typescript": "^7.9.0",
     "@rkta-starter/client": "^1.0.0",
     "@types/node": "^13.13.1",
     "jest": "^25.2.7",
+    "nodemon": "^2.0.3",
     "ts-node": "^8.8.2",
     "typescript": "^3.8.3"
   }
