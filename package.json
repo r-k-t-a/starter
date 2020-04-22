@@ -4,12 +4,13 @@
   "description": "Create universal react apollo apps",
   "main": "jest.config.js",
   "scripts": {
-    "prebuild": "lerna run clean",
     "build": "lerna run build",
     "clean": "lerna run clean",
     "dev": "lerna run --parallel dev",
+    "lint": "lerna run lint",
+    "prebuild": "lerna run clean",
     "start": "lerna run start",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "lerna run test",
     "typecheck": "lerna run typecheck"
   },
   "engines": {

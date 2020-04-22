@@ -8,6 +8,10 @@
     "build": "tsc -p .",
     "clean": "rimraf ./build && mkdirp ./build && mkdirp ../public",
     "dev": "babel-node --extensions '.ts' src",
+    "lint": "eslint 'src' --ext .ts",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
     "typecheck": "tsc -p . --emitDeclarationOnly"
   },
   "author": "",
@@ -30,6 +34,7 @@
     "@babel/preset-typescript": "^7.9.0",
     "@rkta-starter/client": "^1.0.0",
     "@types/node": "^13.13.1",
+    "jest": "^25.2.7",
     "typescript": "^3.8.3"
   }
 }
