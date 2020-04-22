@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies, @typescript-eslint/no-var-requires */
+const fs = require('fs');
 const dotenv = require('dotenv');
 const nodeExternals = require('webpack-node-externals');
 const path = require('path');
@@ -6,10 +7,14 @@ const webpack = require('webpack');
 
 dotenv.config();
 
-const { NODE_ENV = null } = process.env;
+const { BUNDLE, NODE_ENV = null } = process.env;
 const isProduction = NODE_ENV === 'production';
 
 const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
+
+const srcDir = path.join(__dirname, BUNDLE ? '../src' : './src');
+const dirs = fs.readdirSync(srcDir);
+const alias = dirs.reduce((acc, key) => ({ ...acc, [key]: path.join(srcDir, key) }), {});
 
 const client = {
   entry: ['./src/view'],
@@ -38,6 +43,7 @@ const client = {
   },
   plugins: [new webpack.EnvironmentPlugin(publicEnvKeys)],
   resolve: {
+    alias,
     extensions: ['.tsx', '.ts', '.js'],
   },
 };
@@ -78,8 +84,14 @@ const server = {
     libraryTarget: 'commonjs2',
     path: path.resolve(__dirname, isProduction ? 'build' : '.dev'),
   },
-  plugins: [new webpack.EnvironmentPlugin(publicEnvKeys)],
+  plugins: [
+    new webpack.EnvironmentPlugin(publicEnvKeys),
+    new webpack.DefinePlugin({
+      'process.env.BUNDLE': true,
+    }),
+  ],
   resolve: {
+    alias,
     extensions: ['.tsx', '.ts', '.js'],
   },
   target: 'node',

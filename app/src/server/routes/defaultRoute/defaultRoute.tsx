@@ -9,8 +9,8 @@ import { createStore } from 'redux';
 import createEmotionServer from 'create-emotion-server';
 import createCache from '@emotion/cache';
 
-// import { resolvePage } from '../../../resolve';
-import { rootReducer } from '../../../reducer';
+// import { resolvePage } from 'resolve';
+import { rootReducer } from 'reducer';
 import { getBundlePath } from './getBundlePath';
 import { template } from './template';
 import { serverApp } from './serverApp';
