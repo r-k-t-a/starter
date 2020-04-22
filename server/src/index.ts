@@ -23,8 +23,8 @@ const options = Server.loadOptions(process, defaultOptions);
 const logux = new Server(options);
 logux.auth(allow);
 
-Object.values(channels).forEach((channel) => channel(logux));
-Object.values(types).forEach((type) => type(logux));
+Object.values(channels).forEach((addChannel) => addChannel(logux));
+Object.values(types).forEach((addType) => addType(logux));
 
 logux.on('disconnected', () => {
   console.log('disconnect');
