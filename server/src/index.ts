@@ -1,15 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-var-requires */
-const { Server } = require('@logux/server');
-const dotenv = require('dotenv');
-const { allow } = require('./acess');
+import Koa from 'koa';
+import dotenv from 'dotenv';
+import { Server } from '@logux/server';
+
+import { allow } from './acess';
 
 dotenv.config();
+
+const app = new Koa();
+const httpServer = app.listen(3030, console.log);
 
 // import { resolvePage } from './resolve';
 // import { PageSubscribeAction } from '../../hook';
 
 const defaultOptions = {
   port: parseInt(process.env.LOGUX_PORT!, 10),
+  server: httpServer,
   subprotocol: '1.0.0',
   supports: '1.x',
   root: __dirname,
