@@ -1,1 +1,1 @@
-export * as click from './click';
+export { click } from './click';
