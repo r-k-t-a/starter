@@ -1,14 +1,17 @@
-/* eslint-disable no-console */
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/first, import/no-extraneous-dependencies, no-console */
+import moduleAlias from 'module-alias';
+
+moduleAlias.addPath(__dirname);
+
 import Koa from 'koa';
 import Router from 'koa-router';
 import dotenv from 'dotenv';
 import { Server } from '@logux/server';
 
-import { allow } from './access';
-import * as channels from './channels';
-import { resolvePage } from './resolve';
-import * as types from './types';
+import { allow } from 'access';
+import * as channels from 'channels';
+import { resolvePage } from 'resolve';
+import * as types from 'types';
 
 dotenv.config();
 

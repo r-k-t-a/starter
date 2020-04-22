@@ -7,12 +7,12 @@ const webpack = require('webpack');
 
 dotenv.config();
 
-const { BUNDLE, NODE_ENV = null } = process.env;
+const { NODE_ENV = null } = process.env;
 const isProduction = NODE_ENV === 'production';
 
 const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
 
-const srcDir = path.join(__dirname, BUNDLE ? '../src' : './src');
+const srcDir = path.join(__dirname, process.env.BUNDLE ? '../src' : './src');
 const dirs = fs.readdirSync(srcDir);
 const alias = dirs.reduce((acc, key) => ({ ...acc, [key]: path.join(srcDir, key) }), {});
 
