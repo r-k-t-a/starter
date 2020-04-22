@@ -1,8 +1,7 @@
 import Koa from 'koa';
 import dotenv from 'dotenv';
 import { Server } from '@logux/server';
-
-import { allow } from './acess';
+import { allow } from './access';
 
 dotenv.config();
 
@@ -49,5 +48,3 @@ server.type('click', {
 server.on('disconnected', () => {
   console.log('disconnect');
 });
-
-server.listen();
