@@ -4,7 +4,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
-import { createStore } from '../reducer';
+import { createStore } from 'reducer';
 import { App } from './App';
 
 interface Props {
