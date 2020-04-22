@@ -3,10 +3,10 @@ import Router from 'koa-router';
 import dotenv from 'dotenv';
 import { Server } from '@logux/server';
 
-import { resolvePage } from 'resolve';
-import { allow } from 'access';
-import * as channels from 'channels';
-import * as types from 'types';
+import { allow } from './access';
+import * as channels from './channels';
+import { resolvePage } from './resolve';
+import * as types from './types';
 
 dotenv.config();
 
