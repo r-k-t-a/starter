@@ -7,13 +7,13 @@ import { StaticRouter } from 'react-router-dom';
 import { FilledContext } from 'react-helmet-async';
 import { createStore } from 'redux';
 import createEmotionServer from 'create-emotion-server';
-import fetch from 'isomorphic-unfetch';
 import createCache from '@emotion/cache';
 
 // import { resolvePage } from 'resolve';
 import { rootReducer } from 'reducer';
 import { getBundlePath } from './getBundlePath';
 import { template } from './template';
+import { fetch } from '../../fetch';
 import { serverApp } from './serverApp';
 
 export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Promise<void> => {
@@ -21,10 +21,8 @@ export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Prom
   const { extractCritical } = createEmotionServer(cache);
 
   const reduxStore = createStore(rootReducer);
-  const pageAction = await fetch(`${process.env.LOGUX_FALLBACK_URL}page?route=${ctx.url}`);
-  const payload = await pageAction.json();
-  console.log('payload', payload);
-  reduxStore.dispatch(payload);
+  const { json } = await fetch('page', { url: ctx.url });
+  reduxStore.dispatch(json);
 
   const routerContext: StaticRouter['context'] = {
     status: 200,

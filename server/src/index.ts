@@ -4,6 +4,7 @@ import moduleAlias from 'module-alias';
 moduleAlias.addPath(__dirname);
 
 import Koa from 'koa';
+import bodyParser from 'koa-bodyparser';
 import Router from 'koa-router';
 import dotenv from 'dotenv';
 import { Server } from '@logux/server';
@@ -20,13 +21,15 @@ const wsPort = parseInt(process.env.WS_PORT!, 10);
 
 const app = new Koa();
 const router = new Router();
-router.get('/page', async (ctx) => {
-  const data = await resolvePage(ctx.url);
+router.post('/page', async (ctx) => {
+  const { url } = ctx.request.body;
+  console.log('ctx', ctx.request.body);
+  const json = await resolvePage(url);
   ctx.status = 200;
-  ctx.body = data;
+  ctx.body = { json };
 });
 
-app.use(router.allowedMethods()).use(router.routes());
+app.use(bodyParser()).use(router.allowedMethods()).use(router.routes());
 app.listen(httpPort, () => console.log(`Koa is listening http://localhost:${httpPort}`));
 
 const defaultOptions = {
