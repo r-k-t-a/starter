@@ -9,7 +9,7 @@
     "dev": "lerna run --parallel dev",
     "lint": "lerna run lint",
     "prebuild": "lerna run clean",
-    "start": "lerna run start",
+    "start": "lerna run --parallel start",
     "test": "lerna run test",
     "typecheck": "lerna run typecheck"
   },

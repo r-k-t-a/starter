@@ -1,6 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { Server } from '@logux/server';
+import { PageSubscribeAction } from '@rkta-starter/client/src/hook';
+import { resolvePage } from '../resolve';
 import { allow } from '../access';
-import { PageSubscribeAction } from '../../hook';
 
 export const page = (logux: Server): void =>
   logux.channel('page', {
