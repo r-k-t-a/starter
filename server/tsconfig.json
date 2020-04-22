@@ -23,7 +23,7 @@
     "outDir": "build",
     "paths": {
       "*": ["src/*"],
-      "@rkta-starter/server": ["../app"]
+      "@rkta-starter/client": ["../app"]
     }
   },
   "exclude": ["build", "node_modules"],
