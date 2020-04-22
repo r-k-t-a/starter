@@ -50,7 +50,7 @@ const client = {
 
 const server = {
   entry: {
-    server: './src/server',
+    server: './src/server/index.ts',
     app: './src/view/App',
   },
   // experiments: {
