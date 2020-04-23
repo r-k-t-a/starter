@@ -11,10 +11,11 @@ export function language(
   action: PageActionTypes | LanguageSetAction,
 ): LanguageState {
   switch (action.type) {
-    case PAGE_LOAD:
+    case PAGE_LOAD: {
       const { availableLanguages } = action.payload;
       if (availableLanguages) return { ...state, availableLanguages };
       return state;
+    }
     case SET_LANGUAGE:
       return { ...state, currentLanguage: action.token };
     default:
