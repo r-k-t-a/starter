@@ -1,4 +1,5 @@
-import React from 'react';
+/** @jsx h */
+import { h } from 'preact';
 import { Helmet } from 'react-helmet-async';
 import { Provider as UiProvider, Heading } from '@rkta/ui';
 import { css, Global } from '@emotion/core';
@@ -8,7 +9,7 @@ export const App = (): JSX.Element => {
   const [page] = usePage();
   // console.log('page', page);
   return (
-    <>
+    <div>
       <Helmet>
         <title>Hello World</title>
       </Helmet>
@@ -26,6 +27,6 @@ export const App = (): JSX.Element => {
         />
         <Heading level={1}>{page?.h1}</Heading>
       </UiProvider>
-    </>
+    </div>
   );
 };

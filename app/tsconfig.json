@@ -3,10 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "build",
+    "jsx": "react",
+    "jsxFactory": "h",
     "rootDir": ".",
     "paths": {
-      "react": ["preact/compat"],
-      "react-dom": ["preact/compat"],
       "*": ["src/*"]
     }
   },

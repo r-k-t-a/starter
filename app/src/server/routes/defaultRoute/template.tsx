@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import React from 'react';
+import { h } from 'preact';
 import { FilledContext } from 'react-helmet-async';
 
 const { CLIENT__APP_CONTAINER, CLIENT__CACHE_CONTAINER } = process.env;
@@ -21,31 +21,30 @@ export const template = ({
   ids,
   reduxState,
 }: Args): JSX.Element => (
-  <>
-    <html lang="en" {...htmlAttributes.toComponent()}>
-      <head>
-        {title.toComponent()}
-        <script src={bundlePath} async />
-        {base.toComponent()}
-        {link.toComponent()}
-        {meta.toComponent()}
-        {script.toComponent()}
-        {style.toComponent()}
-        <style
-          dangerouslySetInnerHTML={{ __html: css }}
-          data-emotion-css={ids.join(' ')}
-          type="text/css"
-        />
-      </head>
-      <body {...bodyAttributes.toString()}>
-        <div id={CLIENT__APP_CONTAINER} dangerouslySetInnerHTML={{ __html: html }} />
-        <script
-          id={CLIENT__CACHE_CONTAINER}
-          type="application/json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(reduxState) }}
-        />
-        {noscript.toString()}
-      </body>
-    </html>
-  </>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  <html lang="en" {...(htmlAttributes.toComponent() as any)}>
+    <head>
+      {title.toComponent()}
+      <script src={bundlePath} async />
+      {base.toComponent()}
+      {link.toComponent()}
+      {meta.toComponent()}
+      {script.toComponent()}
+      {style.toComponent()}
+      <style
+        dangerouslySetInnerHTML={{ __html: css }}
+        data-emotion-css={ids.join(' ')}
+        type="text/css"
+      />
+    </head>
+    <body {...bodyAttributes.toString()}>
+      <div id={CLIENT__APP_CONTAINER} dangerouslySetInnerHTML={{ __html: html }} />
+      <script
+        id={CLIENT__CACHE_CONTAINER}
+        type="application/json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reduxState) }}
+      />
+      {noscript.toString()}
+    </body>
+  </html>
 );
