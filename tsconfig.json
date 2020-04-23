@@ -1,1 +1,34 @@
-{}
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "baseUrl": ".",
+    "composite": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "inlineSourceMap": true,
+    "jsx": "react",
+    "module": "ES6",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noLib": false,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "rootDir": ".",
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es3",
+    "typeRoots": ["src/@types", "node_modules/@types"],
+    "paths": {
+      "@rkta-starter/client": ["./app"],
+      "@rkta-starter/server": ["./server"],
+      "*": ["/app/src/*", "server/src/*"]
+    }
+  },
+  "references": [
+    { "path": "./app" },
+    { "path": "./server" }
+  ]
+}
