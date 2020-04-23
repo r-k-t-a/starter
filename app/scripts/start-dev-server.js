@@ -7,8 +7,15 @@
 
 const webpack = require('webpack');
 const { realpathSync } = require('fs');
+const moduleAlias = require('module-alias');
 
 const [, server] = require('../webpack.config');
+
+moduleAlias.addAliases({
+  react: 'preact/compat',
+  'react-dom/test-utils': 'preact/test-utils',
+  'react-dom': 'preact/compat',
+});
 
 let koaApp = false;
 
