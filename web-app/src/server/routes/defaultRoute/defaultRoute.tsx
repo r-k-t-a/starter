@@ -1,4 +1,4 @@
-import { Context } from 'koa';
+import { Middleware } from 'koa';
 import render from 'preact-render-to-string';
 import { StaticRouter } from 'react-router-dom';
 import { FilledContext } from 'react-helmet-async';
@@ -12,7 +12,9 @@ import { template } from './template';
 import { fetch } from '../../fetch';
 import { serverApp } from './serverApp';
 
-export const defaultRoute = async (ctx: Context): Promise<void> => {
+export const defaultRoute: Middleware = async (ctx, next): Promise<void> => {
+  await next();
+
   const cache = createCache();
   const { extractCritical } = createEmotionServer(cache);
 
