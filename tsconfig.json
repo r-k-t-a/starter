@@ -28,8 +28,5 @@
       "*": ["/web-app/src/*", "api-server/src/*"]
     }
   },
-  "references": [
-    { "path": "./web-app" },
-    { "path": "./api-server" }
-  ]
+  "references": [{ "path": "./web-app" }, { "path": "./api-server" }]
 }
