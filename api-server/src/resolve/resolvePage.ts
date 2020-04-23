@@ -36,8 +36,9 @@ const match = createMatcher({
 });
 
 export const resolvePage = async (url: string): Promise<PageLoadAction> => {
-  const { page, params } = match(url);
-  const payload: HomePage = await page(params);
+  const { page } = match(url);
+  // const { page, params } = match(url);
+  const payload: HomePage = await page();
   return {
     payload,
     type: 'page/load',
