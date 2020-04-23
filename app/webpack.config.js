@@ -13,8 +13,13 @@ const isProduction = NODE_ENV === 'production';
 const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
 
 const srcDir = path.join(__dirname, process.env.BUNDLE ? '../src' : './src');
-const dirs = fs.readdirSync(srcDir);
-const alias = dirs.reduce((acc, key) => ({ ...acc, [key]: path.join(srcDir, key) }), {});
+const alias = fs
+  .readdirSync(srcDir)
+  .reduce((acc, key) => ({ ...acc, [key]: path.join(srcDir, key) }), {
+    react: 'preact/compat',
+    'react-dom/test-utils': 'preact/test-utils',
+    'react-dom': 'preact/compat',
+  });
 
 const client = {
   entry: ['./src/view'],
@@ -27,7 +32,7 @@ const client = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-typescript', '@babel/preset-react'],
+            presets: ['@babel/preset-env', '@babel/preset-typescript', 'preact'],
             plugins: [['emotion', { inline: true }]],
           },
         },

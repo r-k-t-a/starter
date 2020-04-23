@@ -1,5 +1,5 @@
 /* eslint-disable global-require, @typescript-eslint/no-var-requires, no-underscore-dangle, @typescript-eslint/camelcase */
-import React from 'react';
+import { h } from 'preact';
 import { StaticRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Store } from 'redux';

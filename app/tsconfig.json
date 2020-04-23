@@ -3,6 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "build",
+    "jsx": "react",
+    "jsxFactory": "h",
     "rootDir": ".",
     "paths": {
       "*": ["src/*"]

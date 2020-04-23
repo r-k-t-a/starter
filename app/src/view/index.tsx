@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { hydrate, render } from 'react-dom';
+/** @jsx h */
+import { h, hydrate, render, FunctionComponent } from 'preact';
 import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
@@ -11,7 +11,7 @@ interface Props {
   store: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
-const RktaApp: FC<Props> = ({ store }): JSX.Element => (
+const RktaApp: FunctionComponent<Props> = ({ store }): JSX.Element => (
   <ReduxProvider store={store}>
     <HelmetProvider>
       <BrowserRouter>
@@ -44,8 +44,9 @@ document.addEventListener('readystatechange', (): void => {
   hydrate(<RktaApp store={getStore()} />, appNode());
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 if (module.hot) {
   if (document.readyState === 'complete') render(<RktaApp store={getStore()} />, appNode());
   module.hot.accept();
+  // eslint-disable-next-line global-require
+  require('preact/devtools');
 }
