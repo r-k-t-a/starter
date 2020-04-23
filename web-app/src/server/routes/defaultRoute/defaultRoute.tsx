@@ -1,6 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable @typescript-eslint/camelcase */
-/* eslint-disable import/no-unresolved, global-require, @typescript-eslint/no-var-requires, @typescript-eslint/no-explicit-any */
 import { Context } from 'koa';
 import render from 'preact-render-to-string';
 import { StaticRouter } from 'react-router-dom';
@@ -9,14 +6,13 @@ import { createStore } from 'redux';
 import createEmotionServer from 'create-emotion-server';
 import createCache from '@emotion/cache';
 
-// import { resolvePage } from 'resolve';
 import { rootReducer } from 'reducer';
 import { getBundlePath } from './getBundlePath';
 import { template } from './template';
 import { fetch } from '../../fetch';
 import { serverApp } from './serverApp';
 
-export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Promise<void> => {
+export const defaultRoute = async (ctx: Context): Promise<void> => {
   const cache = createCache();
   const { extractCritical } = createEmotionServer(cache);
 
@@ -51,17 +47,5 @@ export const defaultRoute = async (ctx: Context, next: () => Promise<any>): Prom
   const output = render(templateTree);
 
   ctx.status = routerContext.status;
-  ctx.res.write(`<!DOCTYPE html>${output}`);
-
-  // await new Promise((resolve, reject) => {
-  //   renderToNodeStream(templateTree)
-  //     .on('end', () => {
-  //       ctx.res.end();
-  //       resolve();
-  //     })
-  //     .on('error', reject)
-  //     .pipe(ctx.res);
-  // });
-
-  await next();
+  ctx.body = `<!DOCTYPE html>${output}`;
 };

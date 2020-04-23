@@ -1,15 +1,16 @@
-import React, { FC } from 'react';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
 import { Rocket } from '@rkta/entypo';
 import { Heading, Button, Divider, Popover, List, ListButton } from '@rkta/ui';
 import { Link } from 'react-router-dom';
 
 import { usePage } from 'hook';
 
-import { Box } from './Box';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, SET_LANGUAGE, LanguageSetAction } from 'reducer';
+import { Box } from './Box';
 
-export const Home: FC<{}> = (): JSX.Element => {
+export const Home = (): JSX.Element => {
   const [page] = usePage();
   const { availableLanguages, currentLanguage } = useSelector(
     ({ language }: RootState) => language,
