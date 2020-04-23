@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 /** @jsx jsx */
 import { jsx, css, Global } from '@emotion/core';
-=======
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
->>>>>>> rebase on master
 import { Helmet } from 'react-helmet-async';
 import { Provider as UiProvider } from '@rkta/ui';
 import { Switch, Route } from 'react-router-dom';
