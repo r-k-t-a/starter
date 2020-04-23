@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "preanalize": "npm run build:client",
-    "analyze": "webpack-bundle-analyzer build/stats.json",
+    "analyze": "webpack-bundle-analyzer build/stats.json ../public",
     "prebuild": "npm run clean && npm run typecheck && npm run lint && npm run test",
     "build": "NODE_ENV=production webpack --json > build/stats.json",
     "clean": "rimraf {.dev,build,../public/b*.js} && mkdirp build && mkdirp ../public",

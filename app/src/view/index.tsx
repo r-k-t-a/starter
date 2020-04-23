@@ -44,8 +44,9 @@ document.addEventListener('readystatechange', (): void => {
   hydrate(<RktaApp store={getStore()} />, appNode());
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 if (module.hot) {
   if (document.readyState === 'complete') render(<RktaApp store={getStore()} />, appNode());
   module.hot.accept();
+  // eslint-disable-next-line global-require
+  require('preact/devtools');
 }
