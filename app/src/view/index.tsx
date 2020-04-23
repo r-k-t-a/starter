@@ -1,5 +1,6 @@
-/** @jsx h */
-import { h, hydrate, render, FunctionComponent } from 'preact';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import { hydrate, render, FunctionComponent } from 'preact';
 import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';

@@ -1,10 +1,10 @@
 /* eslint-disable global-require, @typescript-eslint/no-var-requires, no-underscore-dangle, @typescript-eslint/camelcase */
-import { h } from 'preact';
+/** @jsx jsx */
+import { jsx, CacheProvider, EmotionCache } from '@emotion/core';
 import { StaticRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Store } from 'redux';
 import { Provider as ReduxProvider } from 'react-redux';
-import { CacheProvider, EmotionCache } from '@emotion/core';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const __non_webpack_require__: any;

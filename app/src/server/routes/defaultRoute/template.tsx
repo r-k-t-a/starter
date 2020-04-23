@@ -1,5 +1,6 @@
 /* eslint-disable react/no-danger */
-import { h } from 'preact';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
 import { FilledContext } from 'react-helmet-async';
 
 const { CLIENT__APP_CONTAINER, CLIENT__CACHE_CONTAINER } = process.env;

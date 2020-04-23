@@ -1,8 +1,7 @@
-/** @jsx h */
-import { h } from 'preact';
+/** @jsx jsx */
+import { jsx, css, Global } from '@emotion/core';
 import { Helmet } from 'react-helmet-async';
 import { Provider as UiProvider, Heading } from '@rkta/ui';
-import { css, Global } from '@emotion/core';
 import { usePage } from 'hook';
 
 export const App = (): JSX.Element => {
