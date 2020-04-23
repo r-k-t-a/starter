@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { jsx, css, Global } from '@emotion/core';
 import { Helmet } from 'react-helmet-async';
-import { Provider as UiProvider, Heading } from '@rkta/ui';
-import { usePage } from 'hook';
+import { Provider as UiProvider } from '@rkta/ui';
+import { Switch, Route } from 'react-router-dom';
+
+import { Home } from './Home';
 
 export const App = (): JSX.Element => {
-  const [page] = usePage();
-  // console.log('page', page);
   return (
     <div>
       <Helmet>
@@ -24,7 +24,11 @@ export const App = (): JSX.Element => {
           }
         `}
         />
-        <Heading level={1}>{page?.h1}</Heading>
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+        </Switch>
       </UiProvider>
     </div>
   );

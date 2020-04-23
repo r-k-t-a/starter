@@ -3,12 +3,14 @@ import { createLoguxCreator } from '@logux/redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { version } from '../../package.json';
+import { language } from './language';
 import { page } from './page';
 
+export * from './language';
 export * from './page';
-export * from './types';
 
 export const rootReducer = combineReducers({
+  language,
   page,
 });
 export type RootState = ReturnType<typeof rootReducer>;
