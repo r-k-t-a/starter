@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "@rkta-starter/client": "^1.0.0",
+    "@types/module-alias": "^2.0.0",
     "@types/node": "^13.13.1",
     "jest": "^25.2.7",
     "nodemon": "^2.0.3",

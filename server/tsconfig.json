@@ -1,34 +1,18 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "allowJs": false,
     "baseUrl": ".",
-    "composite": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "inlineSourceMap": true,
-    "jsx": "react",
     "module": "CommonJS",
-    "moduleResolution": "node",
-    "noImplicitAny": false,
-    "noImplicitThis": true,
-    "noImplicitReturns": true,
-    "noLib": false,
-    "noUnusedLocals": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "target": "ES2017",
-    "typeRoots": ["src/@types", "node_modules/@types", "../node_modules/@types"],
     "outDir": "build",
+    "rootDir": ".",
+    "target": "ES2017",
     "paths": {
-      "*": ["src/*"],
-      "@rkta-starter/client": ["../app"]
+      "*": ["src/*"]
     }
   },
   "exclude": ["build", "node_modules"],
   "include": ["src", "package.json"],
   "references": [
-    { "path": "../app" }
+    { "path": "../app" },
   ]
 }
