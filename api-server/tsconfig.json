@@ -14,6 +14,6 @@
   "exclude": ["build", "node_modules"],
   "include": ["src", "package.json"],
   "references": [
-    { "path": "../app" },
+    { "path": "../web-app" },
   ]
 }
