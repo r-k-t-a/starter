@@ -33,8 +33,7 @@ const client = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-typescript', 'preact'],
-            plugins: [['emotion', { inline: true }]],
+            presets: ['@babel/preset-env', '@babel/preset-typescript', ['@emotion/babel-preset-css-prop', { inline: true }]],
           },
         },
       },

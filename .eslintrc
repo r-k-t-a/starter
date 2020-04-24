@@ -39,7 +39,7 @@
       - single
     prettier/prettier: error
     react/jsx-one-expression-per-line: off
-    react/react-in-jsx-scope: off
+    # react/react-in-jsx-scope: off
     react/jsx-filename-extension:
       - 1
       - extensions:
