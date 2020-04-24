@@ -23,13 +23,13 @@
     "paths": {
       "react": ["preact/compat"],
       "react-dom": ["preact/compat"],
-      "@rkta-starter/client": ["./app"],
-      "@rkta-starter/server": ["./server"],
-      "*": ["/app/src/*", "server/src/*"]
+      "@rkta-starter/client": ["./web-app"],
+      "@rkta-starter/server": ["./api-server"],
+      "*": ["/web-app/src/*", "api-server/src/*"]
     }
   },
   "references": [
-    { "path": "./app" },
-    { "path": "./server" }
+    { "path": "./web-app" },
+    { "path": "./api-server" }
   ]
 }

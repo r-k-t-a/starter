@@ -17,8 +17,8 @@
     }
   },
   "packages": [
-    "app",
-    "server"
+    "api-server",
+    "web-app"
   ],
   "useWorkspaces": true
 }

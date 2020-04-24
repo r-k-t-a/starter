@@ -6,7 +6,7 @@
     "analyze": "webpack-bundle-analyzer build/stats.json public",
     "prebuild": "npm run clean && npm run typecheck && npm run lint && npm run test",
     "build": "NODE_ENV=production webpack --json > build/stats.json",
-    "clean": "rimraf {.dev,build,public/{b*.js,b*.map}} && mkdirp build && mkdirp public",
+    "clean": "rimraf {.dev,build,public/b-*.*} && mkdirp build && mkdirp public",
     "dev": "cross-env NODE_ENV=development nodemon -e ts,tsx -w ./src/server -w webpack.config.js -x 'node scripts/start-dev-server'",
     "lint": "eslint 'src' --ext .ts,.tsx",
     "start": "NODE_ENV=production node scripts/start-prod-server",

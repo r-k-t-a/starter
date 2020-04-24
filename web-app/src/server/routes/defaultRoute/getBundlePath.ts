@@ -14,7 +14,8 @@ if (!isDevelopment) {
   const clientStats = JSON.parse(
     statsContent,
   ).children.find(({ outputPath }: { outputPath: string }) => /public\/?$/.test(outputPath));
-  productionMain = clientStats.assetsByChunkName.main;
+  const { main } = clientStats.assetsByChunkName;
+  productionMain = typeof main === 'string' ? main : main[0];
 }
 
 export function getBundleName(ctx: Context): string {
