@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { hydrate, render, FunctionComponent } from 'preact';
 import { Provider as ReduxProvider } from 'react-redux';

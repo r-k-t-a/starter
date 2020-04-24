@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Rocket } from '@rkta/entypo';
 import { Heading, Button, Divider, Popover, List, ListButton } from '@rkta/ui';

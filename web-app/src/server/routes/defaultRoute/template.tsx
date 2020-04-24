@@ -1,5 +1,4 @@
 /* eslint-disable react/no-danger */
-/** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { FilledContext } from 'react-helmet-async';
 

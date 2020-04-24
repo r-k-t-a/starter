@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { jsx, css, Global } from '@emotion/core';
 import { Helmet } from 'react-helmet-async';
 import { Provider as UiProvider } from '@rkta/ui';
