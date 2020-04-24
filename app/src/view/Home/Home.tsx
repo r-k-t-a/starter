@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 import { usePage } from 'hook';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState, SET_LANGUAGE, LanguageSetAction } from 'reducer';
+import { RootState, SET_LANGUAGE, LanguageSetAction, HomePage } from 'reducer';
 import { Box } from './Box';
 
 export const Home = (): JSX.Element => {
-  const [page] = usePage();
+  const [page] = usePage<HomePage>();
   const { availableLanguages, currentLanguage } = useSelector(
     ({ language }: RootState) => language,
   );

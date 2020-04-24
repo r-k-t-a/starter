@@ -1,11 +1,9 @@
-import { PAGE_LOAD, PageState, PageActionTypes } from './types';
+import { PAGE_LOAD, PageState, PageLoadAction } from './types';
 
-export function page(state: PageState = {}, action: PageActionTypes): PageState {
+export function page(state: PageState = {}, action: PageLoadAction): PageState {
   switch (action.type) {
     case PAGE_LOAD: {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { availableLanguages, ...payload } = action.payload;
-      return { ...state, [action.url]: payload };
+      return { ...state, [action.url]: action.payload };
     }
     default:
       return state;

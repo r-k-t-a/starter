@@ -1,1 +1,1 @@
-export * from './resolvePage';
+export * from './page';

@@ -4,6 +4,7 @@ import { Provider as UiProvider } from '@rkta/ui';
 import { Switch, Route } from 'react-router-dom';
 
 import { Home } from './Home';
+import { NotFound } from './NotFound';
 
 export const App = (): JSX.Element => {
   return (
@@ -26,6 +27,9 @@ export const App = (): JSX.Element => {
         <Switch>
           <Route path="/" exact>
             <Home />
+          </Route>
+          <Route path="*">
+            <NotFound />
           </Route>
         </Switch>
       </UiProvider>

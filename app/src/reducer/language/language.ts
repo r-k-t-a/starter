@@ -1,5 +1,5 @@
 import { SET_LANGUAGE, LanguageState, LanguageSetAction } from './types';
-import { PAGE_LOAD, PageActionTypes } from '../page/types';
+import { PAGE_LOAD, PageLoadAction } from '../page/types';
 
 const initialSate: LanguageState = {
   availableLanguages: [],
@@ -8,12 +8,12 @@ const initialSate: LanguageState = {
 
 export function language(
   state: LanguageState = initialSate,
-  action: PageActionTypes | LanguageSetAction,
+  action: PageLoadAction | LanguageSetAction,
 ): LanguageState {
   switch (action.type) {
     case PAGE_LOAD: {
-      const { availableLanguages } = action.payload;
-      if (availableLanguages) return { ...state, availableLanguages };
+      if ('availableLanguages' in action.payload)
+        return { ...state, availableLanguages: action.payload.availableLanguages };
       return state;
     }
     case SET_LANGUAGE:

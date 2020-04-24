@@ -10,9 +10,9 @@ import dotenv from 'dotenv';
 import { Server } from '@logux/server';
 
 import { allow } from 'access';
-import * as channels from 'channels';
+import * as channel from 'channel';
 import { resolvePage } from 'resolve';
-import * as types from 'types';
+import * as type from 'type';
 
 dotenv.config();
 
@@ -44,7 +44,7 @@ const options = Server.loadOptions(process, defaultOptions);
 const logux = new Server(options);
 logux.auth(allow);
 
-Object.values(channels).forEach((addChannel) => addChannel(logux));
-Object.values(types).forEach((addType) => addType(logux));
+Object.values(channel).forEach((addChannel) => addChannel(logux));
+Object.values(type).forEach((addType) => addType(logux));
 
 logux.listen();
