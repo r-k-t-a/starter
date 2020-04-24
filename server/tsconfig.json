@@ -2,6 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "inlineSourceMap": true,
     "module": "CommonJS",
     "outDir": "build",
     "rootDir": ".",

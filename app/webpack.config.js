@@ -22,6 +22,7 @@ const alias = fs
   });
 
 const client = {
+  devtool: isProduction ? 'nosources-source-map' : 'eval',
   entry: ['./src/view'],
   mode: isProduction ? 'production' : 'development',
   module: {
@@ -39,11 +40,14 @@ const client = {
       },
     ],
   },
+  optimization: {
+    concatenateModules: false
+  },
   output: {
     filename: 'b-[hash].js',
     hashDigestLength: 4,
     // iife: true,
-    path: path.resolve(__dirname, '../public'),
+    path: path.resolve(__dirname, 'public'),
     publicPath: '/',
   },
   plugins: [new webpack.EnvironmentPlugin(publicEnvKeys)],
@@ -71,7 +75,8 @@ const server = {
           loader: 'ts-loader',
           options: {
             compilerOptions: {
-              target: 'es2017',
+              inlineSourceMap: true,
+              target: 'es2017'
             },
             transpileOnly: true,
           },

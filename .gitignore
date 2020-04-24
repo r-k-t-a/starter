@@ -15,8 +15,9 @@ node_modules
 # production
 .dev
 build
-/public/b-*.js
-/public/b-*.txt
+/app/public/b-*.js
+/app/public/b-*.js.map
+/app/public/b-*.txt
 
 # misc
 .DS_Store   

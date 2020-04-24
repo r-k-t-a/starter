@@ -4,6 +4,7 @@
   "description": "Create universal react apollo apps",
   "main": "jest.config.js",
   "scripts": {
+    "analyze": "lerna run --stream analyze --scope @rkta-starter/client",
     "build": "lerna run build",
     "clean": "lerna run clean",
     "dev": "lerna run --parallel dev",
