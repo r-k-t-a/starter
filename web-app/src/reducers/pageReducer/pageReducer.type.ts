@@ -1,4 +1,4 @@
-import { Language } from '../language/language.type';
+import { Language } from '../languageReducer/languageReducer.type';
 
 export const PAGE_LOAD = 'page/load';
 
@@ -7,20 +7,20 @@ export interface MenuItem {
   path: string;
 }
 
-export interface HomePage {
+export interface HomepagePayload {
   availableLanguages: Language[];
   cta: string;
   heading: string;
   menu: MenuItem[];
 }
 
-export interface NotFoundPage {
+export interface NotFoundPagePayload {
   heading: string;
   hero: string;
   menu: MenuItem[];
 }
 
-export type PagePayload = HomePage | NotFoundPage;
+export type PagePayload = HomepagePayload | NotFoundPagePayload;
 
 export interface PageLoadAction {
   payload: PagePayload;
@@ -28,7 +28,7 @@ export interface PageLoadAction {
   url: string;
 }
 
-export type PageData = Omit<HomePage, 'availableLanguages'>;
+export type PageData = Omit<HomepagePayload, 'availableLanguages'>;
 
 export interface PageState {
   [key: string]: PageData;

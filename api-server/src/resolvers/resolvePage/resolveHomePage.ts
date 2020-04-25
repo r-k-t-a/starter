@@ -1,6 +1,6 @@
-import { HomePage } from '@rkta-starter/client/src/reducer';
+import { HomepagePayload } from '@rkta-starter/client/src/reducers';
 
-export const homePage = (): HomePage => ({
+export const resolveHomePage = (): HomepagePayload => ({
   availableLanguages: [
     {
       name: 'English',

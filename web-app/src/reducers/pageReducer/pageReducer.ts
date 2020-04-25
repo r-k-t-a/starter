@@ -1,4 +1,4 @@
-import { PAGE_LOAD, PageState, PageLoadAction } from './page.type';
+import { PAGE_LOAD, PageState, PageLoadAction } from './pageReducer.type';
 
 export function page(state: PageState = {}, action: PageLoadAction): PageState {
   switch (action.type) {

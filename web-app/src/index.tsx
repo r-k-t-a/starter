@@ -6,7 +6,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { createLoguxCreator, LoguxReduxStore } from '@logux/redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { rootReducer } from 'reducer';
+import { rootReducer } from 'reducers';
 import { App } from './App';
 import { version } from '../package.json';
 

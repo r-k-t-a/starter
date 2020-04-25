@@ -1,5 +1,5 @@
-import { SET_LANGUAGE, LanguageState, LanguageSetAction } from './language.type';
-import { PAGE_LOAD, PageLoadAction } from '../page/page.type';
+import { SET_LANGUAGE, LanguageState, LanguageSetAction } from './languageReducer.type';
+import { PAGE_LOAD, PageLoadAction } from '../pageReducer/pageReducer.type';
 
 const initialSate: LanguageState = {
   availableLanguages: [],

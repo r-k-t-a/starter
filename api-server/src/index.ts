@@ -1,4 +1,4 @@
-/* eslint-disable import/first, import/no-extraneous-dependencies, no-console */
+/* eslint-disable import/first, import/no-extraneous-dependencies */
 import moduleAlias from 'module-alias';
 
 moduleAlias.addPath(__dirname);
@@ -10,9 +10,9 @@ import dotenv from 'dotenv';
 import { Server } from '@logux/server';
 
 import { allow } from 'access';
-import * as channel from 'channel';
-import { resolvePage } from 'resolve';
-import * as type from 'type';
+import * as channels from 'channels';
+import { resolvePage } from 'resolvers';
+import * as types from 'types';
 
 dotenv.config();
 
@@ -23,7 +23,6 @@ const app = new Koa();
 const router = new Router();
 router.post('/page', async (ctx) => {
   const { url } = ctx.request.body;
-  console.log('ctx', ctx.request.body);
   const json = await resolvePage(url);
   ctx.status = 200;
   ctx.body = { json };
@@ -44,7 +43,7 @@ const options = Server.loadOptions(process, defaultOptions);
 const logux = new Server(options);
 logux.auth(allow);
 
-Object.values(channel).forEach((addChannel) => addChannel(logux));
-Object.values(type).forEach((addType) => addType(logux));
+Object.values(channels).forEach((addChannel) => addChannel(logux));
+Object.values(types).forEach((addType) => addType(logux));
 
 logux.listen();

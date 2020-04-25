@@ -2,17 +2,16 @@ import { jsx } from '@emotion/core';
 import { Rocket } from '@rkta/entypo';
 import { Heading, Button, Divider, Popover, List, ListButton, Placeholder } from '@rkta/ui';
 import { Link } from 'react-router-dom';
-
-import { usePage } from 'hook';
-
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState, SET_LANGUAGE, LanguageSetAction, HomePage, MenuItem } from 'reducer';
+
+import { usePage } from 'hooks';
+import { RootState, SET_LANGUAGE, LanguageSetAction, HomepagePayload, MenuItem } from 'reducers';
 import { Box } from './Box';
 
 const defaultMenu = [{}, {}] as MenuItem[];
 
 export const Home = (): JSX.Element => {
-  const [page] = usePage<HomePage>();
+  const [page] = usePage<HomepagePayload>();
   const { availableLanguages, currentLanguage } = useSelector(
     ({ language }: RootState) => language,
   );

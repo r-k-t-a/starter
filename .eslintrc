@@ -45,6 +45,7 @@
       - extensions:
         - .jsx
         - .tsx
+    react/jsx-fragments: off
     react/jsx-props-no-spreading: off
     react/state-in-constructor: off
     react/prop-types: off

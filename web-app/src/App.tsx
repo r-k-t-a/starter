@@ -1,14 +1,15 @@
+import { Fragment } from 'react';
 import { jsx, css, Global } from '@emotion/core';
 import { Helmet } from 'react-helmet-async';
 import { Provider as UiProvider } from '@rkta/ui';
 import { Switch, Route } from 'react-router-dom';
 
-import { Home } from './view/Home';
-import { NotFound } from './view/NotFound';
+import { Home } from 'pages/Home';
+import { NotFound } from 'pages/NotFound';
 
 export const App = (): JSX.Element => {
   return (
-    <div>
+    <Fragment>
       <Helmet>
         <title>Hello World</title>
       </Helmet>
@@ -33,6 +34,6 @@ export const App = (): JSX.Element => {
           </Route>
         </Switch>
       </UiProvider>
-    </div>
+    </Fragment>
   );
 };

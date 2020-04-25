@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import { language } from './language';
-import { page } from './page';
+import { language } from './languageReducer';
+import { page } from './pageReducer';
 
-export * from './language';
-export * from './page';
+export * from './languageReducer';
+export * from './pageReducer';
 
 export const rootReducer = combineReducers({
   language,

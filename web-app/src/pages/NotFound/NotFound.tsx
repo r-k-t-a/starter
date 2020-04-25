@@ -2,15 +2,15 @@ import { jsx } from '@emotion/core';
 import { FC } from 'react';
 import { Button, Heading, Divider, Text, Placeholder } from '@rkta/ui';
 import { Facebook, Twitter, Youtube, Vk } from '@rkta/entypo';
-import { usePage } from 'hook';
+import { usePage } from 'hooks';
 import { Link } from 'react-router-dom';
 
-import { MenuItem, NotFoundPage } from 'reducer';
+import { MenuItem, NotFoundPagePayload } from 'reducers';
 
 const defaultMenu = ([{}] as unknown) as MenuItem[];
 
 export const NotFound: FC = (): JSX.Element => {
-  const [page] = usePage<NotFoundPage>();
+  const [page] = usePage<NotFoundPagePayload>();
   const { heading, hero, menu = defaultMenu } = page || {};
   return (
     <Text center element="div">

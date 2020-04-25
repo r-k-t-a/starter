@@ -6,7 +6,7 @@ import { createStore } from 'redux';
 import createEmotionServer from 'create-emotion-server';
 import createCache from '@emotion/cache';
 
-import { rootReducer } from 'reducer';
+import { rootReducer } from 'reducers';
 import { getBundlePath } from './getBundlePath';
 import { template } from './template';
 import { fetch } from '../../fetch';

@@ -1,13 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { PagePayload, PageLoadAction } from '@rkta-starter/client/src/reducer';
+import { PagePayload, PageLoadAction } from '@rkta-starter/client/src/reducers';
 import createMatcher from 'feather-route-matcher';
 
-import { homePage } from './homePage';
-import { notFoundPage } from './notFoundPage';
+import { resolveHomePage } from './resolveHomePage';
+import { resolveNotFoundPage } from './resolveNotFoundPage';
 
 const match = createMatcher({
-  '/': homePage,
-  '/*': notFoundPage,
+  '/': resolveHomePage,
+  '/*': resolveNotFoundPage,
 });
 
 export const resolvePage = async (url: string): Promise<PageLoadAction> => {
