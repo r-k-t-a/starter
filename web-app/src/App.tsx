@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { Provider as UiProvider } from '@rkta/ui';
 import { Switch, Route } from 'react-router-dom';
 
-import { Home } from './Home';
-import { NotFound } from './NotFound';
+import { Home } from './view/Home';
+import { NotFound } from './view/NotFound';
 
 export const App = (): JSX.Element => {
   return (

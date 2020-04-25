@@ -1,13 +1,15 @@
 import { jsx } from '@emotion/core';
 import { Rocket } from '@rkta/entypo';
-import { Heading, Button, Divider, Popover, List, ListButton } from '@rkta/ui';
+import { Heading, Button, Divider, Popover, List, ListButton, Placeholder } from '@rkta/ui';
 import { Link } from 'react-router-dom';
 
 import { usePage } from 'hook';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState, SET_LANGUAGE, LanguageSetAction, HomePage } from 'reducer';
+import { RootState, SET_LANGUAGE, LanguageSetAction, HomePage, MenuItem } from 'reducer';
 import { Box } from './Box';
+
+const defaultMenu = [{}, {}] as MenuItem[];
 
 export const Home = (): JSX.Element => {
   const [page] = usePage<HomePage>();
@@ -15,16 +17,19 @@ export const Home = (): JSX.Element => {
     ({ language }: RootState) => language,
   );
   const dispatch = useDispatch();
-  const { heading, menu = [] } = page || {};
+  const { cta, heading, menu = defaultMenu } = page || {};
   return (
     <Box>
       <Box>
         <Rocket size={56} />
         <Heading baseline level={1}>
-          {heading}
+          <Placeholder width="3em">{heading}</Placeholder>
         </Heading>
+        <br />
         <Popover>
-          <Button>Poyekhali ({currentLanguage}) </Button>
+          <Button>
+            <Placeholder width="6.8em">{cta && `${cta} (${currentLanguage})`}</Placeholder>
+          </Button>
           <List rize={1}>
             {availableLanguages.map(({ token, name }) => (
               <ListButton
@@ -43,13 +48,10 @@ export const Home = (): JSX.Element => {
         <Divider verticalSpace={26} />
         {menu.map(({ name, path }) => (
           <Button blockLevel element={Link} hard key={path} to={path}>
-            {name}
+            <Placeholder width="10em">{name}</Placeholder>
           </Button>
         ))}
         <Divider verticalSpace={26} />
-        {/* {data?.countries.map(({ name }: { name: string }) => (
-          <div key={name}>{name}</div>
-        ))} */}
       </Box>
     </Box>
   );

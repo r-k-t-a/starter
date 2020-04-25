@@ -1,9 +1,9 @@
-import { PAGE_LOAD, PageState, PageLoadAction } from './types';
+import { PAGE_LOAD, PageState, PageLoadAction } from './page.type';
 
 export function page(state: PageState = {}, action: PageLoadAction): PageState {
   switch (action.type) {
     case PAGE_LOAD: {
-      return { ...state, [action.url]: action.payload };
+      return { ...state, [action.url]: action.payload } as {};
     }
     default:
       return state;

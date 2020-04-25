@@ -1,4 +1,4 @@
-import { Language } from '../language/types';
+import { Language } from '../language/language.type';
 
 export const PAGE_LOAD = 'page/load';
 
@@ -7,13 +7,18 @@ export interface MenuItem {
   path: string;
 }
 
-export type HomePage = {
+export interface HomePage {
   availableLanguages: Language[];
+  cta: string;
   heading: string;
   menu: MenuItem[];
-};
+}
 
-export type NotFoundPage = { heading: string; hero: string; menu: MenuItem[] };
+export interface NotFoundPage {
+  heading: string;
+  hero: string;
+  menu: MenuItem[];
+}
 
 export type PagePayload = HomePage | NotFoundPage;
 

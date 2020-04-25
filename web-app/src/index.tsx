@@ -8,7 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { rootReducer } from 'reducer';
 import { App } from './App';
-import { version } from '../../package.json';
+import { version } from '../package.json';
 
 interface Props {
   store: LoguxReduxStore;

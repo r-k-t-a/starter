@@ -15,6 +15,7 @@ export const homePage = (): HomePage => ({
       token: 'ru',
     },
   ],
+  cta: 'Poyekhali',
   heading: 'R-K-T-A',
   menu: [
     {

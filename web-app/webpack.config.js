@@ -23,7 +23,7 @@ const alias = fs
 
 const client = {
   devtool: isProduction ? 'nosources-source-map' : 'eval',
-  entry: ['./src/view'],
+  entry: ['./src'],
   mode: isProduction ? 'production' : 'development',
   module: {
     rules: [
@@ -33,14 +33,18 @@ const client = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-typescript', ['@emotion/babel-preset-css-prop', { inline: true }]],
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-typescript',
+              ['@emotion/babel-preset-css-prop', { inline: true }],
+            ],
           },
         },
       },
     ],
   },
   optimization: {
-    concatenateModules: false
+    concatenateModules: false,
   },
   output: {
     filename: 'b-[hash].js',
@@ -59,7 +63,7 @@ const client = {
 const server = {
   entry: {
     server: './src/server/index.ts',
-    app: './src/view/App',
+    app: './src/App',
   },
   // experiments: {
   //   outputModule: true,
@@ -75,7 +79,7 @@ const server = {
           options: {
             compilerOptions: {
               inlineSourceMap: true,
-              target: 'es2017'
+              target: 'es2017',
             },
             transpileOnly: true,
           },
