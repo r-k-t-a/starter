@@ -10,7 +10,7 @@ import { Box } from './Box';
 
 const defaultMenu = [{}, {}] as MenuItem[];
 
-export const Home = (): JSX.Element => {
+export default (): JSX.Element => {
   const [page] = usePage<HomepagePayload>();
   const { availableLanguages, currentLanguage } = useSelector(
     ({ language }: RootState) => language,

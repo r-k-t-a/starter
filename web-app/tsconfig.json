@@ -5,6 +5,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "jsxFactory": "jsx",
+    "module": "esnext",
     "outDir": "build",
     "paths": {
       "*": ["src/*"]

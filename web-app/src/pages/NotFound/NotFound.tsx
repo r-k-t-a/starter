@@ -1,5 +1,4 @@
 import { jsx } from '@emotion/core';
-import { FC } from 'react';
 import { Button, Heading, Divider, Text, Placeholder } from '@rkta/ui';
 import { Facebook, Twitter, Youtube, Vk } from '@rkta/entypo';
 import { usePage } from 'hooks';
@@ -9,7 +8,7 @@ import { MenuItem, NotFoundPagePayload } from 'reducers';
 
 const defaultMenu = ([{}] as unknown) as MenuItem[];
 
-export const NotFound: FC = (): JSX.Element => {
+export default (): JSX.Element => {
   const [page] = usePage<NotFoundPagePayload>();
   const { heading, hero, menu = defaultMenu } = page || {};
   return (

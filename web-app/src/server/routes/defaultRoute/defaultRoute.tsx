@@ -5,6 +5,7 @@ import { FilledContext } from 'react-helmet-async';
 import { createStore } from 'redux';
 import createEmotionServer from 'create-emotion-server';
 import createCache from '@emotion/cache';
+import prepass from 'preact-ssr-prepass';
 
 import { rootReducer } from 'reducers';
 import { getBundlePath } from './getBundlePath';
@@ -34,6 +35,7 @@ export const defaultRoute: Middleware = async (ctx, next): Promise<void> => {
     routerContext,
     reduxStore,
   });
+  await prepass(tree);
   const emotionHtml = render(tree);
   const { html, css, ids } = extractCritical(emotionHtml);
 
