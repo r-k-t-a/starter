@@ -32,13 +32,6 @@ const client = {
         test: /\.(tsx?)$/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-typescript',
-              ['@emotion/babel-preset-css-prop', { inline: true }],
-            ],
-          },
         },
       },
     ],

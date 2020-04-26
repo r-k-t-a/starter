@@ -9,7 +9,7 @@ interface Props {
 
 export const Status: FC<Props> = ({ children, code }): JSX.Element => (
   <Route
-    render={({ staticContext }): ReactNode => {
+    render={({ staticContext }): typeof children => {
       if (staticContext) staticContext.statusCode = code;
       return children;
     }}
