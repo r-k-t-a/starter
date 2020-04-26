@@ -1,6 +1,6 @@
 import { Middleware } from 'koa';
 import render from 'preact-render-to-string';
-import { StaticRouter } from 'react-router-dom';
+import { StaticRouterContext } from 'react-router';
 import { FilledContext } from 'react-helmet-async';
 import { createStore } from 'redux';
 import createEmotionServer from 'create-emotion-server';
@@ -23,8 +23,8 @@ export const defaultRoute: Middleware = async (ctx, next): Promise<void> => {
   const { json } = await fetch('page', { url: ctx.url });
   reduxStore.dispatch(json);
 
-  const routerContext: StaticRouter['context'] = {
-    status: 200,
+  const routerContext: StaticRouterContext = {
+    statusCode: 200,
   };
   const bundlePath = getBundlePath(ctx);
   const helmetContext = { helmet: {} };
@@ -50,6 +50,6 @@ export const defaultRoute: Middleware = async (ctx, next): Promise<void> => {
 
   const output = render(templateTree);
 
-  ctx.status = routerContext.status;
+  ctx.status = routerContext.statusCode!;
   ctx.body = `<!DOCTYPE html>${output}`;
 };
