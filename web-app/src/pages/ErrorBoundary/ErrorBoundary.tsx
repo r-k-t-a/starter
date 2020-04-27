@@ -1,6 +1,7 @@
 import { jsx } from '@emotion/core';
 import { Component, ReactNode, Fragment } from 'react';
 
+import { Connection } from './Connection';
 import { ErrorPage } from './ErrorPage';
 // import PopUp from './PopUp/Wrapper';
 
@@ -29,6 +30,7 @@ export class ErrorBoundary extends Component<Props, State> {
     return (
       <Fragment>
         {this.props.children}
+        <Connection />
         {/* <PopUp /> */}
       </Fragment>
     );
