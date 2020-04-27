@@ -2,8 +2,9 @@ export const PUSH_ERROR = 'error/push';
 export const SHIFT_ERROR = 'error/shift';
 
 export interface Error {
+  name: string;
   message: string;
-  type?: string;
+  type: string;
 }
 
 export type ErrorState = Error[];

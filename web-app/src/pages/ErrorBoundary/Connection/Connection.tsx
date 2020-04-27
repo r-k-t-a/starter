@@ -3,9 +3,9 @@
 import { css, jsx, keyframes } from '@emotion/core';
 import { FC, useEffect, useState } from 'react';
 import { PowerPlug } from '@rkta/entypo';
-import { useStore, useDispatch } from 'react-redux';
+import { useStore } from 'react-redux';
 import { status } from '@logux/client';
-import { PUSH_ERROR, ErrorPushAction } from 'reducers';
+import { LoguxReduxStore } from '@logux/redux';
 
 const blink = keyframes`
   to {
@@ -14,8 +14,7 @@ const blink = keyframes`
 `;
 
 export const Connection: FC<{}> = (): JSX.Element => {
-  const store = useStore() as any;
-  const dispatch = useDispatch();
+  const store = useStore() as LoguxReduxStore;
   const [state, setState] = useState<string | null>(null);
   function handleStatusChange(nextStatus: string): void {
     switch (nextStatus) {
@@ -26,47 +25,6 @@ export const Connection: FC<{}> = (): JSX.Element => {
       case 'synchronized':
         setState(null);
         break;
-      case 'syncError': {
-        const action: ErrorPushAction = {
-          type: PUSH_ERROR,
-          payload: {
-            message: 'Our server has closed the connection. Sorry, you can not continue.',
-            type: nextStatus,
-          },
-        };
-        dispatch(action);
-        break;
-      }
-      case 'error': {
-        const action: ErrorPushAction = {
-          type: PUSH_ERROR,
-          payload: {
-            message: 'Server error. Sorry, we have not saved your changes.',
-            type: nextStatus,
-          },
-        };
-        dispatch(action);
-        break;
-      }
-      case 'denied': {
-        const action: ErrorPushAction = {
-          type: PUSH_ERROR,
-          payload: { message: 'No access. Our server has rejected your action.', type: nextStatus },
-        };
-        dispatch(action);
-        break;
-      }
-      case 'protocolError': {
-        const action: ErrorPushAction = {
-          type: PUSH_ERROR,
-          payload: {
-            message: 'Saving is not working. Please reload the page.',
-            type: nextStatus,
-          },
-        };
-        dispatch(action);
-        break;
-      }
       default:
         break;
     }

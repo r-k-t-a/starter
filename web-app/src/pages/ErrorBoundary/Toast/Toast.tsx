@@ -29,7 +29,7 @@ export const Toast: FC<{}> = (): JSX.Element => {
         rize={1}
       >
         <ListTitle color="error" fitAll>
-          <Addon main>Error</Addon>
+          <Addon main>{error.name}</Addon>
           <Button
             color="paper"
             round

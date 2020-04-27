@@ -6,7 +6,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { createLoguxCreator, LoguxReduxStore } from '@logux/redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { rootReducer } from 'reducers';
+import { rootReducer, PUSH_ERROR, ErrorPushAction } from 'reducers';
 import { App } from './App';
 import { version } from '../package.json';
 
@@ -41,9 +41,13 @@ const initializeStore = (): LoguxReduxStore => {
   });
   const store = createStore(rootReducer, preloadedState, composeWithDevTools());
   store.client.start();
-  // store.client.on('add', (action, meta) => console.log('add', action, meta));
-  // store.client.node.catch(console.log);
-  // console.log('store', store.client.node.connection);
+  store.client.node.catch(({ description: name, message, type }) => {
+    const action: ErrorPushAction = {
+      type: PUSH_ERROR,
+      payload: { type, message, name },
+    };
+    store.dispatch(action);
+  });
   enhacedStore = store;
   return store;
 };
