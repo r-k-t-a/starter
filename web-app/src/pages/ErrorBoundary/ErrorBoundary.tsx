@@ -3,7 +3,7 @@ import { Component, ReactNode, Fragment } from 'react';
 
 import { Connection } from './Connection';
 import { ErrorPage } from './ErrorPage';
-// import PopUp from './PopUp/Wrapper';
+import { Toast } from './Toast';
 
 interface Props {
   children: ReactNode;
@@ -31,7 +31,7 @@ export class ErrorBoundary extends Component<Props, State> {
       <Fragment>
         {this.props.children}
         <Connection />
-        {/* <PopUp /> */}
+        <Toast />
       </Fragment>
     );
   }

@@ -42,8 +42,8 @@ const initializeStore = (): LoguxReduxStore => {
   const store = createStore(rootReducer, preloadedState, composeWithDevTools());
   store.client.start();
   // store.client.on('add', (action, meta) => console.log('add', action, meta));
-  // store.on('change', console.log);
-  console.log('store', store);
+  // store.client.node.catch(console.log);
+  // console.log('store', store.client.node.connection);
   enhacedStore = store;
   return store;
 };
