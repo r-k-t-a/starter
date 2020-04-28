@@ -14,6 +14,8 @@ import * as channels from 'channels';
 import { resolvePage } from 'resolvers';
 import * as types from 'types';
 
+import { version } from '../package.json';
+
 dotenv.config();
 
 const httpPort = parseInt(process.env.HTTP_PORT!, 10);
@@ -34,8 +36,8 @@ app.listen(httpPort, () => console.log(`Koa is listening http://localhost:${http
 const defaultOptions = {
   controlMask: '/0',
   port: wsPort,
-  subprotocol: '1.0.0',
-  supports: '1.x',
+  subprotocol: version,
+  supports: version,
   root: __dirname,
 };
 const options = Server.loadOptions(process, defaultOptions);
