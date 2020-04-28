@@ -16,15 +16,18 @@ export const Toast: FC<{}> = (): JSX.Element => {
       <List
         {...fx}
         bgColor="text"
-        css={css`
-          bottom: 16px;
-          position: fixed;
-          right: 16px;
-          width: 320px;
-          button {
-            margin-right: 8px;
-          }
-        `}
+        css={[
+          fx.css,
+          css`
+            bottom: 16px;
+            position: fixed;
+            right: 16px;
+            width: 320px;
+            button {
+              margin-right: 8px;
+            }
+          `,
+        ]}
         color="paper"
         rize={1}
       >

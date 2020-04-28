@@ -19,11 +19,11 @@ export const resolveHomePage = (): HomepagePayload => ({
   heading: 'R-K-T-A',
   menu: [
     {
-      name: 'Handle run-time errors',
-      path: '/errors',
+      name: 'Logux demo',
+      path: '/logux-demo',
     },
     {
-      name: 'Handle routing errors',
+      name: 'Routing error',
       path: '/404',
     },
   ],

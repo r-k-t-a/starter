@@ -6,6 +6,7 @@ import { PowerPlug } from '@rkta/entypo';
 import { useStore } from 'react-redux';
 import { status } from '@logux/client';
 import { LoguxReduxStore } from '@logux/redux';
+import { ErrorPushAction, PUSH_ERROR } from 'reducers';
 
 const blink = keyframes`
   to {
@@ -22,6 +23,17 @@ export const Connection: FC<{}> = (): JSX.Element => {
       case 'wait':
         setState(nextStatus);
         break;
+      case 'error':
+      case 'denied':
+      case 'protocolError':
+      case 'syncError': {
+        const action: ErrorPushAction = {
+          type: PUSH_ERROR,
+          payload: { name: 'Error', message: 'Unknown error', type: nextStatus },
+        };
+        store.dispatch(action);
+        break;
+      }
       case 'synchronized':
         setState(null);
         break;

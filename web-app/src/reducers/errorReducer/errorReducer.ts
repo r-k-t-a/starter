@@ -24,18 +24,24 @@ function redefine(payload: Error): Error {
         name: 'Protocol Error',
         message: 'Saving is not working. Please reload the page.',
       };
+    case 'denied':
     case 'wrong-credentials':
       return {
         ...payload,
         name: 'Access Denied',
         message: 'Our server has rejected your request.',
       };
-    default:
+    case 'bruteforce':
+    case 'error':
+    case 'wrong-format':
+    case 'unknown-message':
       return {
         ...payload,
         name: 'Server error',
         message: 'Sorry, we have not saved your changes.',
       };
+    default:
+      return payload;
   }
 }
 

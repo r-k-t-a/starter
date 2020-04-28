@@ -7,6 +7,7 @@ import { ErrorBoundary } from 'pages/ErrorBoundary';
 
 const Home = lazy(() => import('pages/Home'));
 const NotFound = lazy(() => import('pages/NotFound'));
+const LoguxDemo = lazy(() => import('pages/LoguxDemo'));
 
 export const App = (): JSX.Element => {
   // TODO: use Fragment after https://github.com/preactjs/preact/issues/2504 is fixed
@@ -32,6 +33,9 @@ export const App = (): JSX.Element => {
             <Switch>
               <Route path="/" exact>
                 <Home />
+              </Route>
+              <Route path="/logux-demo" exact>
+                <LoguxDemo />
               </Route>
               <Route path="*">
                 <NotFound />
