@@ -1,5 +1,4 @@
 /* eslint-disable global-require, @typescript-eslint/no-var-requires, no-underscore-dangle, @typescript-eslint/camelcase */
-/** @jsx jsx */
 import { jsx, CacheProvider, EmotionCache } from '@emotion/core';
 import { StaticRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';

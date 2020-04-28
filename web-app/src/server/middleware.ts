@@ -11,6 +11,13 @@ import koaWebpack from 'koa-webpack';
 import { isDevelopment } from './dotenv';
 import { defaultRoute } from './routes/defaultRoute';
 
+const responseTime: Middleware = async (ctx, next) => {
+  const start = Date.now();
+  await next();
+  const ms = Date.now() - start;
+  ctx.set('X-Response-Time', `${ms}ms`);
+};
+
 async function development(): Promise<Middleware[]> {
   const [client] = require('../../webpack.config');
   const compiler = webpack(client);
@@ -18,7 +25,7 @@ async function development(): Promise<Middleware[]> {
     compiler,
     devMiddleware: { publicPath: '/', serverSideRender: true },
   });
-  return [logger(), mdl];
+  return [responseTime, logger(), mdl];
 }
 
 export async function addMiddleware(): Promise<Middleware[]> {
@@ -29,8 +36,9 @@ export async function addMiddleware(): Promise<Middleware[]> {
     staticServer(path.join(__dirname, '../public')),
     router.allowedMethods(),
     router.routes(),
+    responseTime,
   ] as Middleware[];
-  if (!isDevelopment) return generalMiddleware;
+  if (!isDevelopment) return [responseTime, ...generalMiddleware];
   const devMiddleware = await development();
   return [...devMiddleware, ...generalMiddleware];
 }

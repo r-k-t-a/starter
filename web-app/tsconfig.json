@@ -2,13 +2,15 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "build",
+    "esModuleInterop": true,
     "jsx": "react",
     "jsxFactory": "jsx",
-    "rootDir": ".",
+    "module": "esnext",
+    "outDir": "build",
     "paths": {
       "*": ["src/*"]
-    }
+    },
+    "rootDir": "."
   },
   "exclude": ["build", "node_modules"],
   "include": ["src", "package.json"]

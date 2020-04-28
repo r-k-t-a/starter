@@ -24,27 +24,28 @@
     - "@typescript-eslint"
     - prettier
     - jest
-    - react
     - emotion
+    - react
   rules:
-    emotion/jsx-import: off
     emotion/no-vanilla: error
     emotion/import-from-emotion: error
     emotion/styled-import: error
-    import/prefer-default-export: off
     import/extensions: off
+    import/no-extraneous-dependencies:
+      - 0
+    import/prefer-default-export: off
     react/destructuring-assignment: off
     quotes:
       - error
       - single
     prettier/prettier: error
     react/jsx-one-expression-per-line: off
-    react/react-in-jsx-scope: off
     react/jsx-filename-extension:
       - 1
       - extensions:
         - .jsx
         - .tsx
+    react/jsx-fragments: off
     react/jsx-props-no-spreading: off
     react/state-in-constructor: off
     react/prop-types: off
@@ -62,8 +63,7 @@
           - hrefRight
   settings:
     react:
-      pragma: h
-      version: "16.7"
+      pragma: jsx
     import/resolver:
       typescript:
         alwaysTryTypes: true

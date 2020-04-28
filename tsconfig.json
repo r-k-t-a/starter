@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "inlineSourceMap": true,
-    "module": "ES6",
+    "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "noImplicitThis": true,
@@ -28,8 +28,5 @@
       "*": ["/web-app/src/*", "api-server/src/*"]
     }
   },
-  "references": [
-    { "path": "./web-app" },
-    { "path": "./api-server" }
-  ]
+  "references": [{ "path": "./web-app" }, { "path": "./api-server" }]
 }

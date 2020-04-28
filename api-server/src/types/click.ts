@@ -1,9 +1,9 @@
 import { Server } from '@logux/server';
-import { allow } from 'access';
+import { deny } from 'access';
 
 export const click = (logux: Server): void =>
-  logux.type('click', {
-    access: allow,
+  logux.type('forbiden/action', {
+    access: deny,
     async process() {
       // console.log('ctx', ctx);
       // console.log('click', action);

@@ -21,6 +21,7 @@
   "dependencies": {
     "@logux/server": "^0.8.5",
     "dotenv": "^8.2.0",
+    "feather-route-matcher": "^3.1.0",
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^8.0.8",
