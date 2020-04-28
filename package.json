@@ -6,6 +6,7 @@
   "scripts": {
     "analyze": "lerna run --stream analyze --scope @rkta-starter/client",
     "build": "lerna run build",
+    "bump": "npm run build && lerna version patch",
     "clean": "lerna run clean",
     "dev": "lerna run --parallel dev",
     "lint": "lerna run lint",
