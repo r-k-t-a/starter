@@ -42,7 +42,6 @@ const initializeStore = (): LoguxReduxStore => {
   const store = createStore(rootReducer, preloadedState, composeWithDevTools());
   store.client.start();
   store.client.node.catch(({ description: name, message, type }) => {
-    console.log('type', type);
     if (!type) return;
     const action: ErrorPushAction = {
       type: PUSH_ERROR,
