@@ -9,7 +9,10 @@ export const Toast: FC<{}> = (): JSX.Element => {
   const [error] = useSelector((state: RootState) => state.error);
   const dispatch = useDispatch();
   const [fx, setFx] = useFx('popUp', {
-    onFadeDown: () => dispatch({ type: SHIFT_ERROR }),
+    onFadeDown: () => {
+      dispatch({ type: SHIFT_ERROR });
+      setFx('popUp');
+    },
   });
   return (
     error && (
