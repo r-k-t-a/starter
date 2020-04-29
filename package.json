@@ -12,6 +12,7 @@
     "lint": "lerna run lint",
     "prebuild": "lerna run clean",
     "start": "lerna run --parallel start",
+    "start:local": "lerna run --parallel start:local",
     "test": "lerna run test",
     "typecheck": "lerna run typecheck"
   },
