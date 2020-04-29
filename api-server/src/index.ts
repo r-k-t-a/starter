@@ -38,18 +38,18 @@ router.post('/page', async (ctx) => {
 app.use(bodyParser()).use(router.allowedMethods()).use(router.routes());
 app.listen(httpPort, () => console.log(`Koa is listening http://localhost:${httpPort}`));
 
-const readCertFile = (ext: string): string | undefined => {
+const readCertFiles = (): { cert: string; key: string } | undefined => {
   if (!isProduction) return undefined;
-  const fileName = `${domain}.${ext}`;
-  const filePath = path.isAbsolute(certPath)
-    ? path.join(certPath, fileName)
-    : path.join(__dirname, '..', certPath, fileName);
-  return fs.readFileSync(filePath).toString();
+  const certFilePath = path.join(__dirname, '../../', certPath, `${domain}.crt`);
+  const keyFilePath = path.join(__dirname, '../../', certPath, `${domain}.key`);
+  return {
+    cert: fs.readFileSync(certFilePath).toString(),
+    key: fs.readFileSync(keyFilePath).toString(),
+  };
 };
 
 const defaultOptions = {
-  cert: readCertFile('crt'),
-  key: readCertFile('key'),
+  ...readCertFiles(),
   controlMask: '/0',
   port: wsPort,
   subprotocol: version,
