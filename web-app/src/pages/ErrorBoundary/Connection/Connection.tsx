@@ -21,12 +21,12 @@ export const Connection: FC<{}> = (): JSX.Element => {
     switch (nextStatus) {
       case 'disconnected':
       case 'wait':
+      case 'syncError':
         setState(nextStatus);
         break;
       case 'error':
       case 'denied':
-      case 'protocolError':
-      case 'syncError': {
+      case 'protocolError': {
         const action: ErrorPushAction = {
           type: PUSH_ERROR,
           payload: { name: 'Error', message: 'Unknown error', type: nextStatus },

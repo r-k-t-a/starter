@@ -12,6 +12,7 @@ const initialSate: ErrorState = [];
 function redefine(payload: Error): Error {
   switch (payload.type) {
     case 'timeout':
+    case 'syncError':
       return {
         ...payload,
         name: 'Timeout Error',
