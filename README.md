@@ -1,10 +1,10 @@
 # [wip] RKTA Starter
 
-Create universal react apollo apps
+A monorepo boilerplate of: ~~PWA~~, SSR, SPA, Offline, Realtime, CRTDT (LWW), Optimistic UI
 
 ## Features
 
-- React
+- Preact
 - Logux
 - React router
 - Koa
@@ -12,16 +12,15 @@ Create universal react apollo apps
 - Jest
 - Eslint
 - Prettier
+- ~~Code Splitting~~
 - Dotenv
-- Render to node stream
-- Deploy to zeit now
 
 ## Setup .env
 
-Copy `.env.sample` to `.env`, mind that all key prefixed with `CLIENT__` will be awailable on client.
+Copy `.env.sample` to `.env`, mind that all keys prefixed with `CLIENT__` will be available on the client.
 
 ## Npm commands
 
-- `npm run dev` — start dev server
-- `npm run build` — create production build
+- `npm run dev` — start development server
+- `npm run build` — create the production build
 - `npm start` — start production server
