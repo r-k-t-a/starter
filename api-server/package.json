@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "npm run clean && npm run typecheck && npm run lint && npm run test",
     "build": "tsc -p .",
-    "clean": "rimraf './build' && mkdirp ./build",
+    "clean": "rimraf ./build && mkdirp ./build",
     "dev": "nodemon -e ts -w src -x ts-node src",
     "lint": "eslint 'src' --ext .ts",
     "start": "NODE_ENV=production node build/src",

@@ -9,7 +9,7 @@
     "clean": "rimraf {.dev,build,public/*b-*.*} && mkdirp build && mkdirp public",
     "dev": "cross-env NODE_ENV=development nodemon -e ts,tsx -w ./src/server -w webpack.config.js -x 'node scripts/start-dev-server'",
     "lint": "eslint 'src' --ext .ts,.tsx",
-    "start": "CLIENT__LOGUX_URL=wss://127.0.0.1:30030/ NODE_ENV=production node scripts/start-prod-server",
+    "start": "NODE_ENV=production node scripts/start-prod-server",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
