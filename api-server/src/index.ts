@@ -7,7 +7,7 @@ import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import Router from 'koa-router';
 import dotenv from 'dotenv';
-import { Server } from '@logux/server';
+import { Server, ServerOptions } from '@logux/server';
 
 import { allow } from 'access';
 import * as channels from 'channels';
@@ -33,12 +33,13 @@ router.post('/page', async (ctx) => {
 app.use(bodyParser()).use(router.allowedMethods()).use(router.routes());
 app.listen(httpPort, () => console.log(`Koa is listening http://localhost:${httpPort}`));
 
-const defaultOptions = {
+const defaultOptions: ServerOptions = {
   controlMask: '/0',
   port: wsPort,
   subprotocol: version,
   supports: version,
   root: __dirname,
+  env: process.env.LOGUX_MODE as ServerOptions['env'],
 };
 const options = Server.loadOptions(process, defaultOptions);
 
