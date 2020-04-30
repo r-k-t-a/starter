@@ -34,7 +34,7 @@ const initializeStore = (): LoguxReduxStore => {
   const bundleNode = document.getElementById(process.env.CLIENT__CACHE_CONTAINER!)!;
   const preloadedState = JSON.parse(bundleNode.innerHTML);
   const createStore = createLoguxCreator({
-    server: preloadedState.loguxUrl,
+    server: process.env.CLIENT__LOGUX_URL!,
     subprotocol: version,
     token: process.env.CLIENT__LOGUX_DEFAULT_TOKEN!,
     userId: process.env.CLIENT__LOGUX_DEFAULT_USER!,

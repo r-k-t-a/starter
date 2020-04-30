@@ -6,10 +6,10 @@
   "scripts": {
     "prebuild": "npm run clean && npm run typecheck && npm run lint && npm run test",
     "build": "tsc -p .",
-    "clean": "rimraf './build/!(certs)' && mkdirp ./build/certs",
+    "clean": "rimraf './build' && mkdirp ./build",
     "dev": "nodemon -e ts -w src -x ts-node src",
     "lint": "eslint 'src' --ext .ts",
-    "start": "export CERT_PATH=build/certs; export NODE_ENV=production; node scripts/generate-local-certs && node build/src",
+    "start": "NODE_ENV=production node build/src",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
@@ -20,7 +20,6 @@
   "private": true,
   "dependencies": {
     "@logux/server": "^0.8.5",
-    "create-cert": "^1.0.6",
     "dotenv": "^8.2.0",
     "feather-route-matcher": "^3.1.0",
     "koa": "^2.11.0",

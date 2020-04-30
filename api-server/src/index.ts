@@ -4,12 +4,10 @@ import moduleAlias from 'module-alias';
 moduleAlias.addPath(__dirname);
 
 import Koa from 'koa';
-import fs from 'fs';
-import path from 'path';
 import bodyParser from 'koa-bodyparser';
 import Router from 'koa-router';
 import dotenv from 'dotenv';
-import { Server } from '@logux/server';
+import { Server, ServerOptions } from '@logux/server';
 
 import { allow } from 'access';
 import * as channels from 'channels';
@@ -22,9 +20,6 @@ dotenv.config();
 
 const httpPort = parseInt(process.env.HTTP_PORT!, 10);
 const wsPort = parseInt(process.env.WS_PORT!, 10);
-const certPath = process.env.CERT_PATH || '';
-const domain = process.env.DOMAIN;
-const isProduction = process.env.NODE_ENV === 'production';
 
 const app = new Koa();
 const router = new Router();
@@ -38,23 +33,13 @@ router.post('/page', async (ctx) => {
 app.use(bodyParser()).use(router.allowedMethods()).use(router.routes());
 app.listen(httpPort, () => console.log(`Koa is listening http://localhost:${httpPort}`));
 
-const readCertFiles = (): { cert: string; key: string } | undefined => {
-  if (!isProduction) return undefined;
-  const certFilePath = path.join(__dirname, '../../', certPath, `${domain}.crt`);
-  const keyFilePath = path.join(__dirname, '../../', certPath, `${domain}.key`);
-  return {
-    cert: fs.readFileSync(certFilePath).toString(),
-    key: fs.readFileSync(keyFilePath).toString(),
-  };
-};
-
-const defaultOptions = {
-  ...readCertFiles(),
+const defaultOptions: ServerOptions = {
   controlMask: '/0',
   port: wsPort,
   subprotocol: version,
   supports: version,
   root: __dirname,
+  env: process.env.LOGUX_MODE as ServerOptions['env'],
 };
 const options = Server.loadOptions(process, defaultOptions);
 

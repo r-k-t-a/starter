@@ -13,8 +13,6 @@ import { template } from './template';
 import { fetch } from '../../fetch';
 import { serverApp } from './serverApp';
 
-const { CLIENT__LOGUX_URL } = process.env;
-
 export const defaultRoute: Middleware = async (ctx, next): Promise<void> => {
   await next();
 
@@ -47,10 +45,7 @@ export const defaultRoute: Middleware = async (ctx, next): Promise<void> => {
     helmet: helmetContext.helmet as FilledContext['helmet'],
     html,
     ids,
-    reduxState: {
-      ...reduxStore.getState(),
-      loguxUrl: CLIENT__LOGUX_URL,
-    },
+    reduxState: reduxStore.getState(),
   });
 
   const output = render(templateTree);
