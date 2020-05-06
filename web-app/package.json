@@ -6,7 +6,7 @@
     "analyze": "webpack-bundle-analyzer build/stats.json public",
     "prebuild": "npm run clean && npm run typecheck && npm run lint && npm run test",
     "build": "NODE_ENV=production webpack --json > build/stats.json",
-    "clean": "rimraf {.dev,build,public/*b-*.*} && mkdirp build && mkdirp public",
+    "clean": "rimraf {.dev,build,public/{b-,sw.,workbox}*js*} && mkdirp build && mkdirp public",
     "dev": "cross-env NODE_ENV=development nodemon -e ts,tsx -w ./src/server -w webpack.config.js -x 'node scripts/start-dev-server'",
     "lint": "eslint 'src' --ext .ts,.tsx",
     "start": "NODE_ENV=production node scripts/start-prod-server",
@@ -44,7 +44,8 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "workbox-webpack-plugin": "^5.1.3"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
