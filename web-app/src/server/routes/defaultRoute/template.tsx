@@ -39,6 +39,7 @@ export const template = ({
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
       <meta name="theme-color" content="#ffffff" />
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <style
         dangerouslySetInnerHTML={{ __html: css }}
         data-emotion-css={ids.join(' ')}
