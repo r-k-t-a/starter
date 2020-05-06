@@ -61,7 +61,7 @@ document.addEventListener('readystatechange', (): void => {
 
 if (isProduction && typeof window !== 'undefined' && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js');
+    navigator.serviceWorker.register(`${process.env.CLIENT__HTTP_BASE!}sw.js`);
   });
 }
 

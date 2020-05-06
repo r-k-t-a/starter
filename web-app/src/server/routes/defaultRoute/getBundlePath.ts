@@ -24,6 +24,6 @@ export function getBundleName(ctx: Context): string {
   return typeof main === 'string' ? main : main.shift();
 }
 
-const prefix = (bundleName: string): string => `${process.env.HTTP_BASE!}${bundleName}`;
+const prefix = (bundleName: string): string => `${process.env.CLIENT__HTTP_BASE!}${bundleName}`;
 
 export const getBundlePath = flow(getBundleName, prefix);

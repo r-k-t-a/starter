@@ -63,9 +63,8 @@ const client = {
         exclude: [/\.map$/, /^manifest.*\.js(?:on)?$/],
         skipWaiting: true,
         swDest: './sw.js',
-        importScripts: ['sw_cleanup.js'],
         navigateFallback: '/app-shell',
-        navigateFallbackDenylist: [/^\/(b-.*|favicons|sw_cleanup.js|sw.js)/],
+        navigateFallbackDenylist: [/^\/(b-.*|favicons|sw.js)/],
       }),
   ].filter(Boolean),
   resolve: {
