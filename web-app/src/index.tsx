@@ -10,6 +10,7 @@ import { rootReducer, PUSH_ERROR, ErrorPushAction } from 'reducers';
 import { App } from './App';
 import { version } from '../package.json';
 
+const isProduction = process.env.NODE_ENV === 'production';
 interface Props {
   store: LoguxReduxStore;
 }
@@ -57,6 +58,12 @@ document.addEventListener('readystatechange', (): void => {
   if (document.readyState !== 'complete') return;
   hydrate(<RktaApp store={initializeStore()} />, appNode());
 });
+
+if (isProduction && typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register(`${process.env.CLIENT__HTTP_BASE!}sw.js`);
+  });
+}
 
 if (module.hot) {
   if (document.readyState === 'complete') render(<RktaApp store={initializeStore()} />, appNode());

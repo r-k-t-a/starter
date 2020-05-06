@@ -15,8 +15,9 @@ node_modules
 # production
 .dev
 build
-/web-app/public/b-*.js
-/web-app/public/b-*.js.map
+/web-app/public/b-*.js*
+/web-app/public/workbox-*.js*
+/web-app/public/sw.js*
 /web-app/public/b-*.txt
 
 # misc

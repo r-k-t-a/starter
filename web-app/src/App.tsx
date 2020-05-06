@@ -8,6 +8,7 @@ import { ErrorBoundary } from 'pages/ErrorBoundary';
 import Home from 'pages/Home';
 import NotFound from 'pages/NotFound';
 import LoguxDemo from 'pages/LoguxDemo';
+import AppShell from 'pages/AppShell';
 
 // const Home = lazy(() => import('pages/Home'));
 // const NotFound = lazy(() => import('pages/NotFound'));
@@ -35,6 +36,9 @@ export const App = (): JSX.Element => {
           />
           <Suspense fallback={null}>
             <Switch>
+              <Route path="/app-shell" exact>
+                <AppShell />
+              </Route>
               <Route path="/" exact>
                 <Home />
               </Route>
