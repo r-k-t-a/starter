@@ -1,4 +1,4 @@
-import { NotFoundPagePayload } from '@rkta-starter/client/src/reducers';
+import { NotFoundPagePayload } from 'reducers';
 
 export const resolveNotFoundPage = (): NotFoundPagePayload => ({
   heading: 'Page Not Found',

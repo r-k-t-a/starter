@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2017",
+    "noEmit": false
+  },
+  "include": [
+    "src/logux.ts",
+    "src/access",
+    "src/channles",
+    "src/reducers",
+    "src/resolvers",
+    "src/types",
+    "package.json"
+  ]
+}

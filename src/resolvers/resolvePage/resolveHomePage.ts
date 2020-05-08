@@ -1,4 +1,4 @@
-import { HomepagePayload } from '@rkta-starter/client/src/reducers';
+import { HomepagePayload } from 'reducers';
 
 export const resolveHomePage = (): HomepagePayload => ({
   availableLanguages: [
