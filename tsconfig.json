@@ -29,5 +29,5 @@
     }
   },
   "exclude": ["build", "node_modules"],
-  "include": ["src", "package.json"]
+  "include": ["src", "package.json", "jest.config.js", "webpack.config.js"]
 }
