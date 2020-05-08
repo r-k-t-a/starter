@@ -2,9 +2,10 @@
   "compilerOptions": {
     "allowJs": false,
     "baseUrl": ".",
-    "composite": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "jsxFactory": "jsx",
     "inlineSourceMap": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -23,10 +24,9 @@
     "paths": {
       "react": ["preact/compat"],
       "react-dom": ["preact/compat"],
-      "@rkta-starter/client": ["./web-app"],
-      "@rkta-starter/server": ["./api-server"],
-      "*": ["/web-app/src/*", "api-server/src/*"]
+      "*": ["src/*"]
     }
   },
-  "references": [{ "path": "./web-app" }, { "path": "./api-server" }]
+  "exclude": ["build", "node_modules"],
+  "include": ["src", "package.json"]
 }

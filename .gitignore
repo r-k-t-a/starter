@@ -15,10 +15,10 @@ node_modules
 # production
 .dev
 build
-/web-app/public/b-*.js*
-/web-app/public/workbox-*.js*
-/web-app/public/sw.js*
-/web-app/public/b-*.txt
+public/b-*.js*
+public/workbox-*.js*
+public/sw.js*
+public/b-*.txt
 
 # misc
 .DS_Store   

@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { PagePayload, PageLoadAction } from '@rkta-starter/client/src/reducers';
+import { PagePayload, PageLoadAction } from 'reducers';
 import createMatcher from 'feather-route-matcher';
 
 import { resolveHomePage } from './resolveHomePage';

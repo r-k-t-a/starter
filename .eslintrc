@@ -65,6 +65,7 @@
   settings:
     react:
       pragma: jsx
+      version: '16.8'
     import/resolver:
       typescript:
         alwaysTryTypes: true
