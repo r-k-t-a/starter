@@ -13,6 +13,7 @@
     "noImplicitThis": true,
     "noImplicitReturns": true,
     "noLib": false,
+    "noEmit": true,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "rootDir": ".",
