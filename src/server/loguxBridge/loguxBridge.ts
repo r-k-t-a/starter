@@ -9,8 +9,8 @@ export const createLoguxBridge = (): LoguxBridge => {
   const clientConnection = new Connection('client');
   const serverConnection = new Connection('server');
 
-  clientConnection.init(serverConnection);
-  serverConnection.init(clientConnection);
+  clientConnection.addPeer(serverConnection);
+  serverConnection.addPeer(clientConnection);
 
   return {
     clientConnection,

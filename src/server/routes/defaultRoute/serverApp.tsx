@@ -13,13 +13,13 @@ import { version } from '../../../../package.json';
 declare const __non_webpack_require__: any;
 const directRequire = __non_webpack_require__;
 
-interface Props {
+type Props = {
   bridge: LoguxBridge;
   emotionCache: EmotionCache;
   helmetContext: {};
   location: string;
   routerContext: StaticRouter['context'];
-}
+};
 
 export const serverApp = ({
   bridge,
@@ -37,9 +37,9 @@ export const serverApp = ({
     userId: 'ssrID',
   });
 
-  const reduxStore = createStore(rootReducer);
+  const loguxReduxStore: LoguxReduxStore = createStore(rootReducer);
   return [
-    <ReduxProvider store={reduxStore}>
+    <ReduxProvider store={loguxReduxStore}>
       <HelmetProvider context={helmetContext}>
         <StaticRouter context={routerContext} location={location}>
           <CacheProvider value={emotionCache}>
@@ -48,6 +48,6 @@ export const serverApp = ({
         </StaticRouter>
       </HelmetProvider>
     </ReduxProvider>,
-    reduxStore,
+    loguxReduxStore,
   ];
 };

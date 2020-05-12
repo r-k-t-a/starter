@@ -29,14 +29,16 @@ export const defaultRoute: Middleware = async (ctx, next): Promise<void> => {
   };
   const bundlePath = getBundlePath(ctx);
   const helmetContext = { helmet: {} };
-  const [tree, reduxStore] = serverApp({
+  const [tree, loguxReduxStore] = serverApp({
     bridge,
     emotionCache: cache,
     helmetContext,
     location: ctx.url,
     routerContext,
   });
-  reduxStore.client.start();
+  loguxReduxStore.client.start();
+  loguxReduxStore.dispatch.sync({ channel: 'page', url: ctx.url, type: 'logux/subscribe' });
+  // TODO: await prerender(tree, loguxReduxStore, render);
 
   await prepass(tree);
   const emotionHtml = render(tree);
@@ -51,7 +53,7 @@ export const defaultRoute: Middleware = async (ctx, next): Promise<void> => {
     helmet: helmetContext.helmet as FilledContext['helmet'],
     html,
     ids,
-    reduxState: reduxStore.getState(),
+    reduxState: loguxReduxStore.getState(),
   });
 
   const output = render(templateTree);
