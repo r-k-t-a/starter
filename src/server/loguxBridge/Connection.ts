@@ -30,9 +30,7 @@ export class Connection implements LoguxConnection {
   }
 
   send: LoguxConnection['send'] = (message): void => {
-    if (this.connected) {
-      this.peer.emitter.emit('message', message);
-    }
+    if (this.connected) this.peer.emitter.emit('message', message);
   };
 
   on(
