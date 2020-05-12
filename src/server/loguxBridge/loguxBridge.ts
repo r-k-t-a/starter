@@ -1,24 +1,19 @@
-import { WsConnection } from '@logux/core';
-import { WebSocket, Server } from 'mock-socket';
+import { Connection } from './Connection';
 
-type LoguxBridge = {
-  mockConnection: WsConnection;
-  mockServer: Server;
+export type LoguxBridge = {
+  clientConnection: Connection;
+  serverConnection: Connection;
 };
 
 export const createLoguxBridge = (): LoguxBridge => {
-  const url = 'ws://fake-server';
-  const mockConnection = new WsConnection(url, WebSocket, { env: 'development' });
-  const mockServer = new Server(url);
-  mockServer.on('connection', (socket) => {
-    socket.on('message', () => {});
-    socket.on('close', () => {});
+  const clientConnection = new Connection('client');
+  const serverConnection = new Connection('server');
 
-    socket.send('message');
-    socket.close();
-  });
+  clientConnection.init(serverConnection);
+  serverConnection.init(clientConnection);
+
   return {
-    mockConnection,
-    mockServer,
+    clientConnection,
+    serverConnection,
   };
 };

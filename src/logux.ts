@@ -43,10 +43,12 @@ const defaultOptions: ServerOptions = {
 };
 const options = Server.loadOptions(process, defaultOptions);
 
-const logux = new Server(options);
-logux.auth(allow);
+export const createLoguxServer = (): Server => {
+  const logux = new Server(options);
+  logux.auth(allow);
 
-Object.values(channels).forEach((addChannel) => addChannel(logux));
-Object.values(types).forEach((addType) => addType(logux));
+  Object.values(channels).forEach((addChannel) => addChannel(logux));
+  Object.values(types).forEach((addType) => addType(logux));
 
-logux.listen();
+  return logux;
+};
