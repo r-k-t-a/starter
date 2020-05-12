@@ -6,7 +6,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { createLoguxCreator, LoguxReduxStore } from '@logux/redux';
 import { rootReducer } from 'reducers';
 
-import { LoguxBridge } from '../../loguxBridge';
+import { LoguxBridge } from '../../../logux/loguxBridge';
 import { version } from '../../../../package.json';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
