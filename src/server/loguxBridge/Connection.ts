@@ -14,13 +14,13 @@ export class Connection implements LoguxConnection {
 
   name: string;
 
-  pair: Connection;
+  peer: Connection;
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function,class-methods-use-this
   async connect(): Promise<void> {}
 
-  async init(pair: Connection): Promise<void> {
-    this.pair = pair;
+  async init(peer: Connection): Promise<void> {
+    this.peer = peer;
     this.connected = true;
   }
 
@@ -31,7 +31,7 @@ export class Connection implements LoguxConnection {
 
   send: LoguxConnection['send'] = (message): void => {
     if (this.connected) {
-      this.pair.emitter.emit('message', message);
+      this.peer.emitter.emit('message', message);
     }
   };
 

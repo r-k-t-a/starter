@@ -2,7 +2,6 @@
 import { jsx, CacheProvider, EmotionCache } from '@emotion/core';
 import { StaticRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { Store } from 'redux';
 import { Provider as ReduxProvider } from 'react-redux';
 import { createLoguxCreator, LoguxReduxStore } from '@logux/redux';
 import { rootReducer } from 'reducers';
