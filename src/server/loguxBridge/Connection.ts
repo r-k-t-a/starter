@@ -1,7 +1,7 @@
 import { Connection as LoguxConnection } from '@logux/core';
 import { createNanoEvents, Emitter, DefaultEvents, Unsubscribe } from 'nanoevents';
 
-export class Connection {
+export class Connection implements LoguxConnection {
   constructor(name: string) {
     this.connected = false;
     this.emitter = createNanoEvents();
@@ -14,13 +14,13 @@ export class Connection {
 
   name: string;
 
-  target: Connection;
+  pair: Connection;
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function,class-methods-use-this
   async connect(): Promise<void> {}
 
-  async init(target: Connection): Promise<void> {
-    this.target = target;
+  async init(pair: Connection): Promise<void> {
+    this.pair = pair;
     this.connected = true;
   }
 
@@ -31,7 +31,7 @@ export class Connection {
 
   send: LoguxConnection['send'] = (message): void => {
     if (this.connected) {
-      this.target.emitter.emit('message', message);
+      this.pair.emitter.emit('message', message);
     }
   };
 
