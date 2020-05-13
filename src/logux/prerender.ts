@@ -6,5 +6,5 @@ export const prerender = async (
   renderFunc: Function,
 ): Promise<void> => {
   renderFunc(tree);
-  const subscriptions = await loguxReduxStore.client.resolveSubscriptions();
+  // const subscriptions = await loguxReduxStore.client.resolveSubscriptions();
 };
