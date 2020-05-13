@@ -13,6 +13,7 @@ node_modules
 /coverage
 
 # production
+api
 .dev
 build
 public/b-*.js*
@@ -139,3 +140,4 @@ dist
 
 # TernJS port file
 .tern-port
+.vercel

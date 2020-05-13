@@ -77,6 +77,7 @@ const server = {
   entry: {
     server: './src/server/index.ts',
     app: './src/App',
+    ...(isProduction ? { serverless: './src/server/serverless.ts' } : null),
   },
   // experiments: {
   //   outputModule: true,
@@ -127,10 +128,6 @@ const server = {
   },
   externals: [
     nodeExternals({
-      whitelist: [/^@rkta(-starter)?\/.*/i],
-    }),
-    nodeExternals({
-      modulesDir: '../node_modules',
       whitelist: [/^@rkta(-starter)?\/.*/i],
     }),
   ],
