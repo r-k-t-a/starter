@@ -2,16 +2,17 @@ import { Middleware } from 'koa';
 import render from 'preact-render-to-string';
 import { StaticRouterContext } from 'react-router';
 import { FilledContext } from 'react-helmet-async';
-import { createStore } from 'redux';
 import createEmotionServer from 'create-emotion-server';
 import createCache from '@emotion/cache';
 import prepass from 'preact-ssr-prepass';
 
-import { rootReducer } from 'reducers';
 import { getBundlePath } from './getBundlePath';
 import { template } from './template';
-import { fetch } from '../../fetch';
 import { serverApp } from './serverApp';
+
+import { createLoguxServer, createLoguxBridge } from '../../../logux';
+
+const loguxServer = createLoguxServer();
 
 export const defaultRoute: Middleware = async (ctx, next): Promise<void> => {
   await next();
@@ -19,25 +20,31 @@ export const defaultRoute: Middleware = async (ctx, next): Promise<void> => {
   const cache = createCache();
   const { extractCritical } = createEmotionServer(cache);
 
-  const reduxStore = createStore(rootReducer);
-  const { json } = await fetch('page', { url: ctx.url });
-  reduxStore.dispatch(json);
+  const bridge = createLoguxBridge();
+  const clientID = loguxServer.addClient(bridge.serverConnection);
 
   const routerContext: StaticRouterContext = {
     statusCode: 200,
   };
   const bundlePath = getBundlePath(ctx);
   const helmetContext = { helmet: {} };
-  const tree = serverApp({
+  const [tree, loguxReduxStore] = serverApp({
+    bridge,
     emotionCache: cache,
     helmetContext,
     location: ctx.url,
     routerContext,
-    reduxStore,
   });
+  loguxReduxStore.client.start();
+  loguxReduxStore.dispatch.sync({ channel: 'page', url: ctx.url, type: 'logux/subscribe' });
+  // TODO: await prerender(tree, loguxReduxStore, render);
+
   await prepass(tree);
   const emotionHtml = render(tree);
   const { html, css, ids } = extractCritical(emotionHtml);
+
+  loguxServer.connected[clientID].destroy();
+  delete loguxServer.connected[clientID];
 
   const templateTree = template({
     bundlePath,
@@ -45,7 +52,7 @@ export const defaultRoute: Middleware = async (ctx, next): Promise<void> => {
     helmet: helmetContext.helmet as FilledContext['helmet'],
     html,
     ids,
-    reduxState: reduxStore.getState(),
+    reduxState: loguxReduxStore.getState(),
   });
 
   const output = render(templateTree);

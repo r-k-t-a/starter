@@ -24,6 +24,7 @@ async function development(): Promise<Middleware[]> {
   const mdl = await koaWebpack({
     compiler,
     devMiddleware: { publicPath: '/', serverSideRender: true },
+    hotClient: { port: 39172 },
   });
   return [responseTime, logger(), mdl];
 }

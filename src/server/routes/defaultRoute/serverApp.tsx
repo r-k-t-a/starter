@@ -2,31 +2,38 @@
 import { jsx, CacheProvider, EmotionCache } from '@emotion/core';
 import { StaticRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { Store } from 'redux';
 import { Provider as ReduxProvider } from 'react-redux';
+import { LoguxReduxStore } from '@logux/redux';
+import { rootReducer } from 'reducers';
+
+import { createLoguxCreator, LoguxBridge } from '../../../logux';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const __non_webpack_require__: any;
 const directRequire = __non_webpack_require__;
 
-interface Props {
+type Props = {
+  bridge: LoguxBridge;
   emotionCache: EmotionCache;
   helmetContext: {};
   location: string;
   routerContext: StaticRouter['context'];
-  reduxStore: Store;
-}
+};
 
 export const serverApp = ({
+  bridge,
   emotionCache,
   helmetContext,
   location,
   routerContext,
-  reduxStore,
-}: Props): JSX.Element => {
+}: Props): [JSX.Element, LoguxReduxStore] => {
   const { App } = directRequire('./app');
-  return (
-    <ReduxProvider store={reduxStore}>
+
+  const createStore = createLoguxCreator(bridge);
+  const loguxReduxStore: LoguxReduxStore = createStore(rootReducer);
+
+  return [
+    <ReduxProvider store={loguxReduxStore}>
       <HelmetProvider context={helmetContext}>
         <StaticRouter context={routerContext} location={location}>
           <CacheProvider value={emotionCache}>
@@ -34,6 +41,7 @@ export const serverApp = ({
           </CacheProvider>
         </StaticRouter>
       </HelmetProvider>
-    </ReduxProvider>
-  );
+    </ReduxProvider>,
+    loguxReduxStore,
+  ];
 };

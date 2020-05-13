@@ -81,7 +81,7 @@ const server = {
   // experiments: {
   //   outputModule: true,
   // },
-  mode: 'production',
+  mode: isProduction ? 'production' : 'development',
   module: {
     rules: [
       {
