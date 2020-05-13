@@ -10,7 +10,7 @@ import { allow } from 'access';
 import * as channels from 'channels';
 import * as types from 'types';
 
-import { version } from '../package.json';
+import { version } from '../../package.json';
 
 dotenv.config();
 

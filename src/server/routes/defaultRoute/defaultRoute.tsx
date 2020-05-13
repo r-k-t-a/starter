@@ -10,8 +10,7 @@ import { getBundlePath } from './getBundlePath';
 import { template } from './template';
 import { serverApp } from './serverApp';
 
-import { createLoguxBridge } from '../../../logux/loguxBridge';
-import { createLoguxServer } from '../../../logux';
+import { createLoguxServer, createLoguxBridge } from '../../../logux';
 
 const loguxServer = createLoguxServer();
 

@@ -3,11 +3,10 @@ import { jsx, CacheProvider, EmotionCache } from '@emotion/core';
 import { StaticRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider as ReduxProvider } from 'react-redux';
-import { createLoguxCreator, LoguxReduxStore } from '@logux/redux';
+import { LoguxReduxStore } from '@logux/redux';
 import { rootReducer } from 'reducers';
 
-import { LoguxBridge } from '../../../logux/loguxBridge';
-import { version } from '../../../../package.json';
+import { createLoguxCreator, LoguxBridge } from '../../../logux';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const __non_webpack_require__: any;
@@ -30,14 +29,9 @@ export const serverApp = ({
 }: Props): [JSX.Element, LoguxReduxStore] => {
   const { App } = directRequire('./app');
 
-  const createStore = createLoguxCreator({
-    server: bridge.clientConnection,
-    subprotocol: version,
-    token: 'ssrToken',
-    userId: 'ssrID',
-  });
-
+  const createStore = createLoguxCreator(bridge);
   const loguxReduxStore: LoguxReduxStore = createStore(rootReducer);
+
   return [
     <ReduxProvider store={loguxReduxStore}>
       <HelmetProvider context={helmetContext}>
