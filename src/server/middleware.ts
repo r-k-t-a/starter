@@ -8,6 +8,7 @@ import staticServer from 'koa-static';
 import webpack from 'webpack';
 import koaWebpack from 'koa-webpack';
 
+import './aliases/apply';
 import { isDevelopment } from './dotenv';
 import { defaultRoute } from './routes/defaultRoute';
 
@@ -19,7 +20,7 @@ const responseTime: Middleware = async (ctx, next) => {
 };
 
 async function development(): Promise<Middleware[]> {
-  const [client] = require('../../webpack.config');
+  const client = require('../../webpack.config');
   const compiler = webpack(client);
   const mdl = await koaWebpack({
     compiler,
