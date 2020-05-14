@@ -35,8 +35,14 @@ export const createLoguxServer = (): Server => {
   const logux = new Server(options);
   logux.auth(allow);
 
-  Object.values(channels).forEach((addChannel) => addChannel(logux));
-  Object.values(types).forEach((addType) => addType(logux));
+  Object.values(channels).forEach((addChannel) => {
+    if (typeof addChannel !== 'function') return;
+    addChannel(logux);
+  });
+  Object.values(types).forEach((addType) => {
+    if (typeof addType !== 'function') return;
+    addType(logux);
+  });
 
   loguxServer = logux;
 

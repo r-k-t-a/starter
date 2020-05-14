@@ -1,9 +1,4 @@
-const fs = require('fs');
-const path = require('path');
-const aliasesMap = require('./src/server/aliases/map.json');
-
-const srcDir = path.join(__dirname, 'src');
-const srcAliases = fs.readdirSync(srcDir).join('|');
+const { manualAliases, srcDirList } = require('./aliases');
 
 module.exports = {
   presets: [
@@ -20,8 +15,8 @@ module.exports = {
       {
         root: ['./src'],
         alias: {
-          ...aliasesMap,
-          [`^(${srcAliases})(.*)`]: "./src/\\1\\2"
+          ...manualAliases,
+          [`^(${srcDirList.join('|')})(.*)`]: "./src/\\1\\2"
         }
       }
     ]

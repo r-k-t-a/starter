@@ -8,7 +8,6 @@ import staticServer from 'koa-static';
 import webpack from 'webpack';
 import koaWebpack from 'koa-webpack';
 
-import './aliases/apply';
 import { isDevelopment } from './dotenv';
 import { defaultRoute } from './routes/defaultRoute';
 

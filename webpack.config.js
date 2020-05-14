@@ -1,10 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies, @typescript-eslint/no-var-requires */
-const fs = require('fs');
 const dotenv = require('dotenv');
 const path = require('path');
 const webpack = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const aliasesMap = require('./src/server/aliases/map.json');
+const { manualAliases, srcDirList } = require('./aliases');
 
 dotenv.config();
 
@@ -14,9 +13,10 @@ const isProduction = NODE_ENV === 'production';
 const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
 
 const srcDir = path.join(__dirname, 'src');
-const alias = fs
-  .readdirSync(srcDir)
-  .reduce((acc, key) => ({ ...acc, [key]: path.join(srcDir, key) }), aliasesMap);
+const alias = srcDirList.reduce(
+  (acc, key) => ({ ...acc, [key]: path.join(srcDir, key) }),
+  manualAliases,
+);
 
 module.exports = {
   devtool: isProduction ? 'nosources-source-map' : 'eval',

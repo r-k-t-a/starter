@@ -1,9 +1,13 @@
-.babelrc
+.babelrc.js
 .env
 .env.sample
+.eslintrc
 
+jest.config.js
 node_modules
 package-lock.json
 scripts
 yarn.lock
 webpack.config.js
+
+README.md

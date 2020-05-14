@@ -1,27 +1,23 @@
 {
-  "build": {
-    "env": {
-      "CLIENT__APP_CONTAINER": "rkta-app",
-      "CLIENT__CACHE_CONTAINER": "cache",
-      "CLIENT__LOGUX_DEFAULT_USER": "guest",
-      "CLIENT__LOGUX_DEFAULT_TOKEN": "guest",
-      "CLIENT__LOGUX_URL": "wss://starter.rkta.now.sh/",
-      "CLIENT__HTTP_BASE": "/"
-    }
-  },
   "env": {
+    "CLIENT__APP_CONTAINER": "rkta-app",
+    "CLIENT__CACHE_CONTAINER": "cache",
+    "CLIENT__LOGUX_DEFAULT_USER": "guest",
+    "CLIENT__LOGUX_DEFAULT_TOKEN": "guest",
+    "CLIENT__LOGUX_URL": "wss://starter.rkta.now.sh/",
+    "CLIENT__HTTP_BASE": "/",
     "LOGUX_MODE": "production",
     "NODE_ENV": "production"
   },
   "functions": {
-    "api/serverless.js": {
+    "api/vercel-serverless.ts": {
       "includeFiles": "build/stats.json"
     }
   },
   "routes": [
     {
       "src": "[^(.js|favicons)]",
-      "dest": "/api/serverless.js",
+      "dest": "/api/vercel-serverless.ts",
       "headers": {
         "Cache-Control": "s-maxage=900000, max-age=0",
         "Strict-Transport-Security": "max-age=31622400000;",
