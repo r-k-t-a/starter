@@ -34,7 +34,7 @@ export async function addMiddleware(): Promise<Middleware[]> {
   router.get('*', defaultRoute);
   const generalMiddleware = [
     bodyParser(),
-    staticServer(path.join(__dirname, '../public')),
+    staticServer(path.join(__dirname, '../../public')),
     router.allowedMethods(),
     router.routes(),
     responseTime,

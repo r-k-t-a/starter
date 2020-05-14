@@ -6,14 +6,12 @@ import { Context } from 'koa';
 import { isDevelopment } from '../../dotenv';
 
 const buildDir = isDevelopment ? '.dev' : 'build';
-const statsFilePath = path.join(__dirname, `../${buildDir}/stats.json`);
+const statsFilePath = path.join(__dirname, `../../../../${buildDir}/stats.json`);
 
 let productionMain = 'unknown.js';
 if (!isDevelopment) {
   const statsContent = fs.readFileSync(statsFilePath).toString();
-  const clientStats = JSON.parse(
-    statsContent,
-  ).children.find(({ outputPath }: { outputPath: string }) => /public\/?$/.test(outputPath));
+  const clientStats = JSON.parse(statsContent);
   const { main } = clientStats.assetsByChunkName;
   productionMain = typeof main === 'string' ? main : main[0];
 }
