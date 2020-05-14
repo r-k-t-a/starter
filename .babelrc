@@ -11,7 +11,7 @@
       {
         "root": ["./src"],
         "alias": {
-          "": "../src",
+          // "": "../src",
           // "*": "./src/*",
           // "access": "./src/access",
           // "blocks": "./src/blocks",
