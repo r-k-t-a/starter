@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const webpack = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const aliasesMap = require('./src/server/aliases/map.json');
 
 dotenv.config();
 
@@ -12,14 +13,10 @@ const isProduction = NODE_ENV === 'production';
 
 const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
 
-const srcDir = path.join(__dirname, process.env.BUNDLE ? '../src' : './src');
+const srcDir = path.join(__dirname, 'src');
 const alias = fs
   .readdirSync(srcDir)
-  .reduce((acc, key) => ({ ...acc, [key]: path.join(srcDir, key) }), {
-    react: 'preact/compat',
-    'react-dom/test-utils': 'preact/test-utils',
-    'react-dom': 'preact/compat',
-  });
+  .reduce((acc, key) => ({ ...acc, [key]: path.join(srcDir, key) }), aliasesMap);
 
 module.exports = {
   devtool: isProduction ? 'nosources-source-map' : 'eval',

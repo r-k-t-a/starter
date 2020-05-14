@@ -7,7 +7,6 @@ import { LoguxReduxStore } from '@logux/redux';
 import { rootReducer } from 'reducers';
 
 import { createLoguxCreator, LoguxBridge } from '../../../logux';
-import { App } from '../../../App';
 
 type Props = {
   bridge: LoguxBridge;
@@ -24,6 +23,7 @@ export const serverApp = ({
   location,
   routerContext,
 }: Props): [JSX.Element, LoguxReduxStore] => {
+  const { App } = require('../../../App');
   const createStore = createLoguxCreator(bridge);
   const loguxReduxStore: LoguxReduxStore = createStore(rootReducer);
 
