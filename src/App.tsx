@@ -5,10 +5,10 @@ import { Provider as UiProvider } from '@rkta/ui';
 import { Switch, Route } from 'react-router-dom';
 import { ErrorBoundary } from 'pages/ErrorBoundary';
 
-import Home from '/pages/Home';
-import NotFound from '/pages/NotFound';
-import LoguxDemo from '/pages/LoguxDemo';
-import AppShell from '/pages/AppShell';
+import Home from 'pages/Home';
+import NotFound from 'pages/NotFound';
+import LoguxDemo from 'pages/LoguxDemo';
+import AppShell from 'pages/AppShell';
 
 // const Home = lazy(() => import('pages/Home'));
 // const NotFound = lazy(() => import('pages/NotFound'));

@@ -7,10 +7,7 @@ import { LoguxReduxStore } from '@logux/redux';
 import { rootReducer } from 'reducers';
 
 import { createLoguxCreator, LoguxBridge } from '../../../logux';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-declare const __non_webpack_require__: any;
-const directRequire = __non_webpack_require__;
+import { App } from '../../../App';
 
 type Props = {
   bridge: LoguxBridge;
@@ -27,8 +24,6 @@ export const serverApp = ({
   location,
   routerContext,
 }: Props): [JSX.Element, LoguxReduxStore] => {
-  const { App } = directRequire('./app');
-
   const createStore = createLoguxCreator(bridge);
   const loguxReduxStore: LoguxReduxStore = createStore(rootReducer);
 
