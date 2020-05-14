@@ -4,5 +4,31 @@
     "@babel/preset-env",
     ["@emotion/babel-preset-css-prop", { "inline": true }]
   ],
-  "plugins": ["@babel/proposal-class-properties"]
+  "plugins": [
+    "@babel/proposal-class-properties",
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "": "../src",
+          // "*": "./src/*",
+          // "access": "./src/access",
+          // "blocks": "./src/blocks",
+          // "channels": "./src/channels",
+          // "hooks": "./src/hooks",
+          // "logux": "./src/logux",
+          // "pages": "./src/pages",
+          // "reducers": "./src/reducers",
+          // "resolvers": "./src/resolvers",
+          // "server": "./src/server",
+          // "test": "./src/test",
+          // "types": "./src/types",
+          "react": "preact/compat",
+          "react-dom/test-utils": "preact/test-utils",
+          "react-dom": "preact/compat"
+        }
+      }
+    ]
+  ]
 }

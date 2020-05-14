@@ -17,9 +17,9 @@ const srcDir = path.join(__dirname, process.env.BUNDLE ? '../src' : './src');
 const alias = fs
   .readdirSync(srcDir)
   .reduce((acc, key) => ({ ...acc, [key]: path.join(srcDir, key) }), {
-    react: 'preact/compat',
-    'react-dom/test-utils': 'preact/test-utils',
-    'react-dom': 'preact/compat',
+    // react: 'preact/compat',
+    // 'react-dom/test-utils': 'preact/test-utils',
+    // 'react-dom': 'preact/compat',
   });
 
 const client = {
