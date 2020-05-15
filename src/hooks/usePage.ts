@@ -1,7 +1,7 @@
 import { LoguxSubscribeAction } from '@logux/server';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { RootState } from 'reducers';
+import { RootState } from 'src/reducers';
 import { useSubscription } from '@logux/redux';
 
 export interface PageSubscribeAction extends LoguxSubscribeAction {

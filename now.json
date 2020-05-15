@@ -1,0 +1,44 @@
+{
+  "build": {
+    "env": {
+      "CLIENT__APP_CONTAINER": "rkta-app",
+      "CLIENT__CACHE_CONTAINER": "cache",
+      "CLIENT__LOGUX_DEFAULT_USER": "guest",
+      "CLIENT__LOGUX_DEFAULT_TOKEN": "guest",
+      "CLIENT__HTTP_BASE": "/"
+    }
+  },
+  "env": {
+    "CLIENT__APP_CONTAINER": "rkta-app",
+    "CLIENT__CACHE_CONTAINER": "cache",
+    "CLIENT__HTTP_BASE": "/",
+    "LOGUX_MODE": "production",
+    "NODE_ENV": "production"
+  },
+  "functions": {
+    "api/web-app.ts": {
+      "includeFiles": "build/stats.json"
+    }
+  },
+  "rewrites": [{ "source": "(.*)", "destination": "/api/web-app" }],
+  "headers": [
+    {
+      "source": "(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "s-maxage=900000, max-age=0" },
+        { "key": "Strict-Transport-Security", "value": "max-age=31622400000;" },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; frame-ancestors 'none'; img-src 'self' *.sd.lk; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self'"
+        },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-DNS-Prefetch-Control", "value": "off" },
+        { "key": "X-Download-Options", "value": "noopen" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    }
+  ],
+  "scope": "rkta",
+  "version": 2
+}

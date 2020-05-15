@@ -3,12 +3,12 @@ import { jsx, css, Global } from '@emotion/core';
 import { Helmet } from 'react-helmet-async';
 import { Provider as UiProvider } from '@rkta/ui';
 import { Switch, Route } from 'react-router-dom';
-import { ErrorBoundary } from 'pages/ErrorBoundary';
+import { ErrorBoundary } from 'src/pages/ErrorBoundary';
 
-import Home from 'pages/Home';
-import NotFound from 'pages/NotFound';
-import LoguxDemo from 'pages/LoguxDemo';
-import AppShell from 'pages/AppShell';
+import Home from 'src/pages/Home';
+import NotFound from 'src/pages/NotFound';
+import LoguxDemo from 'src/pages/LoguxDemo';
+import AppShell from 'src/pages/AppShell';
 
 // const Home = lazy(() => import('pages/Home'));
 // const NotFound = lazy(() => import('pages/NotFound'));

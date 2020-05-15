@@ -6,9 +6,9 @@ moduleAlias.addPath(__dirname);
 import dotenv from 'dotenv';
 import { Server, ServerOptions } from '@logux/server';
 
-import { allow } from 'access';
-import * as channels from 'channels';
-import * as types from 'types';
+import { allow } from 'src/access';
+import * as channels from 'src/channels';
+import * as types from 'src/types';
 
 import { version } from '../../package.json';
 
@@ -35,8 +35,14 @@ export const createLoguxServer = (): Server => {
   const logux = new Server(options);
   logux.auth(allow);
 
-  Object.values(channels).forEach((addChannel) => addChannel(logux));
-  Object.values(types).forEach((addType) => addType(logux));
+  Object.values(channels).forEach((addChannel) => {
+    if (typeof addChannel !== 'function') return;
+    addChannel(logux);
+  });
+  Object.values(types).forEach((addType) => {
+    if (typeof addType !== 'function') return;
+    addType(logux);
+  });
 
   loguxServer = logux;
 

@@ -11,7 +11,7 @@ import koaWebpack from 'koa-webpack';
 import { isDevelopment } from './dotenv';
 import { defaultRoute } from './routes/defaultRoute';
 
-const responseTime: Middleware = async (ctx, next) => {
+export const responseTime: Middleware = async (ctx, next) => {
   const start = Date.now();
   await next();
   const ms = Date.now() - start;
@@ -19,27 +19,29 @@ const responseTime: Middleware = async (ctx, next) => {
 };
 
 async function development(): Promise<Middleware[]> {
-  const [client] = require('../../webpack.config');
+  const client = require('../../webpack.config');
   const compiler = webpack(client);
   const mdl = await koaWebpack({
     compiler,
     devMiddleware: { publicPath: '/', serverSideRender: true },
     hotClient: { port: 39172 },
   });
-  return [responseTime, logger(), mdl];
+  return [logger(), mdl];
+}
+
+export function production(): Middleware[] {
+  const router = new Router();
+  router.get('*', defaultRoute);
+  return [
+    bodyParser(),
+    staticServer(path.join(__dirname, '../../public')),
+    router.allowedMethods(),
+    router.routes(),
+  ];
 }
 
 export async function addMiddleware(): Promise<Middleware[]> {
-  const router = new Router();
-  router.get('*', defaultRoute);
-  const generalMiddleware = [
-    bodyParser(),
-    staticServer(path.join(__dirname, '../public')),
-    router.allowedMethods(),
-    router.routes(),
-    responseTime,
-  ] as Middleware[];
-  if (!isDevelopment) return [responseTime, ...generalMiddleware];
-  const devMiddleware = await development();
-  return [...devMiddleware, ...generalMiddleware];
+  const generalMiddleware = production();
+  const devMiddleware = isDevelopment ? await development() : [];
+  return [responseTime, ...devMiddleware, ...generalMiddleware];
 }

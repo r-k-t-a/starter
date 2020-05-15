@@ -14,9 +14,7 @@ import { createLoguxServer, createLoguxBridge } from '../../../logux';
 
 const loguxServer = createLoguxServer();
 
-export const defaultRoute: Middleware = async (ctx, next): Promise<void> => {
-  await next();
-
+export const defaultRoute: Middleware = async (ctx): Promise<void> => {
   const cache = createCache();
   const { extractCritical } = createEmotionServer(cache);
 

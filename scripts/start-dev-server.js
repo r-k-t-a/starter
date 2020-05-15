@@ -1,43 +1,23 @@
-/* eslint-disable
-  @typescript-eslint/camelcase, no-underscore-dangle, @typescript-eslint/no-explicit-any,
-  global-require, @typescript-eslint/no-var-requires, import/no-extraneous-dependencies,
-  import/no-unresolved, import/no-dynamic-require, @typescript-eslint/explicit-function-return-type,
-  no-console
-*/
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path');
+const chokidar = require('chokidar');
+const debounce = require('lodash/debounce');
+require('../module-alias')(path.join(__dirname, '../src'));
 
-const webpack = require('webpack');
-const { realpathSync } = require('fs');
-const moduleAlias = require('module-alias');
+require('../src/server');
 
-const [, server] = require('../webpack.config');
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const clearCacheRaw = () => {
+  const keys = Object.keys(require.cache).filter(
+    (key) => !/node_modules/gi.test(key) && /\/src\//gi.test(key),
+  );
 
-moduleAlias.addAliases({
-  react: 'preact/compat',
-  'react-dom/test-utils': 'preact/test-utils',
-  'react-dom': 'preact/compat',
-});
-
-let koaApp = false;
-
-const deleteBundleCache = (...names) =>
-  names.forEach((name) => {
-    const relativelePath = `.dev/${name}.js`;
-    try {
-      const realPath = realpathSync(relativelePath);
-      delete require.cache[realPath];
-    } catch (error) {
-      if (error.code !== 'ENOENT') throw error;
-    }
-  });
-
-webpack(server).watch({ ignored: /node_modules/ }, (error, stats) => {
-  if (error) return console.error(error);
-  if (stats.hasErrors()) return console.log(stats.toString());
-  if (!koaApp) {
-    koaApp = true;
-    require('../.dev/server');
+  // eslint-disable-next-line no-restricted-syntax
+  for (const key of keys) {
+    delete require.cache[key];
   }
+};
 
-  deleteBundleCache('app');
-  return undefined;
-});
+const clearCache = debounce(clearCacheRaw, 100);
+
+chokidar.watch('./src').on('all', clearCache);

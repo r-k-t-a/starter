@@ -1,5 +1,5 @@
 import { Server } from '@logux/server';
-import { deny } from 'access';
+import { deny } from 'src/access';
 
 export const click = (logux: Server): void =>
   logux.type('forbiden/action', {
