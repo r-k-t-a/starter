@@ -4,7 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
-const alias = require('./aliases')();
+const alias = require('./module-alias')();
 
 dotenv.config();
 

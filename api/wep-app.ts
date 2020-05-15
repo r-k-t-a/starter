@@ -5,7 +5,7 @@ import Koa from 'koa';
 import 'preact/compat';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require('../aliases')(path.join(__dirname, '../src'));
+require('../module-alias')(path.join(__dirname, '../src'));
 
 import { production, responseTime } from '../src/server/middleware';
 

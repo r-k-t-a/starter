@@ -29,5 +29,13 @@
     }
   },
   "exclude": ["build", "node_modules"],
-  "include": ["aliases.js", "api", "scripts", "src", "package.json", "jest.config.js", "webpack.config.js"]
+  "include": [
+    "module-alias.js",
+    "api",
+    "scripts",
+    "src",
+    "package.json",
+    "jest.config.js",
+    "webpack.config.js"
+  ]
 }

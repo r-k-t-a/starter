@@ -2,7 +2,7 @@
 const path = require('path');
 const chokidar = require('chokidar');
 const debounce = require('lodash/debounce');
-require('../aliases')(path.join(__dirname, '../src'));
+require('../module-alias')(path.join(__dirname, '../src'));
 
 require('../src/server');
 

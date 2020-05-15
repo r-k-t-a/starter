@@ -29,7 +29,7 @@ const styles = css`
   justify-content: center;
   width: 100vw;
   > div {
-    animation: ${heartbeat} 0.8s ease infinite;
+    animation: ${heartbeat} 1.2s ease infinite;
     width: 112px;
     height: 112px;
     will-change: transform;
