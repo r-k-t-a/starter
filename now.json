@@ -14,25 +14,20 @@
       "includeFiles": "build/stats.json"
     }
   },
-  "routes": [
-    {
-      "src": "[^(.js|favicons)]",
-      "dest": "/api/vercel-serverless.ts",
-      "headers": {
-        "Cache-Control": "s-maxage=900000, max-age=0",
-        "Strict-Transport-Security": "max-age=31622400000;",
-        "Content-Security-Policy": "default-src 'self'; frame-ancestors 'none'; img-src 'self' *.sd.lk; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src https://sdlk-graphql.now.sh/",
-        "X-Frame-Options": "DENY",
-        "X-DNS-Prefetch-Control": "off",
-        "X-Download-Options": "noopen",
-        "X-XSS-Protection": "1; mode=block",
-        "X-Content-Type-Options": "nosniff"
-      }
-    },
-    {
-      "src": "(.*)",
-      "dest": "/public$1"
-    }
+  "rewrites": [
+    { "source": "(.*)", "destination": "/api/vercel-serverless" }
+  ],
+  "headers": [
+    {"source": "(.*)", "headers": [
+      {"key": "Cache-Control", "value": "s-maxage=900000, max-age=0"},
+      {"key": "Strict-Transport-Security", "value": "max-age=31622400000;"},
+      {"key": "Content-Security-Policy", "value": "default-src 'self'; frame-ancestors 'none'; img-src 'self' *.sd.lk; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src https://sdlk-graphql.now.sh/"},
+      {"key": "X-Frame-Options", "value": "DENY"},
+      {"key": "X-DNS-Prefetch-Control", "value": "off"},
+      {"key": "X-Download-Options", "value": "noopen"},
+      {"key": "X-XSS-Protection", "value": "1; mode=block"},
+      {"key": "X-Content-Type-Options", "value": "nosniff"}
+    ]}
   ],
   "scope": "rkta",
   "version": 2

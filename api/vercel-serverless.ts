@@ -9,7 +9,7 @@ const { addAliases, srcDirList } = require('../aliases');
 
 addAliases(
   srcDirList.reduce(
-    (acc: {}, item: string) => ({ ...acc, [item]: path.join(__dirname, `../src/${item}`) }),
+    (acc: {}, item: string) => ({ ...acc, [item]: path.join(__dirname, '../src', item) }),
     {},
   ),
 );
