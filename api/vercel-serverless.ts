@@ -14,12 +14,13 @@ addAliases(
   ),
 );
 
-import { addMiddleware } from '../src/server/middleware';
+import { production, responseTime } from '../src/server/middleware';
 
 const app = new Koa();
 
-const applMiddleware = async (): Promise<void> => {
-  const middleware = await addMiddleware();
+const applMiddleware = (): void => {
+  app.use(responseTime);
+  const middleware = production();
   middleware.forEach(app.use.bind(app));
 };
 
