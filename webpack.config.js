@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const webpack = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const { staticAliases, srcDirList } = require('./aliases');
+const { staticAlias, srcDirList } = require('./aliases');
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('C
 
 const alias = srcDirList.reduce(
   (acc, key) => ({ ...acc, [key]: path.join(__dirname, 'src', key) }),
-  staticAliases,
+  staticAlias,
 );
 
 module.exports = {
