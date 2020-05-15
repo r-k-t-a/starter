@@ -1,21 +1,19 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const fs = require('fs');
 const path = require('path');
 const moduleAlias = require('module-alias');
 
-const srcDir = path.join(__dirname, 'src');
-const srcDirList = fs.readdirSync(srcDir);
+const defaultSrcDir = path.join(__dirname, 'src');
 
-const staticAlias = {
-  react: 'preact/compat',
-  'react-dom/test-utils': 'preact/test-utils',
-  'react-dom': 'preact/compat',
-};
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+module.exports = (srcDir = defaultSrcDir) => {
+  const staticAlias = {
+    src: srcDir,
+    react: 'preact/compat',
+    'react-dom/test-utils': 'preact/test-utils',
+    'react-dom': 'preact/compat',
+  };
 
-moduleAlias.addAliases(staticAlias);
+  moduleAlias.addAliases(staticAlias);
 
-module.exports = {
-  addAliases: moduleAlias.addAliases,
-  srcDirList,
-  staticAlias,
+  return staticAlias;
 };

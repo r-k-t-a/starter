@@ -3,7 +3,8 @@ const dotenv = require('dotenv');
 const path = require('path');
 const webpack = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const { staticAlias, srcDirList } = require('./aliases');
+
+const alias = require('./aliases')();
 
 dotenv.config();
 
@@ -11,11 +12,6 @@ const { NODE_ENV = null } = process.env;
 const isProduction = NODE_ENV === 'production';
 
 const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('CLIENT__'));
-
-const alias = srcDirList.reduce(
-  (acc, key) => ({ ...acc, [key]: path.join(__dirname, 'src', key) }),
-  staticAlias,
-);
 
 module.exports = {
   devtool: isProduction ? 'nosources-source-map' : 'eval',

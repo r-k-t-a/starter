@@ -1,4 +1,4 @@
-const { staticAlias, srcDirList } = require('./aliases');
+require('./aliases')();
 
 module.exports = {
   presets: [
@@ -13,11 +13,7 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./src'],
-        alias: {
-          ...staticAlias,
-          [`^(${srcDirList.join('|')})(.*)`]: "./src/\\1\\2"
-        }
+        root: ['./src']
       }
     ]
   ]

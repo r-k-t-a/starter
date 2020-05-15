@@ -25,9 +25,9 @@
     "paths": {
       "react": ["preact/compat"],
       "react-dom": ["preact/compat"],
-      "*": ["src/*"]
+      "src/*": ["src/*"]
     }
   },
   "exclude": ["build", "node_modules"],
-  "include": ["aliases.js", "api", "src", "package.json", "jest.config.js", "webpack.config.js"]
+  "include": ["aliases.js", "api", "scripts", "src", "package.json", "jest.config.js", "webpack.config.js"]
 }

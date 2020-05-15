@@ -5,14 +5,7 @@ import Koa from 'koa';
 import 'preact/compat';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { addAliases, srcDirList } = require('../aliases');
-
-addAliases(
-  srcDirList.reduce(
-    (acc: {}, item: string) => ({ ...acc, [item]: path.join(__dirname, '../src', item) }),
-    {},
-  ),
-);
+require('../aliases')(path.join(__dirname, '../src'));
 
 import { production, responseTime } from '../src/server/middleware';
 
