@@ -15,7 +15,6 @@ import { version } from '../../package.json';
 dotenv.config();
 
 const wsPort = parseInt(process.env.WS_PORT!, 10);
-const isDevelopment = process.env.NODE_ENV === 'development';
 
 let loguxServer: Server;
 
@@ -46,7 +45,7 @@ export const createLoguxServer = (): Server => {
 
   loguxServer = logux;
 
-  if (isDevelopment) logux.listen();
+  logux.listen();
 
   return logux;
 };
