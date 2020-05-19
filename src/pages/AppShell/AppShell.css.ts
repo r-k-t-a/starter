@@ -1,5 +1,4 @@
-import { jsx, css, keyframes } from '@emotion/core';
-import { Rocket } from '@rkta/entypo';
+import { css, keyframes } from '@emotion/core';
 
 const heartbeat = keyframes`
   0% {
@@ -22,7 +21,7 @@ const heartbeat = keyframes`
   }
 `;
 
-const styles = css`
+export const styles = css`
   align-items: center;
   display: flex;
   height: 100vh;
@@ -39,13 +38,3 @@ const styles = css`
     }
   }
 `;
-
-export default function Shell(): JSX.Element {
-  return (
-    <div css={styles}>
-      <div>
-        <Rocket />
-      </div>
-    </div>
-  );
-}
