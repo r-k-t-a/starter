@@ -1,3 +1,3 @@
 export * from './bridge';
-export * from './createServer';
+export * from './createLoguxServer';
 export * from './createLoguxCreator';
