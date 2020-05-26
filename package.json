@@ -25,7 +25,8 @@
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "typecheck": "tsc",
-    "typecheck:watch": "npm run typecheck -- --watch"
+    "typecheck:watch": "npm run typecheck -- --watch",
+    "updatedeps": "ncu -u && npm install"
   },
   "repository": {
     "type": "git",
@@ -128,6 +129,7 @@
     "mkdirp": "^1.0.4",
     "nodemon": "^2.0.3",
     "now": "^19.0.1",
+    "npm-check-updates": "^6.0.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.2",
     "react-helmet": "^5.2.1",
