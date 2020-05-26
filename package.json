@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "Create universal react apollo apps",
   "main": "jest.config.js",
+  "engines": {
+    "node": ">=12.16.0"
+  },
   "scripts": {
     "preanalyze": "npm run build:client",
     "analyze": "webpack-bundle-analyzer build/stats.json public",
     "prebuild": "npm run checkall",
     "build:client": "NODE_ENV=production webpack --json > build/stats.json",
-    "build:server": "babel -x .ts,.tsx -D src --out-dir build",
+    "build:server": "babel -x .ts,.tsx -D src --out-dir build --source-maps inline",
     "now-build": "npm run clean; CLIENT__LOGUX_URL=wss://$VERCEL_URL NODE_ENV=production webpack --hide-modules --json > build/stats.json",
     "build": "run-p -l build:**",
     "checkall": "npm run clean && npm run typecheck && npm run lint && npm run test",
@@ -17,7 +20,7 @@
     "deploy": "now --prod",
     "dev": "NODE_ENV=development nodemon -w src/server -w src/logux -w src/acces -w src/channels -w src/types -w src/reducers -w .env -e ts,tsx -x 'babel-node -x .ts,.tsx scripts/start-dev-server'",
     "lint": "eslint 'src' --ext .ts,.tsx",
-    "start": "NODE_ENV=production node build/server",
+    "start": "NODE_ENV=production node --enable-source-maps build/server",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
