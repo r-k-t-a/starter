@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { Heading } from '@rkta/ui';
 import { EmojiSad } from '@rkta/entypo';
 
-import { Status } from 'src/blocks';
+import { Status } from 'src/react/blocks';
 
 interface Props {
   code: number;

@@ -4,7 +4,7 @@ import { StaticRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider as ReduxProvider } from 'react-redux';
 import { LoguxReduxStore } from '@logux/redux';
-import { rootReducer } from 'src/reducers';
+import { rootReducer } from 'src/react/reducers';
 
 import { createLoguxCreator, LoguxBridge } from '../../../logux';
 

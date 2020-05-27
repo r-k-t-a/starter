@@ -6,9 +6,9 @@ moduleAlias.addPath(__dirname);
 import dotenv from 'dotenv';
 import { Server, ServerOptions } from '@logux/server';
 
-import { allow } from 'src/access';
-import * as channels from 'src/channels';
-import * as types from 'src/types';
+import { allow } from 'src/logux/access';
+import * as channels from 'src/logux/channels';
+import * as types from 'src/logux/types';
 
 import { version } from '../../package.json';
 

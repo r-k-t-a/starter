@@ -1,4 +1,4 @@
-import { NotFoundPagePayload } from 'src/reducers';
+import { NotFoundPagePayload } from 'src/react/reducers';
 
 export const resolveNotFoundPage = (): NotFoundPagePayload => ({
   heading: 'Page Not Found',

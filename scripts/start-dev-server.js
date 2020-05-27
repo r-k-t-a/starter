@@ -4,7 +4,7 @@ const chokidar = require('chokidar');
 const debounce = require('lodash/debounce');
 require('../module-alias')(path.join(__dirname, '../src'));
 
-require('../src/server');
+require('../src/koa');
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const clearCacheRaw = () => {
