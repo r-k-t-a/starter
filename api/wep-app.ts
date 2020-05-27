@@ -7,7 +7,7 @@ import 'preact/compat';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('../module-alias')(path.join(__dirname, '../src'));
 
-import { production, responseTime } from '../src/server/middleware';
+import { production, responseTime } from '../src/koa/middleware';
 
 const app = new Koa();
 

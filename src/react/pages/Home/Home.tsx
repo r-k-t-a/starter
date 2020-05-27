@@ -4,14 +4,14 @@ import { Heading, Button, Divider, Popover, List, ListButton, Placeholder } from
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { usePage } from 'src/hooks';
+import { usePage } from 'src/react/hooks';
 import {
   RootState,
   SET_LANGUAGE,
   LanguageSetAction,
   HomepagePayload,
   MenuItem,
-} from 'src/reducers';
+} from 'src/react/reducers';
 
 const defaultMenu = [{}, {}] as MenuItem[];
 

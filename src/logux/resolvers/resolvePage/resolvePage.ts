@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { PagePayload, PageLoadAction } from 'src/reducers';
+import { PagePayload, PageLoadAction } from 'src/react/reducers';
 import createMatcher from 'feather-route-matcher';
 
 import { resolveHomePage } from './resolveHomePage';

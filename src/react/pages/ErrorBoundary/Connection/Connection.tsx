@@ -6,7 +6,7 @@ import { PowerPlug } from '@rkta/entypo';
 import { useStore } from 'react-redux';
 import { status } from '@logux/client';
 import { LoguxReduxStore } from '@logux/redux';
-import { ErrorPushAction, PUSH_ERROR } from 'src/reducers';
+import { ErrorPushAction, PUSH_ERROR } from 'src/react/reducers';
 
 const blink = keyframes`
   to {

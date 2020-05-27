@@ -1,7 +1,7 @@
 import { css, jsx } from '@emotion/core';
 import { FC } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState, SHIFT_ERROR } from 'src/reducers';
+import { RootState, SHIFT_ERROR } from 'src/react/reducers';
 import { Addon, Button, List, ListItem, ListTitle, useFx } from '@rkta/ui';
 import { Cross } from '@rkta/entypo';
 
