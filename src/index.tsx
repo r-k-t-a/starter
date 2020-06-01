@@ -51,6 +51,7 @@ const initializeStore = (): LoguxReduxStore => {
     store.dispatch(action);
   });
   enhacedStore = store;
+  if (module.hot) window.enhacedStore = enhacedStore;
   return store;
 };
 
@@ -66,7 +67,8 @@ if (isProduction && typeof window !== 'undefined' && 'serviceWorker' in navigato
 }
 
 if (module.hot) {
-  if (document.readyState === 'complete') render(<RktaApp store={initializeStore()} />, appNode());
+  if (document.readyState === 'complete')
+    render(<RktaApp store={window.enhacedStore!} />, appNode());
   module.hot.accept();
   // eslint-disable-next-line global-require
   require('preact/devtools');
