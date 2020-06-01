@@ -14,7 +14,7 @@ const blink = keyframes`
   }
 `;
 
-export const Connection: FC<{}> = (): JSX.Element => {
+export const Connection: FC = (): JSX.Element => {
   const store = useStore() as LoguxReduxStore;
   const [state, setState] = useState<string | null>(null);
   function handleStatusChange(nextStatus: string): void {

@@ -1,4 +1,4 @@
-/* eslint-disable global-require, @typescript-eslint/no-var-requires, no-underscore-dangle, @typescript-eslint/camelcase */
+/* eslint-disable global-require, @typescript-eslint/no-var-requires, no-underscore-dangle */
 import { jsx, CacheProvider, EmotionCache } from '@emotion/core';
 import { StaticRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
@@ -11,7 +11,7 @@ import { createLoguxCreator, LoguxBridge } from '../../../logux';
 type Props = {
   bridge: LoguxBridge;
   emotionCache: EmotionCache;
-  helmetContext: {};
+  helmetContext: Record<string, unknown>;
   location: string;
   routerContext: StaticRouter['context'];
 };

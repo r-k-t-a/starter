@@ -5,7 +5,7 @@ import { RootState, SHIFT_ERROR } from 'src/react/reducers';
 import { Addon, Button, List, ListItem, ListTitle, useFx } from '@rkta/ui';
 import { Cross } from '@rkta/entypo';
 
-export const Toast: FC<{}> = (): JSX.Element => {
+export const Toast: FC = (): JSX.Element => {
   const [error] = useSelector((state: RootState) => state.error);
   const dispatch = useDispatch();
   const [fx, setFx] = useFx('popUp', {

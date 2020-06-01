@@ -11,7 +11,8 @@ const match = createMatcher({
 });
 
 export const resolvePage = async (url: string): Promise<PageLoadAction> => {
-  const { page } = match(url);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { value: page } = match(url) as any;
   // const { page, params } = match(url);
   const payload: PagePayload = await page();
   return {

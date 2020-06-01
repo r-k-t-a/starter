@@ -19,4 +19,4 @@ const applMiddleware = (): void => {
 
 applMiddleware();
 
-export default app.listen(3000);
+export default app.callback();

@@ -10,7 +10,7 @@ interface Args {
   html: string;
   helmet: FilledContext['helmet'];
   ids: string[];
-  reduxState: {};
+  reduxState: Record<string, unknown>;
 }
 
 export const template = ({
