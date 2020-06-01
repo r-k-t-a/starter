@@ -15,7 +15,7 @@ interface Props {
   store: LoguxReduxStore;
 }
 
-let enhacedStore: LoguxReduxStore;
+let loguxReduxStore: LoguxReduxStore;
 
 const RktaApp: FunctionComponent<Props> = ({ store }): JSX.Element => (
   <ReduxProvider store={store}>
@@ -31,7 +31,7 @@ const appNode = (): HTMLElement =>
   document.getElementById(process.env.CLIENT__APP_CONTAINER!) as HTMLElement;
 
 const initializeStore = (): LoguxReduxStore => {
-  if (enhacedStore) return enhacedStore;
+  if (loguxReduxStore) return loguxReduxStore;
   const bundleNode = document.getElementById(process.env.CLIENT__CACHE_CONTAINER!)!;
   const preloadedState = JSON.parse(bundleNode.innerHTML);
   const createStore = createLoguxCreator({
@@ -50,7 +50,8 @@ const initializeStore = (): LoguxReduxStore => {
     };
     store.dispatch(action);
   });
-  enhacedStore = store;
+  loguxReduxStore = store;
+  if (module.hot) window.loguxReduxStore = loguxReduxStore;
   return store;
 };
 
@@ -66,7 +67,8 @@ if (isProduction && typeof window !== 'undefined' && 'serviceWorker' in navigato
 }
 
 if (module.hot) {
-  if (document.readyState === 'complete') render(<RktaApp store={initializeStore()} />, appNode());
+  if (document.readyState === 'complete')
+    render(<RktaApp store={window.loguxReduxStore!} />, appNode());
   module.hot.accept();
   // eslint-disable-next-line global-require
   require('preact/devtools');
