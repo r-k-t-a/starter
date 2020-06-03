@@ -10,9 +10,9 @@ import NotFound from 'src/react/pages/NotFound';
 import LoguxDemo from 'src/react/pages/LoguxDemo';
 import AppShell from 'src/react/pages/AppShell';
 
-// const Home = lazy(() => import('pages/Home'));
-// const NotFound = lazy(() => import('pages/NotFound'));
-// const LoguxDemo = lazy(() => import('pages/LoguxDemo'));
+// const Home = lazy(() => import('src/react/pages/Home'));
+// const NotFound = lazy(() => import('src/react/pages/NotFound'));
+// const LoguxDemo = lazy(() => import('src/react/pages/LoguxDemo'));
 
 export const App = (): JSX.Element => {
   // TODO: use Fragment after https://github.com/preactjs/preact/issues/2504 is fixed
