@@ -39,23 +39,27 @@ export const defaultRoute: Middleware = async (ctx): Promise<void> => {
 
   await prepass(tree);
   console.log('prepass has passed');
-  const emotionHtml = render(tree);
-  const { html, css, ids } = extractCritical(emotionHtml);
 
-  loguxServer.connected[clientID].destroy();
-  delete loguxServer.connected[clientID];
+  try {
+    const emotionHtml = render(tree);
+    const { html, css, ids } = extractCritical(emotionHtml);
 
-  const templateTree = template({
-    bundlePath,
-    css,
-    helmet: helmetContext.helmet as FilledContext['helmet'],
-    html,
-    ids,
-    reduxState: loguxReduxStore.getState(),
-  });
+    loguxServer.connected[clientID].destroy();
+    delete loguxServer.connected[clientID];
 
-  const output = render(templateTree);
-
-  ctx.status = routerContext.statusCode!;
-  ctx.body = `<!DOCTYPE html>${output}`;
+    const templateTree = template({
+      bundlePath,
+      css,
+      helmet: helmetContext.helmet as FilledContext['helmet'],
+      html,
+      ids,
+      reduxState: loguxReduxStore.getState(),
+    });
+    const output = render(templateTree);
+    ctx.status = routerContext.statusCode!;
+    ctx.body = `<!DOCTYPE html>${output}`;
+  } catch (error) {
+    console.log('error', error);
+    ctx.body = error;
+  }
 };
