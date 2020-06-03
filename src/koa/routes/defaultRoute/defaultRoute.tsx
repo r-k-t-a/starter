@@ -38,6 +38,7 @@ export const defaultRoute: Middleware = async (ctx): Promise<void> => {
   // TODO: await prerender(tree, loguxReduxStore, render);
 
   await prepass(tree);
+  console.log('prepass has passed');
   const emotionHtml = render(tree);
   const { html, css, ids } = extractCritical(emotionHtml);
 

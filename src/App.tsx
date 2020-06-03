@@ -1,18 +1,18 @@
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { jsx, css, Global, SerializedStyles } from '@emotion/core';
 import { Helmet } from 'react-helmet-async';
 import { Provider as UiProvider } from '@rkta/ui';
 import { Switch, Route } from 'react-router-dom';
 import { ErrorBoundary } from 'src/react/pages/ErrorBoundary';
 
-import Home from 'src/react/pages/Home';
-import NotFound from 'src/react/pages/NotFound';
-import LoguxDemo from 'src/react/pages/LoguxDemo';
+// import Home from 'src/react/pages/Home';
+// import NotFound from 'src/react/pages/NotFound';
+// import LoguxDemo from 'src/react/pages/LoguxDemo';
 import AppShell from 'src/react/pages/AppShell';
 
-// const Home = lazy(() => import('src/react/pages/Home'));
-// const NotFound = lazy(() => import('src/react/pages/NotFound'));
-// const LoguxDemo = lazy(() => import('src/react/pages/LoguxDemo'));
+const Home = lazy(() => import('src/react/pages/Home'));
+const NotFound = lazy(() => import('src/react/pages/NotFound'));
+const LoguxDemo = lazy(() => import('src/react/pages/LoguxDemo'));
 
 export const App = (): JSX.Element => {
   // TODO: use Fragment after https://github.com/preactjs/preact/issues/2504 is fixed
