@@ -6,6 +6,7 @@
   "engines": {
     "node": ">=12.16.0"
   },
+  "sideEffects": false,
   "scripts": {
     "preanalyze": "npm run build:client",
     "analyze": "webpack-bundle-analyzer build/stats.json public",
