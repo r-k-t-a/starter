@@ -41,8 +41,12 @@ export const defaultRoute: Middleware = async (ctx): Promise<void> => {
   const emotionHtml = render(tree);
   const { html, css, ids } = extractCritical(emotionHtml);
 
-  loguxServer.connected[clientID].destroy();
-  delete loguxServer.connected[clientID];
+  const clientKey = clientID.toString();
+  const client = loguxServer.connected.get(clientKey);
+  if (client) {
+    client.destroy();
+    loguxServer.connected.delete(clientKey);
+  }
 
   const templateTree = template({
     bundlePath,

@@ -1,5 +1,6 @@
 import { Connection } from '@logux/core';
 import { createNanoEvents, Emitter, DefaultEvents, Unsubscribe } from 'nanoevents';
+import WebSocket from 'ws';
 
 export class BridgeConnection implements Connection {
   constructor(name: string) {
@@ -15,6 +16,8 @@ export class BridgeConnection implements Connection {
   name: string;
 
   peer: BridgeConnection;
+
+  ws: WebSocket;
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function,class-methods-use-this
   async connect(): Promise<void> {}
@@ -35,7 +38,8 @@ export class BridgeConnection implements Connection {
 
   on(
     event: 'connecting' | 'connect' | 'disconnect' | 'message' | 'error',
-    listener: () => void,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    listener: (param: any) => void,
   ): Unsubscribe {
     return this.emitter.on(event, listener);
   }

@@ -42,9 +42,9 @@
   "dependencies": {
     "@emotion/cache": "^10.0.29",
     "@emotion/core": "^10.0.28",
-    "@logux/core": "^0.5.3 ",
-    "@logux/redux": "^0.6.2",
-    "@logux/server": "^0.8.6",
+    "@logux/core": "^0.6.0",
+    "@logux/redux": "^0.7.0",
+    "@logux/server": "^0.9.2",
     "@rkta/context": "^0.0.139",
     "@rkta/entypo": "^0.0.139",
     "@rkta/ui": "^0.0.139",
