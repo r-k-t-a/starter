@@ -23,7 +23,7 @@ export const serverApp = ({
   location,
   routerContext,
 }: Props): [JSX.Element, LoguxReduxStore] => {
-  const { App } = require('../../../App');
+  const { App } = require('../../../react/App');
   const createStore = createLoguxCreator(bridge);
   const loguxReduxStore: LoguxReduxStore = createStore(rootReducer);
 
