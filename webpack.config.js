@@ -15,7 +15,7 @@ const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('C
 
 module.exports = {
   devtool: isProduction ? 'nosources-source-map' : 'eval',
-  entry: ['./src'],
+  entry: ['./src/react'],
   mode: isProduction ? 'production' : 'development',
   module: {
     rules: [
