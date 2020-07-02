@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { createLoguxCreator, LoguxReduxStore } from '@logux/redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { Workbox } from 'workbox-window';
 
 import { rootReducer, PUSH_ERROR, ErrorPushAction } from 'src/react/reducers';
 import { App } from './App';
@@ -16,6 +17,7 @@ interface Props {
 }
 
 let loguxReduxStore: LoguxReduxStore;
+let swRegistration: ServiceWorkerRegistration | undefined;
 
 const RktaApp: FunctionComponent<Props> = ({ store }): JSX.Element => (
   <ReduxProvider store={store}>
@@ -44,6 +46,11 @@ const initializeStore = (): LoguxReduxStore => {
   store.client.start();
   store.client.node.catch(({ description: name, message, type }) => {
     if (!type) return;
+    if (isProduction && swRegistration && type === 'wrong-subprotocol') {
+      swRegistration.unregister().then(() => {
+        window.location.reload();
+      });
+    }
     const action: ErrorPushAction = {
       type: PUSH_ERROR,
       payload: { type, message, name },
@@ -61,8 +68,14 @@ document.addEventListener('readystatechange', (): void => {
 });
 
 if (isProduction && typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register(`${process.env.CLIENT__HTTP_BASE!}sw.js`);
+  const workbox = new Workbox(`${process.env.CLIENT__HTTP_BASE!}sw.js`);
+
+  workbox.addEventListener('installed', (event) => {
+    if (event.isUpdate) window.location.reload();
+  });
+
+  workbox.register().then((registration) => {
+    swRegistration = registration;
   });
 }
 
