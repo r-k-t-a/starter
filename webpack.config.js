@@ -15,7 +15,7 @@ const publicEnvKeys = Object.keys(process.env).filter((key) => key.startsWith('C
 
 module.exports = {
   devtool: isProduction ? 'nosources-source-map' : 'eval',
-  entry: ['./src/react'],
+  entry: ['./src/react/client'],
   mode: isProduction ? 'production' : 'development',
   module: {
     rules: [
@@ -23,10 +23,10 @@ module.exports = {
         exclude: /node_modules/,
         test: /\.(tsx?)$/,
         use: {
-          loader: 'babel-loader',
+          loader: 'babel-loader', 
         },
       },
-    ],
+    ], 
   },
   optimization: {
     concatenateModules: false,

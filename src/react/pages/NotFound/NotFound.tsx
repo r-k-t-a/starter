@@ -1,11 +1,9 @@
 import { jsx } from '@emotion/core';
 import { Button, Heading, Divider, Placeholder } from '@rkta/ui';
 import { Facebook, Twitter, Youtube, Vk } from '@rkta/entypo';
-import { usePage } from 'src/react/hooks';
+import { usePage, Status, MenuItem, NotFoundPagePayload } from 'src/react';
 import { Link } from 'react-router-dom';
 
-import { Status } from 'src/react/blocks';
-import { MenuItem, NotFoundPagePayload } from 'src/react/reducers';
 import { main, nav } from './NotFound.css';
 
 const defaultMenu = ([{}] as unknown) as MenuItem[];

@@ -1,4 +1,4 @@
-import { HomepagePayload } from 'src/react/reducers';
+import { HomepagePayload } from 'src/react';
 
 export const resolveHomePage = (): HomepagePayload => ({
   availableLanguages: [

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Server } from '@logux/server';
-import { PageSubscribeAction } from 'src/react/hooks';
+import { PageSubscribeAction } from 'src/react';
 import { allow } from 'src/logux/access';
 import { resolvePage } from 'src/logux/resolvers';
 
