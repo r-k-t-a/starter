@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Provider as UiProvider } from '@rkta/ui';
 import { Switch, Route } from 'react-router-dom';
 import { ErrorBoundary } from 'src/react/pages/ErrorBoundary';
+import { useScrollRestoration } from 'src/react/hooks';
 
 import Home from 'src/react/pages/Home';
 import NotFound from 'src/react/pages/NotFound';
@@ -16,6 +17,7 @@ import AppShell from 'src/react/pages/AppShell';
 
 export const App = (): JSX.Element => {
   // TODO: use Fragment after https://github.com/preactjs/preact/issues/2504 is fixed
+  useScrollRestoration();
   return (
     <div>
       <UiProvider>
