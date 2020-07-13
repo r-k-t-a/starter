@@ -16,6 +16,8 @@ interface State {
   message?: string;
 }
 
+const getErrorCode = get('code');
+
 export class ErrorBoundary extends Component<Props, State> {
   state = {
     code: undefined,
@@ -25,7 +27,7 @@ export class ErrorBoundary extends Component<Props, State> {
   // TODO: log error and errorInfo
   componentDidCatch(error: Error): void {
     const message = error.message || toString(error);
-    const code: number = (get(error, 'code') as number) || 500;
+    const code: number = getErrorCode(error) || 500;
     this.setState({ code, message });
   }
 
