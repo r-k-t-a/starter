@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import flow from 'lodash/flow';
+import flow from 'lodash/fp/flow';
 import { Context } from 'koa';
 
 import { isDevelopment } from '../../dotenv';
