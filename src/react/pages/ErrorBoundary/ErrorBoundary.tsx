@@ -1,7 +1,7 @@
 import { jsx } from '@emotion/core';
 import { Component, ReactNode, Fragment } from 'react';
-import get from 'lodash/get';
-import toString from 'lodash/toString';
+import get from 'lodash/fp/get';
+import toString from 'lodash/fp/toString';
 
 import { Connection } from './Connection';
 import { ErrorPage } from './ErrorPage';
