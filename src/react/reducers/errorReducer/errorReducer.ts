@@ -9,7 +9,7 @@ import {
 
 const initialSate: ErrorState = [];
 
-function redefine(payload: Error): Error {
+function normalize(payload: Error): Error {
   switch (payload.type) {
     case 'timeout':
     case 'syncError':
@@ -46,13 +46,18 @@ function redefine(payload: Error): Error {
   }
 }
 
+function concat(state: ErrorState, action: ErrorPushAction): ErrorState {
+  const nextError = normalize(action.payload);
+  return state.filter(({ message }) => message !== nextError.message).concat(nextError);
+}
+
 export function error(
   state: ErrorState = initialSate,
-  { type, payload }: ErrorPushAction | ErrorShiftAction,
+  action: ErrorPushAction | ErrorShiftAction,
 ): ErrorState {
-  switch (type) {
+  switch (action.type) {
     case PUSH_ERROR:
-      return [...state, redefine(payload)];
+      return concat(state, action);
     case SHIFT_ERROR: {
       const [, ...nextState] = state;
       return nextState;
