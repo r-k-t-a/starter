@@ -34,7 +34,7 @@ export const defaultRoute: Middleware = async (ctx): Promise<void> => {
     routerContext,
   });
   loguxReduxStore.client.start();
-  loguxReduxStore.dispatch.sync({ channel: 'page', url: ctx.url, type: 'logux/subscribe' });
+  await loguxReduxStore.dispatch.sync({ channel: 'page', url: ctx.url, type: 'logux/subscribe' });
   // TODO: await prerender(tree, loguxReduxStore, render);
 
   await prepass(tree);
