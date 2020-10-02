@@ -1,5 +1,7 @@
-import { Language } from '../languageReducer/languageReducer.type';
+// eslint-disable-next-line import/no-cycle
+import { Language } from './languageReducer';
 
+// #region TYPES
 export const PAGE_LOAD = 'page/load';
 
 export interface MenuItem {
@@ -32,4 +34,16 @@ export type PageData = Omit<HomepagePayload, 'availableLanguages'>;
 
 export interface PageState {
   [key: string]: PageData;
+}
+// #endregion
+
+export default function page(state: PageState = {}, action: PageLoadAction): PageState {
+  switch (action.type) {
+    case PAGE_LOAD: {
+      // eslint-disable-next-line @typescript-eslint/ban-types
+      return { ...state, [action.url]: action.payload } as {};
+    }
+    default:
+      return state;
+  }
 }

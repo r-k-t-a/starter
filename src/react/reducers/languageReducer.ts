@@ -1,12 +1,31 @@
-import { SET_LANGUAGE, LanguageState, LanguageSetAction } from './languageReducer.type';
-import { PAGE_LOAD, PageLoadAction } from '../pageReducer/pageReducer.type';
+// eslint-disable-next-line import/no-cycle
+import { PAGE_LOAD, PageLoadAction } from './pageReducer';
+
+// #region
+export const SET_LANGUAGE = 'SET_LANGUAGE';
+
+export interface Language {
+  name: string;
+  token: string;
+}
+
+export interface LanguageState {
+  availableLanguages: Language[];
+  currentLanguage: string;
+}
+
+export interface LanguageSetAction {
+  token: string;
+  type: typeof SET_LANGUAGE;
+}
+// #endregion
 
 const initialSate: LanguageState = {
   availableLanguages: [],
   currentLanguage: 'en',
 };
 
-export function language(
+export default function language(
   state: LanguageState = initialSate,
   action: PageLoadAction | LanguageSetAction,
 ): LanguageState {
