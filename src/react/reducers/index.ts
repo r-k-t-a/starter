@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
-import { error } from './errorReducer';
-import { language } from './languageReducer';
-import { page } from './pageReducer';
+import error from './errorReducer';
+import language from './languageReducer';
+import page from './pageReducer';
 
 export * from './errorReducer';
 export * from './languageReducer';

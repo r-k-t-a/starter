@@ -1,11 +1,24 @@
-import {
-  PUSH_ERROR,
-  SHIFT_ERROR,
-  Error,
-  ErrorState,
-  ErrorPushAction,
-  ErrorShiftAction,
-} from './errorReducer.type';
+// #region TYPES
+export const PUSH_ERROR = 'error/push';
+export const SHIFT_ERROR = 'error/shift';
+
+export interface Error {
+  name: string;
+  message: string;
+  type: string;
+}
+
+export type ErrorState = Error[];
+
+export interface ErrorPushAction {
+  type: typeof PUSH_ERROR;
+  payload: Error;
+}
+export interface ErrorShiftAction {
+  type: typeof SHIFT_ERROR;
+  payload: never;
+}
+// #endregion
 
 const initialSate: ErrorState = [];
 
@@ -51,7 +64,7 @@ function concat(state: ErrorState, action: ErrorPushAction): ErrorState {
   return state.filter(({ message }) => message !== nextError.message).concat(nextError);
 }
 
-export function error(
+export default function error(
   state: ErrorState = initialSate,
   action: ErrorPushAction | ErrorShiftAction,
 ): ErrorState {
