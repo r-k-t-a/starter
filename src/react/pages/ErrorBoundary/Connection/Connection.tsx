@@ -7,6 +7,7 @@ import { useStore } from 'react-redux';
 import { status } from '@logux/client';
 import { LoguxReduxStore } from '@logux/redux';
 import { ErrorPushAction, PUSH_ERROR } from 'src/react/reducers';
+import { RktaTheme } from '@rkta/ui';
 
 const blink = keyframes`
   to {
@@ -47,15 +48,27 @@ export const Connection: FC = (): JSX.Element => {
   useEffect(effect, [state]);
 
   return (state && (
-    <PowerPlug
-      css={css`
-        animation: ${blink} 1s steps(5, start) infinite;
+    <div
+      css={(theme: RktaTheme) => css`
+        align-items: center;
+        background-color: ${theme.color.color16};
+        border-radius: 56px;
+        box-shadow: ${theme.shadow[1]};
+        display: flex;
+        height: 56px;
+        justify-content: center;
         position: fixed;
         top: 50%;
         transform: translateY(-50%);
         right: 16px;
+        width: 56px;
         z-index: 1000;
+        > svg {
+          animation: ${blink} 1s steps(5, start) infinite;
+        }
       `}
-    />
+    >
+      <PowerPlug />
+    </div>
   )) as JSX.Element;
 };

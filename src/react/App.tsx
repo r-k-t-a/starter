@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { jsx, css, Global, SerializedStyles } from '@emotion/core';
+import { jsx, css, Global } from '@emotion/core';
 import { Helmet } from 'react-helmet-async';
 import { Provider as UiProvider } from '@rkta/ui';
 import { Switch, Route } from 'react-router-dom';
@@ -26,15 +26,15 @@ export const App = (): JSX.Element => {
             <title>Hello World</title>
           </Helmet>
           <Global
-            styles={({ color, Text }): SerializedStyles => css`
-          body {
-            ${Text.body}
-            ${Text.sans}
-            background-color: ${color.paper};
-            margin: 0;
-            overscroll-behavior: none;
-          }
-        `}
+            styles={({ color, Text }) => css`
+              body {
+                ${Text.body}
+                ${Text.sans}
+                background-color: ${color.paper};
+                margin: 0;
+                overscroll-behavior: none;
+              }
+            `}
           />
           <Suspense fallback={null}>
             <Switch>
