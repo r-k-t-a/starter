@@ -31,12 +31,12 @@ async function development(): Promise<Middleware[]> {
 
 export function production(): Middleware[] {
   const router = new Router();
-  router.get('*', defaultRoute);
   return [
     bodyParser(),
     staticServer(path.join(__dirname, '../../public')),
     router.allowedMethods(),
     router.routes(),
+    defaultRoute,
   ];
 }
 
