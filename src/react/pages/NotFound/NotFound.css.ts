@@ -5,6 +5,7 @@ export const main = css`
   flex-direction: column;
   min-height: 100vh;
   text-align: center;
+  align-items: center;
 `;
 
 export const nav = css`
